@@ -1,0 +1,51 @@
+<h3>Coffee Coffee Menu</h3>
+
+<br>
+
+<h4>Drinks</h4>
+
+<br>
+
+<table>
+
+    <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Extra Ingredients</th>
+        <th>Add to Cart</th>
+    </tr>
+
+    <tr *ngFor="let item of menuItems">
+        <td>{{item.pic}}</td>
+        <td>{{item.price | currency: 'USD'}}</td>
+        <td>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Button with data-bs-target
+              </button>
+            
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+              </div>
+            </div>
+
+        </td>
+        <td><button (click)="addItemToCart()">Add to Cart</button></td>
+    
+
+    </tr>
+
+</table>
+
+<br>
+
+<h4>Drinks</h4>
+
+<br>
+
+<table>
+
+    
+
+</table>
