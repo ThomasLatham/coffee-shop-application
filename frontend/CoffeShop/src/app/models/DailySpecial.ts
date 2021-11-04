@@ -6,4 +6,18 @@ export class DailySpecial {
     shop: Shop;
     dayOfWeek: number;
     menuItem: MenuItem;
+
+
+  constructor(
+    dailySpecialID: number, 
+    shop: Shop, 
+    dayOfWeek: number, 
+    menuItem: MenuItem
+) {
+    this.dailySpecialID = dailySpecialID
+    this.shop = shop
+    this.dayOfWeek = dayOfWeek
+    this.menuItem = menuItem
+  }
+
 }
