@@ -101,7 +101,7 @@ create table orders(
     order_id serial primary key,
     order_time bigint,
     order_status int references order_statuses(status_id),
-    oredered_by int references users(user_id),
+    ordered_by int references users(user_id),
     order_payment int references payment_types(payment_type_id),
     delivery boolean
 );
