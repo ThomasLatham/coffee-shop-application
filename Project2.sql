@@ -48,7 +48,6 @@ create table user_addresses(
 	zip_code int
 );
 
-
 create table shops(
     shop_id serial primary key,
 	shop_location varchar(50),
@@ -134,7 +133,64 @@ insert into order_statuses values
 	(default, 'Delivered'),
 	(default, 'Order Complete');
 
+insert into item_categories values
+	(default, 'Drinks'),
+	(default, 'Food');
 
+insert into payment_types values
+	(default, 'cash');
+
+insert into user_roles values
+	(default, 'customer'),
+	(default, 'manager');
+
+insert into pictures values
+	(default, 'dummyUrl', '\\xDEADBEEF'),
+	(default, 'dummyUrl', '\\xDEADBEEF'),
+	(default, 'dummyUrl', '\\xDEADBEEF'),
+	(default, 'dummyUrl', '\\xDEADBEEF');
+
+
+	--MEAT TABLES--
+insert into menu_items values
+	(default, 'espresso', 2.50, 120000, 1, 1),
+	(default, 'americano', 2.75, 150000, 1, 1),
+	(default, 'machiatto', 3.00, 180000, 1, 1),
+	(default, 'cappuccino', 3.25, 120000, 1, 1),
+	(default, 'latte', 3.50, 150000, 1, 1),
+	(default, 'croissant', 3.00, 30000, 2, 1),
+	(default, 'breakfast sandwich', 5.00, 300000, 2, 1),
+	(default, 'cheese Danish', 3.00, 30000, 2, 1),
+	(default, 'sugar cookie', 2.50, 30000, 2, 1);
+
+insert into ingredients values 
+	(default, 'almond milk', 0.50),
+	(default, 'sugar', 0.25),
+	(default, 'artificial sweetener', 0.50),
+	(default, 'soy milk', 1.00),
+	(default, 'honey', 0.50),
+	(default, 'extra cheese', 0.50),
+	(default, 'extra spicy', 0.75);
+	
+
+insert into menu_item_ingredients values
+	(1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
+	(2, 1), (2, 2), (2, 3), (2, 4), (2, 5),
+	(3, 1), (3, 2), (3, 3), (3, 4), (3, 5),
+	(4, 1), (4, 2), (4, 3), (4, 4), (4, 5),
+	(5, 1), (5, 2), (5, 3), (5, 4), (5, 5),
+	(6, 5),
+	(7, 6), (7, 7),
+	(8, 5),
+	(9, 5);
+
+
+	
+	
+
+
+	
+	
 
 
 
