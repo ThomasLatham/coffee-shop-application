@@ -1,13 +1,34 @@
---Notes: need to talk about:
-
-
 --DROPPERS--
+drop table if exists menu_item_ingredients;
+drop table if exists ingredient_order_items;
+	drop table if exists ingredients;
+	drop table if exists order_items;
+		drop table if exists orders;
+			drop table if exists order_statuses;
+			drop table if exists payment_types;
 
+drop table if exists daily_specials;
+	drop table if exists menu_items;
+		drop table if exists item_categories;
+	drop table if exists shops;
+		drop table if exists pictures;
 
-
-
+drop table if exists user_addresses;
+	drop table if exists users;
+		drop table if exists user_roles;
 
 --CREATORS--
+create table pictures(
+	pic_id serial primary key,
+	pic_name varchar(50),
+	pic_type bytea 
+);
+
+create table user_roles(
+    role_id serial primary key,
+	role_name varchar(50)
+);
+
 create table users(
    user_id serial primary key,
    first_name varchar(50),
@@ -16,7 +37,7 @@ create table users(
    email_address varchar(100),
    username varchar(50),
    password varchar(50),
-   user_role int references user_role(role_id) 	
+   user_role int references user_roles(role_id) 	
 );
 
 create table user_addresses(
@@ -27,18 +48,6 @@ create table user_addresses(
 	zip_code int
 );
 
-create table user_roles(
-    role_id serial primary key,
-	role_name varchar(50)
-);
-
-create table daily_specials(
-	daily_special_id serial primary key,
-	shop_id int references shops(shop_id),
-	day_of_week int,
-	menu_item_id references menu_items(menu_item_id)
-);
-
 
 create table shops(
     shop_id serial primary key,
@@ -46,6 +55,10 @@ create table shops(
 	shop_pic int references pictures(pic_id)
 );
 
+create table item_categories(
+	category_id serial primary key,
+	category varchar(50)
+);
 
 create table menu_items(
     item_id serial primary key,
@@ -53,13 +66,14 @@ create table menu_items(
     item_price numeric (4,2),
     item_prep_time bigint,
     item_category int references item_categories(category_id),
-    item_pic varchar(50) references pictures(pic_id)
+    item_pic int references pictures(pic_id)
 );
 
---Junction table--
-create table menu_item_ingredients(
-	item_id int references menu_items(item_id),
-	ingredient_id int references ingredients(ingredient_id)
+create table daily_specials(
+	daily_special_id serial primary key,
+	shop_id int references shops(shop_id),
+	day_of_week int,
+	menu_item_id int references menu_items(item_id)
 );
 
 create table ingredients(
@@ -68,12 +82,21 @@ create table ingredients(
 	cost numeric(4,2)
 );
 
-
-create table item_categories(
-	category_id serial primary key,
-	category varchar(50)
+--Junction table: menu_items and ingredients--
+create table menu_item_ingredients(
+	item_id int references menu_items(item_id),
+	ingredient_id int references ingredients(ingredient_id)
 );
 
+create table order_statuses(
+	status_id serial primary key,
+	status varchar(50)
+);
+
+create table payment_types(
+	payment_type_id serial primary key,
+	payment_type_name varchar(50)
+);
 
 create table orders(
     order_id serial primary key,
@@ -83,18 +106,6 @@ create table orders(
     order_payment int references payment_types(payment_type_id),
     delivery boolean
 );
-
-create table payment_types(
-	payment_type_id serial primary key,
-	payment_type_name varchar(50)
-);
-
-
-create table order_statuses(
-	status_id serial primary key,
-	status varchar(50)
-);
-
 
 --Junction table for menu_items and order_item
 create table order_items(
@@ -111,19 +122,15 @@ create table ingredient_order_items(
 	ingredient_count int
 );
 
-create table pictures(
-	pic_id serial primary key,
-	pic_name varchar(50),
-	pic_type bytea 
-);
 
+--POPULATORS--
 
-
+	--REFERENCE TABLES--
 insert into order_statuses values 
 	(default, 'Order Received'),
 	(default, 'In Progress'),
 	(default, 'Ready'),
-	(default, 'Delivery in Progress')
+	(default, 'Delivery in Progress'),
 	(default, 'Delivered'),
 	(default, 'Order Complete');
 
