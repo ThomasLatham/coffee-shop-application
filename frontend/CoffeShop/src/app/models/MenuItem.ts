@@ -10,7 +10,20 @@ export class MenuItem {
     itemCategory: ItemCategory;
     itemPic: Picture;
 
-
-
-    
+  constructor(
+    itemID: number, 
+    itemName: string, 
+    itemPrice: number, 
+    itemPrepTime: number, 
+    itemCategory: ItemCategory, 
+    itemPic: Picture
+) {
+    this.itemID = itemID
+    this.itemName = itemName
+    this.itemPrice = itemPrice
+    this.itemPrepTime = itemPrepTime
+    this.itemCategory = itemCategory
+    this.itemPic = itemPic
+  }
+	
 }
