@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { LoginService } from '../../services/login.service';
+
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,6 +35,9 @@ export class LoginComponent implements OnInit {
     }
     
   }
+  checkUser(){
+    return this.loginServ.currentUser;
+  }
 
   clearText(){
     this.username = "";
@@ -39,5 +47,4 @@ export class LoginComponent implements OnInit {
   errorMessage(){
     this.showErrorMessage = true;
   }
-
 }

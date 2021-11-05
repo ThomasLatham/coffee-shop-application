@@ -1,21 +1,24 @@
 import { Role } from '../models/Role';
+import { Address } from '../models/Address';
+
 export class User {
-    userID: number;
+    userId: number;
     username: string;
     password: string;
     firstName: string;
     lastName: string;
-    
+    userAddress: Address;
     userRole: Role;
 
 
     //params can have default values (optional?, we don't have to provided)
-    constructor(username: string = "", password: string = "", first_name?: string, last_name?: string, roleModel?: Role, user_id?: number){
-        this.userID = user_id;
+    constructor(username: string = "", password: string = "", firstName?: string, lastName?: string, userAddress?: Address, userRole?: Role, userId?: number){
+        this.userId = userId;
         this.username = username;
         this.password = password;
-        this.firstName = first_name;
-        this.lastName = last_name;
-        this.userRole = roleModel;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userAddress = userAddress;
+        this.userRole = userRole;
     }
 }
