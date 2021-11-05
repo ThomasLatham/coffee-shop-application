@@ -21,8 +21,12 @@
         </li>
       </ul>
       <!-- if user is logged in this will disabled -->
-      <button *ngIf = "!getUser()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Login</button>
-      <button *ngIf = "getUser()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Logout</button>
+      <div id="loginDiv">
+        <button routerLink="login" *ngIf = "!getUser()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Login</button>
+        <button *ngIf = "getUser()" (click)="Logout()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Logout</button>
+        <span *ngIf="getUser()" style="margin: 0% 10px;">Hello, {{getUsername()}}</span>
+      </div>
+      
       <button class = "btn" type="button" style="background-color:whitesmoke;">Cart</button>
     </div>
   </div>

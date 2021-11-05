@@ -10,6 +10,8 @@
     <label for="passwordInput" class="col-sm-4 col-form-label">Password</label>
     <div class="col-sm-4">
         <input type="password" class="form-control" id="passwordInput" [(ngModel)]="password">
+        <span *ngIf="showErrorMessage">The empty input Field is invalid.</span>
     </div>
   </div>
-  <button type="button" class="btn btn-primary" (click)="login()">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="login()">Login</button>
+  <button type="button" class="btn btn-primary" routerLink="createNewAccount" *ngIf="!loginCheck">Register Now!</button>
