@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { LoginService } from '../../services/login.service';
+import { CreateNewAccountComponent } from '../create-new-account/create-new-account.component';
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,22 +10,24 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginServ: LoginService) { }
+  constructor(private loginServ: LoginService, private createNewAccount: CreateNewAccountComponent) { }
 
   ngOnInit(): void {
   }
 
   username: string;
   password: string;
+  target: string = "#accountDiv";
+  modalName: string = "model";
+
   showErrorMessage: boolean = false;
-  loginCheck: boolean = false;
+
 
   login() {
     if(this.username && this.password){
         this.loginServ.login(new User(this.username, this.password))
         this.clearText();
         this.showErrorMessage = false;
-        this.loginCheck = true;
     }else{
       this.clearText();
       this.errorMessage();

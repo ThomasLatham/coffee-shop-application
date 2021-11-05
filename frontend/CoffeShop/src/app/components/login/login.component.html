@@ -14,4 +14,5 @@
     </div>
   </div>
   <button type="button" class="btn btn-primary" (click)="login()">Login</button>
-  <button type="button" class="btn btn-primary" routerLink="createNewAccount" *ngIf="!loginCheck">Register Now!</button>
+  <!-- <button type="button" class="btn btn-primary" routerLink="createNewAccount" *ngIf="!checkUser()">Register Now!</button> -->
+  <button type="button" class="btn btn-primary" [attr.data-bs-toggle]="modalName" [attr.data-bs-target]="target">Open</button>

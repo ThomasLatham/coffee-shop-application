@@ -23,7 +23,7 @@
       <!-- if user is logged in this will disabled -->
       <div id="loginDiv">
         <button routerLink="login" *ngIf = "!getUser()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Login</button>
-        <button *ngIf = "getUser()" (click)="Logout()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Logout</button>
+        <button *ngIf = "getUser()" (click)="logout()" class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Logout</button>
         <span *ngIf="getUser()" style="margin: 0% 10px;">Hello, {{getUsername()}}</span>
       </div>
       
