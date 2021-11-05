@@ -5,19 +5,19 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "orders")
-public class Orders {
+@Table(name = "order")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private int orderId;
+    private int orderID;
 
     @Column(name = "orderTime")
     private long orderTime;
 
     @ManyToOne
     @JoinColumn(name = "order_status")
-    private OrderStatuses orderStatus;
+    private OrderStatus orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "ordered_by")
@@ -25,16 +25,16 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name = "order_payment")
-    private PaymentTypes orderPayment;
+    private PaymentType orderPayment;
 
-    @Column(name = "delivery")
-    private Boolean delivery;
+    @Column(name = "delivery", columnDefinition = "boolean")
+    private boolean delivery;
 
-    public Orders() {
+    public Order() {
     }
 
-    public Orders(int orderId, long orderTime, OrderStatuses orderStatus, Users orderedBy, PaymentTypes orderPayment, Boolean delivery) {
-        this.orderId = orderId;
+    public Order(int orderID, long orderTime, OrderStatus orderStatus, Users orderedBy, PaymentType orderPayment, Boolean delivery) {
+        this.orderID = orderID;
         this.orderTime = orderTime;
         this.orderStatus = orderStatus;
         this.orderedBy = orderedBy;
@@ -42,12 +42,12 @@ public class Orders {
         this.delivery = delivery;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getorderID() {
+        return orderID;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setorderID(int orderID) {
+        this.orderID = orderID;
     }
 
     public long getOrderTime() {
@@ -58,11 +58,11 @@ public class Orders {
         this.orderTime = orderTime;
     }
 
-    public OrderStatuses getOrderStatus() {
+    public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatuses orderStatus) {
+    public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -74,11 +74,11 @@ public class Orders {
         this.orderedBy = orderedBy;
     }
 
-    public PaymentTypes getOrderPayment() {
+    public PaymentType getOrderPayment() {
         return orderPayment;
     }
 
-    public void setOrderPayment(PaymentTypes orderPayment) {
+    public void setOrderPayment(PaymentType orderPayment) {
         this.orderPayment = orderPayment;
     }
 
@@ -93,20 +93,20 @@ public class Orders {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Orders)) return false;
-        Orders orders = (Orders) o;
-        return getOrderId() == orders.getOrderId() && getOrderTime() == orders.getOrderTime() && Objects.equals(getOrderStatus(), orders.getOrderStatus()) && Objects.equals(getOrderedBy(), orders.getOrderedBy()) && Objects.equals(getOrderPayment(), orders.getOrderPayment()) && Objects.equals(getDelivery(), orders.getDelivery());
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return getorderID() == order.getorderID() && getOrderTime() == order.getOrderTime() && Objects.equals(getOrderStatus(), order.getOrderStatus()) && Objects.equals(getOrderedBy(), order.getOrderedBy()) && Objects.equals(getOrderPayment(), order.getOrderPayment()) && Objects.equals(getDelivery(), order.getDelivery());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOrderId(), getOrderTime(), getOrderStatus(), getOrderedBy(), getOrderPayment(), getDelivery());
+        return Objects.hash(getorderID(), getOrderTime(), getOrderStatus(), getOrderedBy(), getOrderPayment(), getDelivery());
     }
 
     @Override
     public String toString() {
         return "Orders{" +
-                "orderId=" + orderId +
+                "orderID=" + orderID +
                 ", orderTime=" + orderTime +
                 ", orderStatus=" + orderStatus +
                 ", orderedBy=" + orderedBy +

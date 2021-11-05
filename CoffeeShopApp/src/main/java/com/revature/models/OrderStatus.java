@@ -5,28 +5,28 @@ import java.util.Objects;
 
 @Entity
 @Table (name = "order_statuses")
-public class OrderStatuses {
+public class OrderStatus {
     @Id
     @Column(name = "status_id")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int statusId;
+    private int statusID;
     @Column(name = "status")
     private String status;
 
-    public OrderStatuses() {
+    public OrderStatus() {
     }
 
-    public OrderStatuses(int statusId, String status) {
-        this.statusId = statusId;
+    public OrderStatus(int statusID, String status) {
+        this.statusID = statusID;
         this.status = status;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public int getstatusID() {
+        return statusID;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setstatusID(int statusID) {
+        this.statusID = statusID;
     }
 
     public String getStatus() {
@@ -40,20 +40,20 @@ public class OrderStatuses {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OrderStatuses)) return false;
-        OrderStatuses that = (OrderStatuses) o;
-        return getStatusId() == that.getStatusId() && Objects.equals(getStatus(), that.getStatus());
+        if (!(o instanceof OrderStatus)) return false;
+        OrderStatus that = (OrderStatus) o;
+        return getstatusID() == that.getstatusID() && Objects.equals(getStatus(), that.getStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStatusId(), getStatus());
+        return Objects.hash(getstatusID(), getStatus());
     }
 
     @Override
     public String toString() {
         return "OrderStatuses{" +
-                "statusId=" + statusId +
+                "statusID=" + statusID +
                 ", status='" + status + '\'' +
                 '}';
     }
