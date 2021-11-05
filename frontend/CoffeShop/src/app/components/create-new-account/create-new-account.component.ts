@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateNewAccountService } from '../../services/create-new-account.service';
 
 @Component({
   selector: 'app-create-new-account',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateNewAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private createNewAccount: CreateNewAccountService) { }
 
   ngOnInit(): void {
   }
 
+  
 }
