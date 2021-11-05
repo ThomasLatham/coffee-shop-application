@@ -1,7 +1,6 @@
 package com.revature.models;
 
 import javax.persistence.*;
-import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -20,7 +19,7 @@ public class MenuItem {
     private double itemPrice;
 
     @Column(name = "item_prep_time")
-    private long itemPrepTIme;
+    private long itemPrepTime;
 
     @ManyToOne
     @JoinColumn(name = "item_category")
@@ -33,11 +32,11 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(int itemID, String itemName, double itemPrice, long itemPrepTIme, ItemCategory itemCategory, Picture itemPic) {
+    public MenuItem(int itemID, String itemName, double itemPrice, long itemPrepTime, ItemCategory itemCategory, Picture itemPic) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.itemPrepTIme = itemPrepTIme;
+        this.itemPrepTime = itemPrepTime;
         this.itemCategory = itemCategory;
         this.itemPic = itemPic;
     }
@@ -66,12 +65,12 @@ public class MenuItem {
         this.itemPrice = itemPrice;
     }
 
-    public long getItemPrepTIme() {
-        return itemPrepTIme;
+    public long getItemPrepTime() {
+        return itemPrepTime;
     }
 
-    public void setItemPrepTIme(long itemPrepTIme) {
-        this.itemPrepTIme = itemPrepTIme;
+    public void setItemPrepTime(long itemPrepTime) {
+        this.itemPrepTime = itemPrepTime;
     }
 
     public ItemCategory getItemCategory() {
@@ -95,12 +94,12 @@ public class MenuItem {
         if (this == o) return true;
         if (!(o instanceof MenuItem)) return false;
         MenuItem menuItem = (MenuItem) o;
-        return getItemID() == menuItem.getItemID() && Double.compare(menuItem.getItemPrice(), getItemPrice()) == 0 && getItemPrepTIme() == menuItem.getItemPrepTIme() && Objects.equals(getItemName(), menuItem.getItemName()) && Objects.equals(getItemCategory(), menuItem.getItemCategory()) && Objects.equals(getItemPic(), menuItem.getItemPic());
+        return getItemID() == menuItem.getItemID() && Double.compare(menuItem.getItemPrice(), getItemPrice()) == 0 && getItemPrepTime() == menuItem.getItemPrepTime() && Objects.equals(getItemName(), menuItem.getItemName()) && Objects.equals(getItemCategory(), menuItem.getItemCategory()) && Objects.equals(getItemPic(), menuItem.getItemPic());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getItemID(), getItemName(), getItemPrice(), getItemPrepTIme(), getItemCategory(), getItemPic());
+        return Objects.hash(getItemID(), getItemName(), getItemPrice(), getItemPrepTime(), getItemCategory(), getItemPic());
     }
 
     @Override
@@ -109,7 +108,7 @@ public class MenuItem {
                 "itemID=" + itemID +
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +
-                ", itemPrepTIme=" + itemPrepTIme +
+                ", itemPrepTIme=" + itemPrepTime +
                 ", itemCategory=" + itemCategory +
                 ", itemPic=" + itemPic +
                 '}';
