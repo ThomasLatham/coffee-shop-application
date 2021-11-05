@@ -83,7 +83,7 @@ create table ingredients(
 
 --Junction table: menu_items and ingredients--
 create table menu_item_ingredients(
-  item_ingredient_id serial primary key,
+  	item_ingredient_id serial primary key,
 	item_id int references menu_items(item_id),
 	ingredient_id int references ingredients(ingredient_id)
 );
@@ -117,7 +117,7 @@ create table order_items(
 
 --Junction table for extra_ingredients and order_items
 create table ingredient_order_items(
-  ingredient_order_item_id serial primary key,
+  	ingredient_order_item_id serial primary key,
 	order_item_id int references order_items(order_item_id),
 	ingredient_id int references ingredients(ingredient_id),
 	ingredient_count int
