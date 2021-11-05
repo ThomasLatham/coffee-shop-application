@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../../models/menu_items';
-import { Ingredient } from '../../models/ingredients';
-import { ItemHttpService } from '../../services/items-http.service';
-
+import { ItemCategory } from 'src/app/models/ItemCategory';
+import { MenuItem } from "src/app/models/MenuItem";
+import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
+import { Orders } from 'src/app/models/Orders';
+import { CartService } from 'src/app/services/cart.service';
+import { OrderStatuses } from 'src/app/models/OrderStatuses';
 
 @Component({
   selector: 'app-cart',
@@ -11,107 +13,117 @@ import { ItemHttpService } from '../../services/items-http.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private itemHttp: ItemHttpService) { }
+  constructor(private itemService : CartService) { }
 
-  ngOnInit(): void {
+  cart : CartService;
+  item: Object;
+  items: Object;
+  id: number;
+  ngOnInit(){
+    this.cart.GetItem(this.id)
+    .subscribe(data =>{
+        this.item = data;
+    }
+);
 
-    this.displayAllItems();
-    this.displayAllIngredients();
+
+    this.cart.GetIngredient(this.id)
+         .subscribe(data =>{
+               this.items = data;
+} 
+);
+
+
+    this.cart.Getorder(this.id)
+        .subscribe(data =>{
+            this.items = data;
+} 
+);
+
+this.cart.Getuser(this.id)
+.subscribe(data =>{
+    this.items = data;
+} 
+);
+
+this.cart.Getstatus(this.id)
+.subscribe(data =>{
+    this.items = data;
+} 
+);
+  
+this.cart.GetItems()
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
+this.cart.GetIngredients()
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
+
+this.cart.DeleteItem(this.id)
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
+
+this.cart.DeleteIngedient(this.id)
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
+
+this.cart.DeleteOrder(this.id)
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
+
+
+
+this.cart.AddQuantity(this.id)
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
+
+this.cart.RemoveQuantity(this.id)
+.subscribe(data =>{
+      this.items = data;
+} 
+);
+
   }
 
   ItemList: Array<any> = [
-    { "id": 1, "item_name": "Black Coffee", "item_price": 2.00, "prep_time": 2, "menu_cat": "drink", "item_pic": true }
+    
   ]
 
 
   
 
-  itemList: Item[] = [];
-  ingredientList: Ingredient[] = [];
-  Item_Count: number;
+  cartItem: MenuItem[] = [];
+  // orderItem: Order_items;
   totalamount: number;
-  title: string;
-  price: number;
-  available: boolean = true;
-
-  displayAllItems() {
-    //This function will need to call our HTTP Service for retrieving all items.
-    this.itemHttp.getAllItems().subscribe(
-      (response) => {
-        console.log(response);
-        this.itemList = response;
-         console.log(this.itemList);
-        
-      }
-    );
-  }
 
 
-
-  displayAllIngredients() {
-    //This function will need to call our HTTP Service for retrieving all igredients.
-    this.itemHttp.getAllIngredients().subscribe(
-      (response) => {
-        console.log(response);
-        this.ingredientList = response;
-         console.log(this.ingredientList);
-      }
-    );
-  }
-
-
-
-
-  addQuantity() {
- 
-    this.itemHttp.getOrderItem.subscribe(
-      (response) => {
-        console.log(response);
-        this.itemList = response;
-         console.log(this.order_item.item_count);
-         this.order_item.item_count += 1;
-      }
-    );
-  }
-
-  removeQuantity() {
-    
-    this.itemHttp.getOrderItem.subscribe(
-      (response) => {
-        console.log(response);
-        this.itemList = response;
-         console.log(this.order_item.item_count);
-         if(this.order_item.item_count == 0){
-          this.order_item.item_count == 0;
-         } else{
-          this.order_item.item_count -= 1;
-         }
-         
-      }
-    );
-  }
-
-  removeItem() {
-    
-    this.itemHttp.deleteOrderItem.subscribe(
-      (response) => {
-        console.log(response);
-        
-      }
-    );
-  }
-
-
-
-  get Total(){
-    let total = 0;
-    for (var i = 0; i < this.cartItem.length; i++) {
-        if (this.cartItem[i].Price) {
-          total += this.cartItem[i].Price * this.cartItem[i].Quantity;
-            this.totalamount = total;
-        }
-    }
-    return total;
-}
+//   get Total(){
+//     let total = 0;
+//     for (var i = 0; i < this.cartItem.length; i++) {
+//         if (this.cartItem[i].itemPrice) {
+//           total += this.cartItem[i].itemPrice * this.orderItem.item_count;
+//             this.totalamount = total;
+//         }
+//     }
+//     return total;
+// }
 
 }
