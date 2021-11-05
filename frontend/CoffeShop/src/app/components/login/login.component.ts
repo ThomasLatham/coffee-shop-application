@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { LoginService } from '../../services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,6 +30,9 @@ export class LoginComponent implements OnInit {
       this.errorMessage();
     }
     
+  }
+  checkUser(){
+    return this.loginServ.currentUser;
   }
 
   clearText(){
