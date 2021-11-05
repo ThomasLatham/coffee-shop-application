@@ -1,7 +1,7 @@
 import { User } from "./User";
 
 export class Address {
-    addressId: number;
+    addressID: number;
     user: User;
     street: string;
     city: string;
@@ -9,8 +9,8 @@ export class Address {
 
 
     //params can have default values (optional?, we don't have to provided)
-    constructor(zipCode: number, city: string, street: string, user: User, addressId?: number){
-        this.addressId = addressId;
+    constructor(zipCode: number, city: string, street: string, user: User, addressID?: number){
+        this.addressID = addressID;
         this.user = user;
         this.street = street;
         this.city = city;

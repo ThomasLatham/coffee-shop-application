@@ -4,7 +4,6 @@ import { User } from "./User";
 export class UserAddress {
 
     addressID: number;
-    user: User;
     street: string;
     city: string;
     zipCode: number;

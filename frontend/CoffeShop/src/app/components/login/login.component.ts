@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
+import { Address } from '../../models/Address';
+import { Role } from '../../models/Role';
 import { LoginService } from '../../services/login.service';
-import { CreateNewAccountComponent } from '../create-new-account/create-new-account.component';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +11,22 @@ import { CreateNewAccountComponent } from '../create-new-account/create-new-acco
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginServ: LoginService, private createNewAccount: CreateNewAccountComponent) { }
+  constructor(private loginServ: LoginService) { }
 
   ngOnInit(): void {
   }
 
   username: string;
   password: string;
-  target: string = "#accountDiv";
-  modalName: string = "model";
+  
+  firstName: string;
+  lastName: string;
+  street: string;
+  city: string;
+  zipCode: number;
+  roleName: string;
+
+  newAccount: User;
 
   showErrorMessage: boolean = false;
 
@@ -34,7 +42,15 @@ export class LoginComponent implements OnInit {
     }
     
   }
-  checkUser(){
+
+  createAccount(){
+    // if(this.username && this.password && this.firstName && this.lastName && this.street && this.city && this.zipCode && this.roleName){
+    //   newAddress = new Address(this.zipCode,this.city,this.street);
+    //   this.newAccount = new User(this.username, this.password, this.firstName, this.lastName, )
+    // }
+  }
+
+  checkLogin(){
     return this.loginServ.currentUser;
   }
 
