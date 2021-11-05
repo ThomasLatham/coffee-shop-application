@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
-import { Address } from '../../models/Address';
+import { UserAddress } from '../../models/UserAddress';
 import { Role } from '../../models/Role';
 import { LoginService } from '../../services/login.service';
 
@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
   zipCode: number;
   roleName: string;
 
+  newRole: Role;
   newAccount: User;
+  newAddress: UserAddress;
 
   showErrorMessage: boolean = false;
 
@@ -44,10 +46,11 @@ export class LoginComponent implements OnInit {
   }
 
   createAccount(){
-    // if(this.username && this.password && this.firstName && this.lastName && this.street && this.city && this.zipCode && this.roleName){
-    //   newAddress = new Address(this.zipCode,this.city,this.street);
-    //   this.newAccount = new User(this.username, this.password, this.firstName, this.lastName, )
-    // }
+    if(this.username && this.password && this.firstName && this.lastName && this.roleName){
+      role: Role = new Role(this.roleName);
+      newAddress = new Address(this.zipCode,this.city,this.street);
+      this.newAccount = new User(this.username, this.password, this.firstName, this.lastName, )
+    }
   }
 
   checkLogin(){

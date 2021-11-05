@@ -1,5 +1,4 @@
 import { Role } from '../models/Role';
-import { Address } from '../models/Address';
 
 export class User {
     userId: number;
