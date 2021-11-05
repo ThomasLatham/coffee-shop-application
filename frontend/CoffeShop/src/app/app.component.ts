@@ -8,7 +8,7 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent {
   title = 'Coffee Shop App';
-
+  coffeeShopName = 'Coffee Shop'
   constructor(private loginServ: LoginService){
 
   }
