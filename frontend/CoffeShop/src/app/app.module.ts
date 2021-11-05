@@ -7,6 +7,11 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateNewAccountComponent } from './components/create-new-account/create-new-account.component';
+<<<<<<< HEAD
+=======
+import { MenuComponent } from './components/menu/menu.component';
+import { OrderManagementComponent } from './components/order-management/order-management.component';
+>>>>>>> ee9dae06f3c20b9d7022ef821a49b9cb5d6ab038
 
 @NgModule({
   declarations: [

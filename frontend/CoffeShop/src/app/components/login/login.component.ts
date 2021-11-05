@@ -15,9 +15,29 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  showErrorMessage: boolean = false;
+  loginCheck: boolean = false;
 
   login() {
-    this.loginServ.login(new User(this.username, this.password))
+    if(this.username && this.password){
+        this.loginServ.login(new User(this.username, this.password))
+        this.clearText();
+        this.showErrorMessage = false;
+        this.loginCheck = true;
+    }else{
+      this.clearText();
+      this.errorMessage();
+    }
+    
+  }
+
+  clearText(){
+    this.username = "";
+    this.password = "";
+  }
+
+  errorMessage(){
+    this.showErrorMessage = true;
   }
 
 }
