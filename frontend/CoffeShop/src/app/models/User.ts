@@ -1,7 +1,7 @@
 import { Role } from '../models/Role';
 
 export class User {
-    userId: number;
+    userID: number;
     username: string;
     password: string;
     firstName: string;
@@ -10,8 +10,8 @@ export class User {
 
 
     //params can have default values (optional?, we don't have to provided)
-    constructor(username: string = "", password: string = "", firstName?: string, lastName?: string, userRole?: Role, userId?: number){
-        this.userId = userId;
+    constructor(username: string = "", password: string = "", firstName?: string, lastName?: string, userRole?: Role, userID?: number){
+        this.userID = userID;
         this.username = username;
         this.password = password;
         this.firstName = firstName;

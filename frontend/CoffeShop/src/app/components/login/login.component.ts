@@ -24,9 +24,8 @@ export class LoginComponent implements OnInit {
   street: string;
   city: string;
   zipCode: number;
-  roleName: string;
+  roleName: number;
 
-  newRole: Role;
   newAccount: User;
   newAddress: UserAddress;
 
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   createAccount(){
     if(this.username && this.password && this.firstName && this.lastName && this.roleName){
-      role: Role = new Role(this.roleName);
+      
       newAddress = new Address(this.zipCode,this.city,this.street);
       this.newAccount = new User(this.username, this.password, this.firstName, this.lastName, )
     }

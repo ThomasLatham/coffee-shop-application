@@ -3,10 +3,12 @@ export class Role {
     roleID: number;
     roleName: string;
 
+    customer: Role = new Role("customer", 1);
+    manager: Role = new Role("manager", 2);
 
-    //params can have default values (optional?, we don't have to provided)
-    constructor(roleName: string = 'customer', roleID?: number){
+    constructor(roleName: string, roleID?: number){
         this.roleID = roleID;
         this.roleName = roleName;
     }
+
 }
