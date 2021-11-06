@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ItemCategory } from 'src/app/models/ItemCategory';
 import { MenuItem } from "src/app/models/MenuItem";
 import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
-import { Orders } from 'src/app/models/Orders';
+import { Order } from 'src/app/models/Order';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderStatuses } from 'src/app/models/OrderStatuses';
+import { OrderStatus } from 'src/app/models/OrderStatus';
 
 @Component({
   selector: 'app-cart',
