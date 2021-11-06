@@ -20,7 +20,7 @@ drop table if exists user_addresses;
 --CREATORS--
 create table pictures(
 	pic_id serial primary key,
-	pic_name varchar(50),
+	pic_name varchar(200),
 	pic_type bytea 
 );
 
@@ -146,11 +146,18 @@ insert into user_roles values
 	(default, 'customer'),
 	(default, 'manager');
 
+--first nine are the menu_items in order; 10th is the shop
 insert into pictures values
-	(default, 'dummyUrl', '\\xDEADBEEF'),
-	(default, 'dummyUrl', '\\xDEADBEEF'),
-	(default, 'dummyUrl', '\\xDEADBEEF'),
-	(default, 'dummyUrl', '\\xDEADBEEF');
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/0/09/Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Macchiato_FourBarrel.jpg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Cappuccino_at_Sightglass_Coffee.jpg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/A_cup_of_latte_with_lunch_at_Merewether_Beach%2CAustralia.jpeg/1280px-A_cup_of_latte_with_lunch_at_Merewether_Beach%2CAustralia.jpeg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Croissant%2C_cross_section.jpg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Diner-Bacon-%26-Egg-Sandwich-On-Roll.jpg', '\\xDEADBEEF'),
+	(default, 'https://i2.wp.com/www.mamalovesfood.com/wp-content/uploads/2021/02/CREAM-CHEESE-DANISH-2.jpg', '\\xDEADBEEF'),
+	(default, 'https://upload.wikimedia.org/wikipedia/commons/5/5d/SugarCookie.JPG', '\\xDEADBEEF'),
+	(default, 'https://lh5.googleusercontent.com/p/AF1QipOavX6R9WrPGCbWIL4B0hbELsO_QyBNv2x33eY=w400-h300-k-no', '\\xDEADBEEF');
 
 
 	--MEAT TABLES--
@@ -176,21 +183,28 @@ insert into ingredients values
 	
 
 insert into menu_item_ingredients values
-	(1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
-	(2, 1), (2, 2), (2, 3), (2, 4), (2, 5),
-	(3, 1), (3, 2), (3, 3), (3, 4), (3, 5),
-	(4, 1), (4, 2), (4, 3), (4, 4), (4, 5),
-	(5, 1), (5, 2), (5, 3), (5, 4), (5, 5),
-	(6, 5),
-	(7, 6), (7, 7),
-	(8, 5),
-	(9, 5);
+	(default, 1, 1), (default, 1, 2), (default, 1, 3), (default, 1, 4), (default, 1, 5),
+	(default, 2, 1), (default, 2, 2), (default, 2, 3), (default, 2, 4), (default, 2, 5),
+	(default, 3, 1), (default, 3, 2), (default, 3, 3), (default, 3, 4), (default, 3, 5),
+	(default, 4, 1), (default, 4, 2), (default, 4, 3), (default, 4, 4), (default, 4, 5),
+	(default, 5, 1), (default, 5, 2), (default, 5, 3), (default, 5, 4), (default, 5, 5),
+	(default, 6, 5),
+	(default, 7, 6), (default, 7, 7),
+	(default, 8, 5),
+	(default, 9, 5);
 
+insert into shops values 
+	(default, 'Moscow', 10);
 
+insert into users values
+	(default, 'Alison', 'Saylor', '(555) 867-5309', 'alison@saylors.com', 'coffeequeen92', 'password', 2);
+
+insert into daily_specials values
+	(default, 1, 0, 1),
+	(default, 1, 1, 2),
+	(default, 1, 2, 3),
+	(default, 1, 3, 4),
+	(default, 1, 4, 5),
+	(default, 1, 5, 6),
+	(default, 1, 6, 7);
 	
-	
-
-
-
-
-
