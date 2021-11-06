@@ -9,14 +9,16 @@
       
        <h2>INGREDIENTS</h2>
           <tr *ngFor="let ingredient of ingredients;">
-            <td>{{ingredients.ingredient_id}}</td>
-            <td>{{ingredients.ingredient_name}}</td> 
-            <td>{{ingredients.cost}}</td>  
+            <td>{{IngredientOrderItem.ingredientOrderItemID}}</td>
+            <td>{{IngredientOrderItem.orderItem}}</td> 
+            <td>{{IngredientOrderItem.ingredient}}</td>
+            <td>{{IngredientOrderItem.ingredientCount}}</td>  
           </tr>
        <button (click)="addQuantity()" id="addQuantity">Add Quantity</button>
        <button (click)="removeQuantity()" id="removeQuantity">Remove Quantity</button>
        <button (click)="removeItem()" id="removeItem">Remove Item</button>
        
+
 
 
 

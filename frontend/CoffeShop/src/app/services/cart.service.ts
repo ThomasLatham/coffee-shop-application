@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { MenuItem } from "src/app/models/MenuItem";
-import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
+import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
 import {Order} from "src/app/models/Order";
 import {User} from "src/app/models/User";
 import { OrderStatus } from 'src/app/models/OrderStatus';
@@ -36,8 +36,8 @@ export class CartService {
   }
 
 
-  GetIngredient(id): Observable<MenuItemIngredient> {
-    return this.http.get<MenuItemIngredient>(this.baseurl2 + id)
+  GetIngredient(id): Observable<IngredientOrderItem> {
+    return this.http.get<IngredientOrderItem>(this.baseurl2 + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -82,8 +82,8 @@ export class CartService {
 
 
 
-  GetIngredients(): Observable<MenuItemIngredient> {
-    return this.http.get<MenuItemIngredient>(this.baseurl2)
+  GetIngredients(): Observable<IngredientOrderItem> {
+    return this.http.get<IngredientOrderItem>(this.baseurl2)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -105,7 +105,7 @@ export class CartService {
 
 
   DeleteIngedient(id){
-    return this.http.delete<MenuItemIngredient>(this.baseurl2 + id, this.httpOptions)
+    return this.http.delete<IngredientOrderItem>(this.baseurl2 + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
