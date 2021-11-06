@@ -8,7 +8,6 @@ export class IngredientOrderItem {
     ingredientCount: number;
 
 
-
   constructor(
     ingredientOrderItemID: number, 
     orderItem: OrderItem, 
