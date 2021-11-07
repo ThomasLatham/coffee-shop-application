@@ -33,7 +33,7 @@ public class PictureController {
 
     @PutMapping(value = "picture/{id}", consumes = "application/json", produces = "application/json")
     public Picture updatePicture(@PathVariable("id") String id, @RequestBody Picture change) {
-        change.setPictureID(Integer.parseInt(id));
+        change.setPicID(Integer.parseInt(id));
         return ps.updatePicture(change);
     }
 
