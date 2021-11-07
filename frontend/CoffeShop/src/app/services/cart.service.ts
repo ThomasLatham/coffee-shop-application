@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { MenuItem } from "src/app/models/MenuItem";
-import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
-import {Orders} from "src/app/models/Orders";
+import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
+import {Order} from "src/app/models/Order";
 import {User} from "src/app/models/User";
-import { OrderStatuses } from 'src/app/models/OrderStatuses';
+import { OrderStatus } from 'src/app/models/OrderStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,8 @@ export class CartService {
   }
 
 
-  GetIngredient(id): Observable<MenuItemIngredient> {
-    return this.http.get<MenuItemIngredient>(this.baseurl2 + id)
+  GetIngredient(id): Observable<IngredientOrderItem> {
+    return this.http.get<IngredientOrderItem>(this.baseurl2 + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -45,8 +45,8 @@ export class CartService {
   }
 
 
-  Getorder(id): Observable<Orders> {
-    return this.http.get<Orders>(this.baseurl3 + id)
+  Getorder(id): Observable<Order> {
+    return this.http.get<Order>(this.baseurl3 + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -63,8 +63,8 @@ export class CartService {
   }
 
 
-  Getstatus(id): Observable<OrderStatuses> {
-    return this.http.get<OrderStatuses>(this.baseurl5 + id)
+  Getstatus(id): Observable<OrderStatus> {
+    return this.http.get<OrderStatus>(this.baseurl5 + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -82,8 +82,8 @@ export class CartService {
 
 
 
-  GetIngredients(): Observable<MenuItemIngredient> {
-    return this.http.get<MenuItemIngredient>(this.baseurl2)
+  GetIngredients(): Observable<IngredientOrderItem> {
+    return this.http.get<IngredientOrderItem>(this.baseurl2)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -105,7 +105,7 @@ export class CartService {
 
 
   DeleteIngedient(id){
-    return this.http.delete<MenuItemIngredient>(this.baseurl2 + id, this.httpOptions)
+    return this.http.delete<IngredientOrderItem>(this.baseurl2 + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -115,7 +115,7 @@ export class CartService {
 
 
   DeleteOrder(id){
-    return this.http.delete<Orders>(this.baseurl3 + id, this.httpOptions)
+    return this.http.delete<Order>(this.baseurl3 + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -125,7 +125,7 @@ export class CartService {
 
 
   AddQuantity(id){
-    return this.http.get<Orders>(this.baseurl3 + id, this.httpOptions)
+    return this.http.get<Order>(this.baseurl3 + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -134,7 +134,7 @@ export class CartService {
 
 
   RemoveQuantity(id){
-    return this.http.delete<Orders>(this.baseurl3 + id, this.httpOptions)
+    return this.http.delete<Order>(this.baseurl3 + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

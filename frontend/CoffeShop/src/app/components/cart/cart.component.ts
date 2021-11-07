@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemCategory } from 'src/app/models/ItemCategory';
 import { MenuItem } from "src/app/models/MenuItem";
-import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
-import { Orders } from 'src/app/models/Orders';
+import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
+import { OrderItem } from 'src/app/models/OrderItem';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderStatuses } from 'src/app/models/OrderStatuses';
+import { OrderStatus } from 'src/app/models/OrderStatus';
 
 @Component({
   selector: 'app-cart',
@@ -111,19 +111,19 @@ this.cart.RemoveQuantity(this.id)
   
 
   cartItem: MenuItem[] = [];
-  // orderItem: Order_items;
+  orderItem: OrderItem;
   totalamount: number;
 
 
-//   get Total(){
-//     let total = 0;
-//     for (var i = 0; i < this.cartItem.length; i++) {
-//         if (this.cartItem[i].itemPrice) {
-//           total += this.cartItem[i].itemPrice * this.orderItem.item_count;
-//             this.totalamount = total;
-//         }
-//     }
-//     return total;
-// }
+  get Total(){
+    let total = 0;
+    for (var i = 0; i < this.cartItem.length; i++) {
+        if (this.cartItem[i].itemPrice) {
+          total += this.cartItem[i].itemPrice * this.orderItem.itemCount;
+            this.totalamount = total;
+        }
+    }
+    return total;
+}
 
 }
