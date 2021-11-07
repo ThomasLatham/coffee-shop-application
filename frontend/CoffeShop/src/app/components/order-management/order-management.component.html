@@ -1,0 +1,31 @@
+<div class="container" style="text-align: center;">
+    <div style="margin-top: 10px;">
+        <h1>Orders Today</h1>
+        <div style="margin-top: 20px;">
+            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+                <!-- if orders for today are not ready dispaly with button, if alrady done order then remove button and say order completed -->
+                <div class="card-header">Order time: </div>
+                <div class="card-body">
+                  <h4 class="card-title">Username </h4>
+                  <p>Estimated ready time: </p>
+                  <h6 style="text-align: left;">Order Items:</h6>
+                  <p style="text-align: left;">
+                      item:
+                      <br>
+                      extra adjustments:
+                  </p>
+                  <!-- click when order is ready and change the status -->
+                  <button class="btn btn-success">Order is Ready</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px;">
+        <h1>Past Orders</h1>
+        <div style="margin-top: 20px;">
+            <input type="date" id="orderDate">
+            <!-- click to get orders for a specific date -->
+            <button class="btn btn-success" style="margin-left: 15px;">Get orders</button>
+        </div>
+    </div>
+</div>
