@@ -19,15 +19,15 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   
-  firstName: string;
-  lastName: string;
-  street: string;
-  city: string;
-  zipCode: number;
-  roleName: number;
+  // firstName: string;
+  // lastName: string;
+  // street: string;
+  // city: string;
+  zipCodeFormat: boolean;
+  // roleName: number;
 
-  newAccount: User;
-  newAddress: UserAddress;
+  newAccount: User = new User();
+  newAddress: UserAddress = new UserAddress();
 
   showErrorMessage: boolean = false;
 
@@ -45,11 +45,14 @@ export class LoginComponent implements OnInit {
   }
 
   createAccount(){
-    if(this.username && this.password && this.firstName && this.lastName && this.roleName){
+  //   if(this.username && this.password && this.firstName && this.lastName && this.roleName){
       
-      newAddress = new Address(this.zipCode,this.city,this.street);
-      this.newAccount = new User(this.username, this.password, this.firstName, this.lastName, )
-    }
+  //     newAddress = new UserAddress(this.zipCode,this.city,this.street);
+  //     this.newAccount = new User(this.username, this.password, this.firstName, this.lastName, )
+  //   }
+    console.log(this.newAccount);
+    console.log(this.newAddress);
+
   }
 
   checkLogin(){

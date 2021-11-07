@@ -7,10 +7,10 @@ export class UserAddress {
     user: User;
     street: string;
     city: string;
-    zipCode: number;
+    zipCode: string;
 
 
-    constructor(zipCode: number, city: string, street: string, user?: User, addressID?: number){
+    constructor(zipCode?: string, city?: string, street?: string, user?: User, addressID?: number){
       this.addressID = addressID;
       this.user = user;
       this.street = street;
