@@ -13,7 +13,7 @@ public class UserController {
     @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     public User getUserByLogin(@RequestBody User u){ return us.getUserByLogin(u); }
 
-    @PostMapping(value = "/user", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/users", consumes = "application/json", produces = "application/json")
     public User addActor(@RequestBody User u) {
         return us.addUser(u);
     }

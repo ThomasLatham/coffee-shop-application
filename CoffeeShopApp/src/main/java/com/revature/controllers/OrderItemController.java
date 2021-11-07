@@ -7,36 +7,38 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class OrderItemController {
+
     @Autowired
     OrderItemService ois;
 
 
-    @GetMapping("/orderitem")
+    @GetMapping("/orderItems")
     public List<OrderItem> getAllOrderItems(){
         return ois.getAllOrderItems();
     }
 
 
-    @GetMapping("/orderitem/{id}")
+    @GetMapping("/orderItems/{id}")
     public OrderItem getOrder(@PathVariable("id") int id){
         return ois.getOrderItem(id);
     }
 
 
-    @PostMapping(value = "/orderitem", consumes = {"application/json"}, produces = "application/json")
+    @PostMapping(value = "/orderItems", consumes = {"application/json"}, produces = "application/json")
     public OrderItem addOrderItem(@RequestBody OrderItem oi){
         return ois.addOrderItem(oi);
     }
 
 
-    @PutMapping(value = "/orderitem/{id}", consumes = {"application/json"}, produces = "application/json")
+    @PutMapping(value = "/orderItems/{id}", consumes = {"application/json"}, produces = "application/json")
     public OrderItem updateOrderItem(@PathVariable("id") String id, @RequestBody OrderItem change) {
         return ois.updateOrderItem(change);
     }
 
 
-    @DeleteMapping(value = "/orderitem/{id}")
+    @DeleteMapping(value = "/orderItems/{id}")
     public boolean deleteOrderItem(@PathVariable String id) {
         int deleteId = -1;
         try{

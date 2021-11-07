@@ -5,10 +5,13 @@ import com.revature.models.OrderItem;
 import com.revature.repositories.OrderItemRepo;
 import com.revature.repositories.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderItemServiceImpl implements OrderItemService{
+
     @Autowired
     OrderItemRepo oi;
 

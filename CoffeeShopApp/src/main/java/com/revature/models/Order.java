@@ -5,7 +5,7 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "ordered_by")
-    private Users orderedBy;
+    private User orderedBy;
 
     @ManyToOne
     @JoinColumn(name = "order_payment")
@@ -33,7 +33,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int orderID, long orderTime, OrderStatus orderStatus, Users orderedBy, PaymentType orderPayment, Boolean delivery) {
+    public Order(int orderID, long orderTime, OrderStatus orderStatus, User orderedBy, PaymentType orderPayment, Boolean delivery) {
         this.orderID = orderID;
         this.orderTime = orderTime;
         this.orderStatus = orderStatus;
@@ -66,11 +66,11 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public Users getOrderedBy() {
+    public User getOrderedBy() {
         return orderedBy;
     }
 
-    public void setOrderedBy(Users orderedBy) {
+    public void setOrderedBy(User orderedBy) {
         this.orderedBy = orderedBy;
     }
 

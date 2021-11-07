@@ -13,23 +13,23 @@ public class OrderController {
     @Autowired
     OrderService os;
 
-    @GetMapping("/order")
+    @GetMapping("/orders")
     public List<Order> getAllOrders(){
         return os.getAllOrders();
     }
-    @GetMapping("/order/{id}")
+    @GetMapping("/orders/{id}")
     public Order getOrder(@PathVariable("id") int id){
         return os.getOrder(id);
     }
-    @PostMapping(value = "/order", consumes = {"application/json"}, produces = "application/json")
+    @PostMapping(value = "/orders", consumes = {"application/json"}, produces = "application/json")
     public Order addOrder(@RequestBody Order o){
         return os.addOrder(o);
     }
-    @PutMapping(value = "/order/{id}", consumes = {"application/json"}, produces = "application/json")
+    @PutMapping(value = "/orders/{id}", consumes = {"application/json"}, produces = "application/json")
     public Order updateOrder(@PathVariable("id") String id, @RequestBody Order change) {
         return os.updateOrder(change);
     }
-    @DeleteMapping(value = "/order/{id}")
+    @DeleteMapping(value = "/orders/{id}")
     public boolean deleteOrder(@PathVariable String id) {
         int deleteId = -1;
         try{
