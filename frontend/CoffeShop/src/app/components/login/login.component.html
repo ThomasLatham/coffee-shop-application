@@ -21,67 +21,140 @@
     </div>
   </div>
   
-  <!-- Modal -->
-  <div class="modal fade" id="accountDiv" aria-labelledby="accountLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="accountLabel">Create a new account for coffee shop</h5>
+
+<!-- Modal -->
+<div class="modal fade" id="accountDiv" aria-labelledby="accountLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="accountLabel">Create a new account for coffee shop</h5>
+      </div>
+      <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="inputFirstName">First Name</label>
+            <input type="text" class="form-control" id="inputFirstName" formControlName="firstName" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.firstName.touched || submitted) && registerFormControl.firstName.errors?.required">
+                FirstName is required
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="inputLastName">Last Name</label>
+            <input type="text" class="form-control" id="inputLastName" formControlName="lastName" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.lastName.touched || submitted) && registerFormControl.lastName.errors?.required">
+                LastName is required
+            </span>
+          </div> 
+          <div class="form-group">
+            <label for="inputPhoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="inputPhoneNumber" formControlName="phoneNumber" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.phoneNumber.touched || submitted) && registerFormControl.phoneNumber.errors?.required">
+                PhoneNumber is required
+            </span>
+            <span class="text-danger"
+                *ngIf="registerFormControl.phoneNumber.touched && !registerFormControl.phoneNumber.errors?.pattern">
+                Enter a valid PhoneNumber
+            </span>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="inputPhoneNumber" class="col-form-label">Phone Number:</label>
+            <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="phoneNumber" pattern="(\d{3})[-]?(\d{3})[-]?(\d{4})" title="Please enter your 10 digits phone number, separated by - or none." required>
+          </div> -->
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="text" class="form-control" id="inputEmail" formControlName="email" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                Email is required
+            </span>
+            <span class="text-danger"
+                *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                Enter a valid email address
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="inputStreet">Street:</label>
+            <input type="text" class="form-control" id="inputStreet" formControlName="street" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.street.touched || submitted) && registerFormControl.street.errors?.required">
+                Street is required
+            </span>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="inputStreet" class="col-form-label">Street:</label>
+            <input type="text" class="form-control" id="inputStreet" [(ngModel)]="newAddress.street" title="Please fill out this field." required>
+          </div> -->
+          <div class="form-group">
+            <label for="inputCity">City:</label>
+            <input type="text" class="form-control" id="inputCity" formControlName="city" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.city.touched || submitted) && registerFormControl.city.errors?.required">
+                City is required
+            </span>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="inputCity" class="col-form-label">City:</label>
+            <input type="text" class="form-control" id="inputCity" [(ngModel)]="newAddress.city" title="Please fill out this field." required>
+          </div> -->
+          <div class="form-group">
+            <label for="inputZipCode">Zip Code:</label>
+            <input type="text" class="form-control" id="inputZipCode" formControlName="zipCode" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.zipCode.touched || submitted) && registerFormControl.zipCode.errors?.required">
+                Zip Code is required
+            </span>
+            <span class="text-danger"
+                *ngIf="registerFormControl.phoneNumber.touched && !registerFormControl.phoneNumber.errors?.pattern">
+                Enter a valid Zip Code
+            </span>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="inputZipCode" class="col-form-label"></label>
+            <input type="text" class="form-control" id="inputZipCode" [(ngModel)]="newAddress.zipCode" pattern="(\d{5})" title="Please fill out this field." required>
+          </div> -->
+          <div class="form-group">
+            <label for="inputUsername">User Name:</label>
+            <input type="text" class="form-control" id="inputUsername" formControlName="username"required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
+                Username is required
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" formControlName="password" required>
+            <span class="text-danger"
+                *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                Password is required
+            </span>
+            <span class="text-danger"
+                *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
+                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                letter and 1 number
+            </span>
         </div>
-        <div class="modal-body">
-            <div class="mb-3">
-              <label for="inputFirstName" class="col-form-label">First Name:</label>
-              <input type="text" class="form-control" id="inputFirstName" [(ngModel)]="newAccount.firstName" title="Please fill out this field." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputLastName" class="col-form-label">Last Name:</label>
-              <input type="text" class="form-control" id="inputLastName" [(ngModel)]="newAccount.lastName" title="Please fill out this field." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputPhoneNumber" class="col-form-label">Phone Number:</label>
-              <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="newAccount.phoneNumber" pattern="(\d{3})[-]?(\d{3})[-]?(\d{4})" title="Please enter your 10 digits phone number, separated by - or none." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputEmail" class="col-form-label">Email:</label>
-              <input type="email" class="form-control" id="inputEmail" [(ngModel)]="newAccount.email" title="Please fill out this field." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputStreet" class="col-form-label">Street:</label>
-              <input type="text" class="form-control" id="inputStreet" [(ngModel)]="newAddress.street" title="Please fill out this field." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputCity" class="col-form-label">City:</label>
-              <input type="text" class="form-control" id="inputCity" [(ngModel)]="newAddress.city" title="Please fill out this field." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputZipCode" class="col-form-label">Zip Code:</label>
-              <input type="text" class="form-control" id="inputZipCode" [(ngModel)]="newAddress.zipCode" pattern="(\d{5})" title="Please fill out this field." required>
-            </div>
-            <div class="mb-3">
-              <label for="inputUsername" class="col-form-label">Username:</label>
-              <input type="text" class="form-control" id="inputUsername" [(ngModel)]="newAccount.username" title="Username must be unique." required>
-            </div>
-            <div class="mb-3 container">
-              <label for="inputPassword" class="col-form-label">Password:</label>
-              <input type="password" class="form-control" id="inputPassword" [(ngModel)]="newAccount.password" #pwd="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-              <div id="message" >
-                <h3>Password must contain the following:</h3>
-                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                <p id="number" class="invalid">A <b>number</b></p>
-                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-              </div>
-            </div>
-            <!-- <div class="mb-3" *ngIf="!pwd.errors.pattern" *ngIf="!pwd.errors.pattern">
-              <label for="inputPassword" class="col-form-label">Confirm Password:</label>
-              <input type="password" class="form-control" id="inputConfirmPassword" name="cpwd" [(ngModel)]="password" pattern="{{pwd.value}}" #cpwd="ngModel" title="Confirm Password and the Password you entered above must match each other" required>
-            </div> -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createAccount()">Submit</button>
+        <div class="form-group">
+          <label for="inputConfirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="inputConfirmPassword" formControlName="confirmPassword" required>
+          <span class="text-danger"
+              *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
+              Confirm Password is required
+          </span>
+          <span class="text-danger"
+              *ngIf="registerFormControl.confirmPassword.touched && registerFormControl.confirmPassword.errors?.passwordMismatch">
+              Passwords doesnot match
+          </span>
         </div>
       </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Register</button>
+        </div>
+    </form>
     </div>
   </div>
+</div>
 
