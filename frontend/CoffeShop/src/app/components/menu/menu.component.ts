@@ -12,6 +12,8 @@ export class MenuComponent implements OnInit {
 
   //this is a test comment for testing the branch/merge system
 
+  //this is another test comment for branching/merging education
+
   constructor() { }
 
   ngOnInit(): void {
