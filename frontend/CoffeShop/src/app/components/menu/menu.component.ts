@@ -10,6 +10,8 @@ import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
 })
 export class MenuComponent implements OnInit {
 
+  //this is a test comment for testing the branch/merge system
+
   constructor() { }
 
   ngOnInit(): void {
