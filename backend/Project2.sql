@@ -196,7 +196,7 @@ insert into shops values
 	(default, 'Moscow', 10);
 
 insert into users values
-	(default, 'Alison', 'Saylor', '(555) 867-5309', 'alison@saylors.com', 'coffeequeen92', 'password', 2);
+	(default, 'Alison', 'Saylor', '(555) 867-5309', 'alison@saylors.com', 'coffeequeen92', 'Password1', 2);
 
 insert into daily_specials values
 	(default, 1, 0, 1),
