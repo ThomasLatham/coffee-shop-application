@@ -1,5 +1,8 @@
 # Project Two
 
+## How to use Git
+[Link to the slide deck for Git usage](https://docs.google.com/presentation/d/1a8vBH-5nOwsSJ0BuVPL2nm0BJwzISi2Xzk4RCjSsKCc/edit?usp=sharing)
+
 
 
 ## Getting started
