@@ -22,8 +22,8 @@ export class ItemCategoryHttpService {
   }
   
   // GET
-  GetEmployees(): Observable<ItemCategory> {
-    return this.http.get<ItemCategory>(this.baseURL)
+  GetAllItemCategories(): Observable<Array<ItemCategory>> {
+    return this.http.get<Array<ItemCategory>>(this.baseURL)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

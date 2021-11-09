@@ -22,8 +22,8 @@ export class DailySpecialHttpService {
   }
   
   // GET
-  GetEmployees(): Observable<DailySpecial> {
-    return this.http.get<DailySpecial>(this.baseURL)
+  GetAllDailySpecials(): Observable<Array<DailySpecial>> {
+    return this.http.get<Array<DailySpecial>>(this.baseURL)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

@@ -22,8 +22,8 @@ export class MenuItemHttpService {
   }
   
   // GET
-  GetEmployees(): Observable<MenuItem> {
-    return this.http.get<MenuItem>(this.baseURL)
+  GetAllMenuItems(): Observable<Array<MenuItem>> {
+    return this.http.get<Array<MenuItem>>(this.baseURL)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
