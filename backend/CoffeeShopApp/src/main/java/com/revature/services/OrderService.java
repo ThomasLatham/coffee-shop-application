@@ -11,7 +11,7 @@ public interface OrderService {
     public List<Order> getAllOrders();
     public Order getOrder(int id);
     public Order updateOrder(Order change);
-    public boolean deleteActor(int id);
+    public boolean deleteOrder(int id);
 
     public List<Order> getOrdersByDay(long dayStart);
     public Order advanceOrder(Order o);

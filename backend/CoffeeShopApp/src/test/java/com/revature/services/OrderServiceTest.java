@@ -49,7 +49,7 @@ public class OrderServiceTest {
     void deleteOrder() {
         Order o = o1;
         Mockito.doNothing().when(or).deleteById(o.getorderID());
-        boolean result = os.deleteActor(o.getorderID());
+        boolean result = os.deleteOrder(o.getorderID());
         Assertions.assertTrue(result);
     }
     @Test

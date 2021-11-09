@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public boolean deleteActor(int id) {
+    public boolean deleteOrder(int id) {
         try{
             or.deleteById(id);
             return true;

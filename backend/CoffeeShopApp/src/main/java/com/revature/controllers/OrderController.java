@@ -39,7 +39,7 @@ public class OrderController {
             e.printStackTrace();
             return false;
         }
-        return os.deleteActor(deleteId);
+        return os.deleteOrder(deleteId);
     }
     @GetMapping("/orders/day/{day}")
     public List<Order> getOrdersByDay(@PathVariable String day){
