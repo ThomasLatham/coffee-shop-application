@@ -15,6 +15,8 @@ drop table if exists daily_specials;
 
 drop table if exists user_addresses;
 	drop table if exists users;
+drop table if exists emails;
+drop table if exists email;
 		drop table if exists user_roles;
 
 --CREATORS--
