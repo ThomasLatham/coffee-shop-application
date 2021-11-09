@@ -49,9 +49,9 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> getOrdersByDay(long dayStart) {
         // will return list of orders for a certain day, 1 day = 86400000ms
         // get the day and get the orders for orders>day and orders<day
+
         Long dayEnd = dayStart + 86400000;
-        or.getOrdersByDay(dayStart,dayEnd);
-        return null;
+        return or.getOrdersByDay(dayStart,dayEnd);
     }
 
     @Override
@@ -65,16 +65,17 @@ public class OrderServiceImpl implements OrderService{
             return updatedOrder = or.save(o);
         } else if (orderStatus.getStatus().equals("Ready")||orderStatus.getStatus().equals("Delivered")){
             o.getOrderStatus().setStatus("Order Complete");
-            o.setorderID(5);
+            o.getOrderStatus().setstatusID(5);
+            System.out.println("in here" + o.getOrderStatus());
             return updatedOrder = or.save(o);
         } else if (orderStatus.getStatus().equals("Ready")&&o.getDelivery()) {
             //if it is ready and is for delivery will change to delivery in progress when delivery man picks up
             o.getOrderStatus().setStatus("Delivery in Progress");
-            o.setorderID(3);
+            o.getOrderStatus().setstatusID(3);
             return updatedOrder = or.save(o);
         } else if (orderStatus.getStatus().equals("Delivery in Progress")) {
             o.getOrderStatus().setStatus("Order Complete");
-            o.setorderID(5);
+            o.getOrderStatus().setstatusID(5);
             return updatedOrder = or.save(o);
         } else {
             return o;

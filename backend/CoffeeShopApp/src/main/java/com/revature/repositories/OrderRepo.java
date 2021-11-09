@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface OrderRepo extends CrudRepository<Order, Integer> {
-    @Query(value = "SELECT * FROM orders WHERE order_time >= :dayStart AND order_time <= dayEnd", nativeQuery = true)
-    public List<Order> getOrdersByDay(@Param("dayStart") Long dayStart, @Param("dayEnd") Long dayEnd);
+    @Query(value = "SELECT * FROM orders o WHERE o.order_time >= :dayStart AND o.order_time < :dayEnd", nativeQuery = true)
+    List<Order> getOrdersByDay(@Param("dayStart") Long dayStart, @Param("dayEnd") Long dayEnd);
 }
