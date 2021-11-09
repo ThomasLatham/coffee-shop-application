@@ -37,7 +37,7 @@ export class IngredientOrderItemHttpService {
   }
   
   // GET
-  GetIngredientOrderItems(): Observable<IngredientOrderItem> {
+  GetAllIngredientOrderItems(): Observable<IngredientOrderItem> {
     return this.http.get<IngredientOrderItem>(this.baseurl)
     .pipe(
       retry(1),

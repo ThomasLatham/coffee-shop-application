@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemCategory } from 'src/app/models/ItemCategory';
+import { ItemCategoryHttpService } from 'src/app/services/item-category-http.service'
 import { MenuItem } from "src/app/models/MenuItem";
+import { MenuItemHttpService } from 'src/app/services/menu-item-http.service'
 import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
+import { MenuItemIngredientHttpService } from 'src/app/services/menu-item-ingredient-http.service'
+
 
 @Component({
   selector: 'app-menu',
@@ -14,22 +18,22 @@ export class MenuComponent implements OnInit {
 
   //this is another test comment for branching/merging education
 
-  constructor() { }
+  constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService) { }
 
   ngOnInit(): void {
   }
 
-  fakeMenuItems = [
-
-  ];
-
   itemCategories: Array<ItemCategory>;
-  //get all these too
 
   menuItems: Array<MenuItem>;
-  //fetch all menuItems
 
-  menuItemIngredients: Array<MenuItemIngredient>
-  //fetch all these too
+  menuItemIngredients: Array<MenuItemIngredient>;
+
+  getAllItemCategories() {
+    
+    this.icHttp.GetAllItemCategories;
+
+
+  }
 
 }
