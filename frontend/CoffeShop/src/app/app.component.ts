@@ -23,5 +23,6 @@ export class AppComponent {
 
   logout() {
     this.loginServ.logout();
+    console.log(this.loginServ.currentUser);
   }
 }

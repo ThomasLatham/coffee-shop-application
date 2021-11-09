@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
+import { UserAddress } from '../models/UserAddress';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,15 @@ export class LoginService {
   constructor() { }
 
   currentUser: User;
-  showErrorMessage: boolean = false;
+  currentUserAddress: UserAddress;
 
-  login(user: User){
-      this.currentUser = user;
+  login(userAddress: UserAddress){
+      this.currentUser = userAddress.user;
+      this.currentUserAddress = userAddress;
   }
 
   logout(){
     this.currentUser = null;
+    this.currentUserAddress = null;
   }
 }

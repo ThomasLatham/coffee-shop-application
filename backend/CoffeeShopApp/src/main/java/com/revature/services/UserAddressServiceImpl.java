@@ -47,7 +47,7 @@ public class UserAddressServiceImpl implements UserAddressService{
     }
 
     @Override
-    public UserAddress getUserAddressByUserID(User u) {
+    public UserAddress getUserAddressByUser(User u) {
         return uar.findByUser(u);
     }
 

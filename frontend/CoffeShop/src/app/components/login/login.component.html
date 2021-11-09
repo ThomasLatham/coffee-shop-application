@@ -32,7 +32,7 @@
       <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="modal-body">
           <div class="form-group">
-            <label for="inputFirstName">First Name</label>
+            <label class="form-label" for="inputFirstName">First Name</label>
             <input type="text" class="form-control" id="inputFirstName" formControlName="firstName" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.firstName.touched || submitted) && registerFormControl.firstName.errors?.required">
@@ -40,7 +40,7 @@
             </span>
           </div>
           <div class="form-group">
-            <label for="inputLastName">Last Name</label>
+            <label class="form-label" for="inputLastName">Last Name</label>
             <input type="text" class="form-control" id="inputLastName" formControlName="lastName" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.lastName.touched || submitted) && registerFormControl.lastName.errors?.required">
@@ -48,14 +48,14 @@
             </span>
           </div> 
           <div class="form-group">
-            <label for="inputPhoneNumber">Phone Number</label>
+            <label class="form-label" for="inputPhoneNumber">Phone Number</label>
             <input type="text" class="form-control" id="inputPhoneNumber" formControlName="phoneNumber" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.phoneNumber.touched || submitted) && registerFormControl.phoneNumber.errors?.required">
                 PhoneNumber is required
             </span>
             <span class="text-danger"
-                *ngIf="registerFormControl.phoneNumber.touched && !registerFormControl.phoneNumber.errors?.pattern">
+                *ngIf="registerFormControl.phoneNumber.touched && registerFormControl.phoneNumber.errors?.pattern">
                 Enter a valid PhoneNumber
             </span>
           </div>
@@ -64,7 +64,7 @@
             <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="phoneNumber" pattern="(\d{3})[-]?(\d{3})[-]?(\d{4})" title="Please enter your 10 digits phone number, separated by - or none." required>
           </div> -->
           <div class="form-group">
-            <label for="inputEmail">Email</label>
+            <label class="form-label" for="inputEmail">Email</label>
             <input type="text" class="form-control" id="inputEmail" formControlName="email" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
@@ -76,7 +76,7 @@
             </span>
           </div>
           <div class="form-group">
-            <label for="inputStreet">Street:</label>
+            <label class="form-label" for="inputStreet">Street:</label>
             <input type="text" class="form-control" id="inputStreet" formControlName="street" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.street.touched || submitted) && registerFormControl.street.errors?.required">
@@ -88,7 +88,7 @@
             <input type="text" class="form-control" id="inputStreet" [(ngModel)]="newAddress.street" title="Please fill out this field." required>
           </div> -->
           <div class="form-group">
-            <label for="inputCity">City:</label>
+            <label class="form-label" for="inputCity">City:</label>
             <input type="text" class="form-control" id="inputCity" formControlName="city" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.city.touched || submitted) && registerFormControl.city.errors?.required">
@@ -100,14 +100,14 @@
             <input type="text" class="form-control" id="inputCity" [(ngModel)]="newAddress.city" title="Please fill out this field." required>
           </div> -->
           <div class="form-group">
-            <label for="inputZipCode">Zip Code:</label>
+            <label class="form-label" for="inputZipCode">Zip Code:</label>
             <input type="text" class="form-control" id="inputZipCode" formControlName="zipCode" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.zipCode.touched || submitted) && registerFormControl.zipCode.errors?.required">
                 Zip Code is required
             </span>
             <span class="text-danger"
-                *ngIf="registerFormControl.phoneNumber.touched && !registerFormControl.phoneNumber.errors?.pattern">
+                *ngIf="registerFormControl.zipCode.touched && registerFormControl.zipCode.errors?.pattern">
                 Enter a valid Zip Code
             </span>
           </div>
@@ -116,15 +116,19 @@
             <input type="text" class="form-control" id="inputZipCode" [(ngModel)]="newAddress.zipCode" pattern="(\d{5})" title="Please fill out this field." required>
           </div> -->
           <div class="form-group">
-            <label for="inputUsername">User Name:</label>
+            <label class="form-label" for="inputUsername">User Name:</label>
             <input type="text" class="form-control" id="inputUsername" formControlName="username"required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
                 Username is required
             </span>
+            <span class="text-danger"
+                *ngIf="registerFormControl.username.touched && registerFormControl.username.errors?.userNameNotAvailable">
+                The username already exists. Please try another one.
+            </span>
           </div>
           <div class="form-group">
-            <label for="inputPassword">Password</label>
+            <label class="form-label" for="inputPassword">Password</label>
             <input type="password" class="form-control" id="inputPassword" formControlName="password" required>
             <span class="text-danger"
                 *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
@@ -137,7 +141,7 @@
             </span>
         </div>
         <div class="form-group">
-          <label for="inputConfirmPassword">Confirm Password</label>
+          <label class="form-label" for="inputConfirmPassword">Confirm Password</label>
           <input type="password" class="form-control" id="inputConfirmPassword" formControlName="confirmPassword" required>
           <span class="text-danger"
               *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
@@ -151,7 +155,7 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Register</button>
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" [disabled]="!this.registerForm.valid">Register</button>
         </div>
     </form>
     </div>
