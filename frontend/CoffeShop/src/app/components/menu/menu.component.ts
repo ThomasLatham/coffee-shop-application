@@ -14,26 +14,48 @@ import { MenuItemIngredientHttpService } from 'src/app/services/menu-item-ingred
 })
 export class MenuComponent implements OnInit {
 
-  //this is a test comment for testing the branch/merge system
-
-  //this is another test comment for branching/merging education
-
   constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService) { }
 
   ngOnInit(): void {
   }
 
-  itemCategories: Array<ItemCategory>;
+  itemCategories: Array<ItemCategory> = [];
 
-  menuItems: Array<MenuItem>;
+  menuItems: Array<MenuItem> = [];
 
-  menuItemIngredients: Array<MenuItemIngredient>;
+  menuItemIngredients: Array<MenuItemIngredient> = [];
 
   getAllItemCategories() {
     
-    this.icHttp.GetAllItemCategories;
+    this.icHttp.GetAllItemCategories().subscribe(
 
+      (response) => {
+      
+        this.itemCategories = response;
+      }
+    );
+  }
 
+  getAllMenuItems() {
+    
+    this.miHttp.GetAllMenuItems().subscribe(
+
+      (response) => {
+      
+        this.menuItems = response;
+      }
+    );
+  }
+
+  getAllMenuItemIngredients() {
+    
+    this.miiHttp.GetAllMenuItemIngredients().subscribe(
+
+      (response) => {
+      
+        this.menuItemIngredients = response;
+      }
+    );
   }
 
 }

@@ -22,8 +22,8 @@ export class MenuItemIngredientHttpService {
   }
   
   // GET
-  GetAllMenuItemIngredients(): Observable<MenuItemIngredient> {
-    return this.http.get<MenuItemIngredient>(this.baseURL)
+  GetAllMenuItemIngredients(): Observable<Array<MenuItemIngredient>> {
+    return this.http.get<Array<MenuItemIngredient>>(this.baseURL)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
