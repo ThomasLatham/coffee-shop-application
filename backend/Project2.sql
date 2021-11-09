@@ -162,14 +162,14 @@ insert into pictures values
 	--MEAT TABLES--
 insert into menu_items values
 	(default, 'espresso', 2.50, 120000, 1, 1),
-	(default, 'americano', 2.75, 150000, 1, 1),
-	(default, 'machiatto', 3.00, 180000, 1, 1),
-	(default, 'cappuccino', 3.25, 120000, 1, 1),
-	(default, 'latte', 3.50, 150000, 1, 1),
-	(default, 'croissant', 3.00, 30000, 2, 1),
-	(default, 'breakfast sandwich', 5.00, 300000, 2, 1),
-	(default, 'cheese Danish', 3.00, 30000, 2, 1),
-	(default, 'sugar cookie', 2.50, 30000, 2, 1);
+	(default, 'americano', 2.75, 150000, 1, 2),
+	(default, 'machiatto', 3.00, 180000, 1, 3),
+	(default, 'cappuccino', 3.25, 120000, 1, 4),
+	(default, 'latte', 3.50, 150000, 1, 5),
+	(default, 'croissant', 3.00, 30000, 2, 6),
+	(default, 'breakfast sandwich', 5.00, 300000, 2, 7),
+	(default, 'cheese Danish', 3.00, 30000, 2, 8),
+	(default, 'sugar cookie', 2.50, 30000, 2, 9);
 
 insert into ingredients values 
 	(default, 'almond milk', 0.50),

@@ -17,7 +17,12 @@ export class MenuComponent implements OnInit {
   constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService) { }
 
   ngOnInit(): void {
+
+    this.getAllItemCategories();
+    this.getAllMenuItems();
+    this.getAllMenuItemIngredients();
   }
+
 
   itemCategories: Array<ItemCategory> = [];
 
@@ -30,8 +35,8 @@ export class MenuComponent implements OnInit {
     this.icHttp.GetAllItemCategories().subscribe(
 
       (response) => {
-      
         this.itemCategories = response;
+        console.log(this.itemCategories);
       }
     );
   }
@@ -41,8 +46,8 @@ export class MenuComponent implements OnInit {
     this.miHttp.GetAllMenuItems().subscribe(
 
       (response) => {
-      
         this.menuItems = response;
+        console.log(this.menuItems);
       }
     );
   }
@@ -52,8 +57,9 @@ export class MenuComponent implements OnInit {
     this.miiHttp.GetAllMenuItemIngredients().subscribe(
 
       (response) => {
-      
         this.menuItemIngredients = response;
+        console.log(this.menuItemIngredients);
+
       }
     );
   }
