@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class OrderController {
 
     @Autowired
@@ -39,6 +40,27 @@ public class OrderController {
             return false;
         }
         return os.deleteActor(deleteId);
+    }
+    @GetMapping("/orders/day/{day}")
+    public List<Order> getOrdersByDay(@PathVariable String day){
+        List<Order> dayOrders = null;
+        long realDay = 0L;
+        try{
+            realDay = Long.parseLong(day);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return dayOrders;
+        }
+        return os.getOrdersByDay(realDay);
+    }
+    @PutMapping(value = "/orders/advance/{id}", consumes = {"application/json"}, produces = "application/json")
+    public Order advanceOrder(@PathVariable("id") String id, @RequestBody Order change) {
+        try{
+            change.setorderID(Integer.parseInt(id));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return os.advanceOrder(change);
     }
 
 

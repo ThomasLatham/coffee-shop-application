@@ -9,9 +9,9 @@ export class MenuItemIngredient {
 
 
   constructor(menuItemIngredientID: number, item: MenuItem, ingredient: Ingredient) {
-    this.menuItemIngredientID = menuItemIngredientID
-    this.item = item
-    this.ingredient = ingredient
+    this.menuItemIngredientID = menuItemIngredientID;
+    this.item = item;
+    this.ingredient = ingredient;
   }
   
 
