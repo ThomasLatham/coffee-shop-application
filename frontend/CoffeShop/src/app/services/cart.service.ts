@@ -1,164 +1,53 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { MenuItem } from "src/app/models/MenuItem";
 import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
-import {Order} from "src/app/models/Order";
-import {User} from "src/app/models/User";
-import { OrderStatus } from 'src/app/models/OrderStatus';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  baseurl1 = 'http://localhost:3000/cart/';
-  baseurl2 = 'http://localhost:3000/cart/ingredient';
-  baseurl3 = 'http://localhost:3000/cart/order';
-  baseurl4 = 'http://localhost:3000/cart/user';
-  baseurl5 = 'http://localhost:3000/cart/OrderStatuses';
-  constructor(private http: HttpClient) { }
-
-  // Http Headers
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-
-  GetItem(id): Observable<MenuItem> {
-    return this.http.get<MenuItem>(this.baseurl1 + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
+  constructor() { }
 
 
-  GetIngredient(id): Observable<IngredientOrderItem> {
-    return this.http.get<IngredientOrderItem>(this.baseurl2 + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
+  cart: Array<Array<IngredientOrderItem>> = [];
 
+  addCartItem(newIoiArray: Array<IngredientOrderItem>) {
 
-  Getorder(id): Observable<Order> {
-    return this.http.get<Order>(this.baseurl3 + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
+    let alreadyInCart: boolean = false;
 
+    for (let existingIoiArray of this.cart) {
 
-  Getuser(id): Observable<User> {
-    return this.http.get<User>(this.baseurl4 + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
+      if (newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID 
+        && !existingIoiArray[0].ingredient && !newIoiArray[0].ingredient  //if the new cart item and old cart item both don't have extra ingredients and have the same menu item
+        ||
+        newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID
+        && existingIoiArray[0].ingredient && newIoiArray[0].ingredient
+        && newIoiArray[0].ingredient.ingredientID == existingIoiArray[0].ingredient.ingredientID
+        && newIoiArray[0].ingredientCount == existingIoiArray[0].ingredientCount) { //if the new cart item and old cart item both have extra ingredients and have the same menu item and the same number and type of ingredients
 
+        for (let ioi of existingIoiArray) {
 
-  Getstatus(id): Observable<OrderStatus> {
-    return this.http.get<OrderStatus>(this.baseurl5 + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-  GetItems(): Observable<MenuItem> {
-    return this.http.get<MenuItem>(this.baseurl1)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-
-  GetIngredients(): Observable<IngredientOrderItem> {
-    return this.http.get<IngredientOrderItem>(this.baseurl2)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-
-
-
-  // DELETE
-  DeleteItem(id){
-    return this.http.delete<MenuItem>(this.baseurl1 + id, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-  DeleteIngedient(id){
-    return this.http.delete<IngredientOrderItem>(this.baseurl2 + id, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-
-  DeleteOrder(id){
-    return this.http.delete<Order>(this.baseurl3 + id, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-
-  AddQuantity(id){
-    return this.http.get<Order>(this.baseurl3 + id, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-  RemoveQuantity(id){
-    return this.http.delete<Order>(this.baseurl3 + id, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
-
-
-
-  // Error handling
-  errorHandl(error) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+          ioi.orderItem.itemCount ++;
+          alreadyInCart = true;
+        }
+      }
     }
-    console.log(errorMessage);
-    return throwError(errorMessage);
+    if (!alreadyInCart) {
+
+      this.cart.push(newIoiArray);
+    }
+
+    console.log(this.cart);
   }
 
+  removeIoi(ioiArray: Array<IngredientOrderItem>) {
 
+    const index = this.cart.indexOf(ioiArray);
+    if (index > -1) {
+      this.cart.splice(index, 1);
+}
 
-
+  }
 
 }

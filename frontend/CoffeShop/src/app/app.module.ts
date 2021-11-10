@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderManagementComponent } from './components/order-management/order-management.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MenuComponent,
-    OrderManagementComponent
+    OrderManagementComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
