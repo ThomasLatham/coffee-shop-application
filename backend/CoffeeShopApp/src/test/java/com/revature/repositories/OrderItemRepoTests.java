@@ -92,7 +92,7 @@ public class OrderItemRepoTests {
 
         oi3 = oir.save(oi3);
 
-        Assertions.assertNotEquals(1, oi3.getId());
+        Assertions.assertNotEquals(1, oi3.getOrderItemID());
     }
 
     //

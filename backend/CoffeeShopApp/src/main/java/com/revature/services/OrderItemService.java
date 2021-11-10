@@ -3,6 +3,7 @@ package com.revature.services;
 import com.revature.models.Order;
 import com.revature.models.OrderItem;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface OrderItemService {
@@ -11,4 +12,6 @@ public interface OrderItemService {
     public OrderItem getOrderItem(int id);
     public OrderItem updateOrderItem(OrderItem change);
     public boolean deleteOrderItem(int id);
+
+    public List<OrderItem> getOrderItemsForToday(String todayDate) throws ParseException;
 }

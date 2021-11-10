@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService{
         // will return list of orders for a certain day, 1 day = 86400000ms
         // get the day and get the orders for orders>day and orders<day
 
-        Long dayEnd = dayStart + 86400000;
+        Long dayEnd = dayStart + 86400000000L;
         return or.getOrdersByDay(dayStart,dayEnd);
     }
 
@@ -81,5 +81,6 @@ public class OrderServiceImpl implements OrderService{
             return o;
         }
     }
+
 
 }

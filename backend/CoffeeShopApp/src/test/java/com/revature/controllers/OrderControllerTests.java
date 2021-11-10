@@ -30,11 +30,11 @@ public class OrderControllerTests {
     User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
     OrderStatus os1 = new OrderStatus(1,"Order Received");
     PaymentType pt1 = new PaymentType(1, "cash");
-    Order o = new Order(1, 1636495200,os1,u1,pt1,true);
+    Order o = new Order(1, 1636495200000L,os1,u1,pt1,true);
 
     @Test
     void getOrderById() throws Exception {
-        Mockito.when(os.getOrder(1)).thenReturn(new Order(1, 1636495200,os1,u1,pt1,true));
+        Mockito.when(os.getOrder(1)).thenReturn(new Order(1, 1636495200000L,os1,u1,pt1,true));
 
         ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orders/1"));
 

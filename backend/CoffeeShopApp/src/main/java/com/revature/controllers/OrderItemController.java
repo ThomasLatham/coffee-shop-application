@@ -1,10 +1,12 @@
 package com.revature.controllers;
 
+import com.revature.models.Order;
 import com.revature.models.OrderItem;
 import com.revature.services.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -49,5 +51,15 @@ public class OrderItemController {
             return false;
         }
         return ois.deleteOrderItem(deleteId);
+    }
+
+    @GetMapping(value = "/orderItems/today/{day}")
+    public List<OrderItem> getOrderItemsToday(@PathVariable String day){
+        try {
+            return ois.getOrderItemsForToday(day);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

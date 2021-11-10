@@ -70,9 +70,9 @@ public class OrderServiceTest {
     }
     @Test
     void getOrdersByDay(){
-        List<Order> orders = os.getOrdersByDay(1636444800);
+        List<Order> orders = os.getOrdersByDay(1636444800000L);
         for(Order o : orders) {
-            Assertions.assertTrue(o.getOrderTime()>=1636444800&&o.getOrderTime()<=1636444800 + 86400000);
+            Assertions.assertTrue(o.getOrderTime()>=1636444800000L&&o.getOrderTime()<=1636444800000L + 864000000000L);
         }
     }
     @Test
