@@ -10,7 +10,7 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id", updatable = false)
-    private int id;
+    private int orderItemID;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -18,33 +18,27 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "item_id")
-    private MenuItem itemID;
+    private MenuItem menuItem;
 
     @Column(name = "item_count")
     private int  itemCount;
 
     public OrderItem() {
     }
+    public OrderItem(int orderItemID, Order orderID, MenuItem menuItem, int itemCount) {
+        this.orderItemID = orderItemID;
 
-    public OrderItem(Order orderID, MenuItem itemID, int itemCount) {
         this.orderID = orderID;
-        this.itemID = itemID;
+        this.menuItem = menuItem;
         this.itemCount = itemCount;
     }
 
-    public OrderItem(int id, Order orderID, MenuItem itemID, int itemCount) {
-        this.id = id;
-        this.orderID = orderID;
-        this.itemID = itemID;
-        this.itemCount = itemCount;
+    public int getOrderItemID() {
+        return orderItemID;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderItemID(int orderItemID) {
+        this.orderItemID = orderItemID;
     }
 
     public Order getOrderID() {
@@ -55,12 +49,12 @@ public class OrderItem {
         this.orderID = orderID;
     }
 
-    public MenuItem getItemID() {
-        return itemID;
+    public MenuItem getMenuItem() {
+        return menuItem;
     }
 
-    public void setItemID(MenuItem itemID) {
-        this.itemID = itemID;
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 
     public int getItemCount() {
@@ -76,20 +70,20 @@ public class OrderItem {
         if (this == o) return true;
         if (!(o instanceof OrderItem)) return false;
         OrderItem orderItem = (OrderItem) o;
-        return getId() == orderItem.getId() && getItemCount() == orderItem.getItemCount() && Objects.equals(getOrderID(), orderItem.getOrderID()) && Objects.equals(getItemID(), orderItem.getItemID());
+        return getOrderItemID() == orderItem.getOrderItemID() && getItemCount() == orderItem.getItemCount() && Objects.equals(getOrderID(), orderItem.getOrderID()) && Objects.equals(getMenuItem(), orderItem.getMenuItem());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getOrderID(), getItemID(), getItemCount());
+        return Objects.hash(getOrderItemID(), getOrderID(), getMenuItem(), getItemCount());
     }
 
     @Override
     public String toString() {
         return "OrderItem{" +
-                "id=" + id +
+                "orderItemID=" + orderItemID +
                 ", orderID=" + orderID +
-                ", itemID=" + itemID +
+                ", menuItem=" + menuItem +
                 ", itemCount=" + itemCount +
                 '}';
     }

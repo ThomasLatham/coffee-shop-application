@@ -5,7 +5,9 @@ import com.revature.repositories.OrderItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class OrderItemServiceImpl implements OrderItemService{
@@ -42,5 +44,25 @@ public class OrderItemServiceImpl implements OrderItemService{
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<OrderItem> getOrderItemsForToday(String todayDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date today = format.parse(todayDate);
+            long todayTime = today.getTime();
+            List<OrderItem> orderItems = (List<OrderItem>) oi.findAll();
+            List<OrderItem> todayOrderItems = new ArrayList<>();
+            for (OrderItem o : orderItems){
+                if (o.getOrderID().getOrderTime()>=todayTime && o.getOrderID().getOrderTime()<todayTime+86400000000L){
+                    todayOrderItems.add(o);
+                }
+            }
+            return todayOrderItems;
+        } catch (ParseException p) {
+            p.printStackTrace();
+        }
+        return null;
     }
 }
