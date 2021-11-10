@@ -16,8 +16,8 @@
           <a class="nav-link active" routerLink="contact">Contact Us</a>
         </li>
         <!-- if user is manager this will be enabled -->
-        <li class="nav-item">
-          <a class="nav-link disabled">Order Management</a>
+        <li class="nav-item" *ngIf = "isManager()" >
+          <a class="nav-link active" routerLink="ordermanagement">Order Management</a>
         </li>
       </ul>
       <!-- if user is logged in this will disabled -->
