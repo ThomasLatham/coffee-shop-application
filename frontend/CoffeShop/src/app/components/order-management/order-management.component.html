@@ -11,18 +11,22 @@
                   <p>Estimated ready time: 15 min</p> 
                   <p>Order status: {{order.orderStatus.status}}</p>
                   <!-- get order items for a specific order -->
-                  <h6 style="text-align: left;">Order Items:</h6> 
+                  <h6 style="text-align: center;">Order Items:</h6> 
                   <div *ngFor = "let item of orderItemsList">
-                    <p style="text-align: left;">
+                    <div style="text-align: left;">
                         item: {{item.menuItem.itemName}}
                         <br>
                         quantity: {{item.itemCount}}
                         <br>
-                        extra adjustments:
+                        <div *ngFor = "let ingredient of ingredientForOrderItems">
+                            <div *ngIf="ingredient.orderItem.orderItemID==item.orderItemID">
+                                extra ingredients: {{ingredient.ingredient.ingredientName}} <br> amount: {{ingredient.ingredientCount}}
+                            </div>
+                        </div>
 
                         <br>
                         <br>
-                    </p>
+                    </div>
                   </div>
                   
                   <!-- click when order is ready and change the status -->

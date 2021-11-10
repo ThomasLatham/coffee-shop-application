@@ -39,7 +39,7 @@ public class OrderItemController {
 
     @PutMapping(value = "/orderItems/{id}", consumes = "application/json", produces = "application/json")
     public OrderItem updateOrderItem(@PathVariable("id") String id, @RequestBody OrderItem change) {
-        change.setId(Integer.parseInt(id));
+        change.setOrderItemID(Integer.parseInt(id));
         return ois.updateOrderItem(change);
     }
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../../models/Order';
 import { OrderItem } from '../../models/OrderItem';
 import { OrderManagementHttpService } from '../../services/order-management-http.service';
+import { IngredientOrderItemHttpService } from '../../services/ingredient-order-item-http.service';
+import { IngredientOrderItem } from 'src/app/models/IngredientOrderItem';
 
 @Component({
   selector: 'app-order-management',
@@ -10,11 +12,12 @@ import { OrderManagementHttpService } from '../../services/order-management-http
 })
 export class OrderManagementComponent implements OnInit {
 
-  constructor(private orderHttp: OrderManagementHttpService) { }
+  constructor(private orderHttp: OrderManagementHttpService, private ingredientOrderItemHttp: IngredientOrderItemHttpService) { }
 
   ngOnInit(): void {
     this.getOrderToday();
     this.getOrderItems();
+    this.getIngredients();
   }
 
   orderByDayList: Order[];
@@ -22,8 +25,18 @@ export class OrderManagementComponent implements OnInit {
   orderItemsList: OrderItem[];
   day: Date;
   buttonDisplay: string = "";
+  ingredientForOrderItems: IngredientOrderItem[];
+  
   // get all orders then for each order, getOrderItems
 
+  getIngredients(): void{
+    this.ingredientOrderItemHttp.GetAllIngredientOrderItems().subscribe(
+      (response)=> {
+        this.ingredientForOrderItems=response;
+        console.log(this.ingredientForOrderItems);
+      }
+    );
+  }
   advanceOrder(order: Order): void{
     this.orderHttp.advanceOrder(order).subscribe(
       (response) =>{
