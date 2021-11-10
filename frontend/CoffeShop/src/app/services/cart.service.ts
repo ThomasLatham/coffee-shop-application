@@ -19,6 +19,7 @@ export class CartService {
     for (let existingIoiArray of this.cart) {
 
       if (newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID
+        && existingIoiArray[0].ingredient && newIoiArray[0].ingredient
         && newIoiArray[0].ingredient.ingredientID == existingIoiArray[0].ingredient.ingredientID
         && newIoiArray[0].ingredientCount == existingIoiArray[0].ingredientCount) {
 
