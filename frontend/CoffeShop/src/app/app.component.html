@@ -7,17 +7,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="menu">Menu</a>
+          <a class="nav-link active" routerLink="menu">Menu</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
+          <a class="nav-link active" routerLink="about">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Contact Us</a> 
+          <a class="nav-link active" routerLink="contact">Contact Us</a>
         </li>
         <!-- if user is manager this will be enabled -->
-        <li class="nav-item">
-          <a class="nav-link disabled" href="">Order Management</a>
+        <li class="nav-item" *ngIf = "isManager()" >
+          <a class="nav-link active" routerLink="ordermanagement">Order Management</a>
         </li>
       </ul>
       <!-- if user is logged in this will disabled -->

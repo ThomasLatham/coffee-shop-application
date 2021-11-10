@@ -82,8 +82,11 @@ export class OrderManagementHttpService {
 
   getOrderItems(): Observable<OrderItem[]>{
     let today = new Date();
+    console.log(today.getUTCMonth());
     let day = new Date( today.getFullYear(), today.getMonth(), today.getDate());
-    let todayString = day.getFullYear() + '-' + day.getMonth() + "-" + day.getDate();
+    let month = day.getMonth() + 1;
+
+    let todayString = day.getFullYear() + '-' + month + "-" + day.getDate();
     return this.http.get<OrderItem[]>('http://localhost:8080/orderItems/today/'+todayString);
   }
 

@@ -4,7 +4,7 @@
         <div style="margin-top: 20px;">
             <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;" *ngFor = "let order of orderList">
                 <!-- if orders for today are not ready dispaly with button, if alrady done order then remove button and say order completed -->
-                <div class="card-header">Order time: !replace with pipe </div>
+                <div class="card-header">Order time: <br> {{order.orderTime | datePipe}}  </div>
                 <div class="card-body">
                   <h4 class="card-title">Username: {{order.orderedBy.username}} ({{order.orderedBy.firstName}})</h4>
                   <!-- add 15 minutes for ready time -->
@@ -45,10 +45,12 @@
             <button (click)="getOrderDay()" class="btn btn-success" style="margin-left: 15px;">Get orders</button>
         </div>
         <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;" *ngFor = "let order of orderByDayList">
-            <div class="card-header">Order time: !replace with pipe </div>
+            <div class="card-header">Order time: {{order.orderTime | datePipe}} </div>
             <div class="card-body">
               <h4 class="card-title">Username: {{order.orderedBy.username}}</h4>
               <p>
+                  {{order.orderID}}
+                  <br>
                   Order Status: {{order.orderStatus.status}}
                   <br>
                   Payment: {{order.orderPayment.paymentTypeName}}

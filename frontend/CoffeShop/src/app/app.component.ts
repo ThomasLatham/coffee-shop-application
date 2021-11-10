@@ -25,4 +25,13 @@ export class AppComponent {
     this.loginServ.logout();
     console.log(this.loginServ.currentUser);
   }
+
+  isManager(): boolean{
+    let user = this.getUser();
+    console.log(user);
+    if(this.getUser() && user.userRole.roleName == "manager"){
+      return true;
+    }
+    return false;
+  }
 }
