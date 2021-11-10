@@ -18,10 +18,13 @@ export class CartService {
 
     for (let existingIoiArray of this.cart) {
 
-      if (newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID
+      if (newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID 
+        && !existingIoiArray[0].ingredient && !newIoiArray[0].ingredient  //if the new cart item and old cart item both don't have extra ingredients and have the same menu item
+        ||
+        newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID
         && existingIoiArray[0].ingredient && newIoiArray[0].ingredient
         && newIoiArray[0].ingredient.ingredientID == existingIoiArray[0].ingredient.ingredientID
-        && newIoiArray[0].ingredientCount == existingIoiArray[0].ingredientCount) {
+        && newIoiArray[0].ingredientCount == existingIoiArray[0].ingredientCount) { //if the new cart item and old cart item both have extra ingredients and have the same menu item and the same number and type of ingredients
 
         for (let ioi of existingIoiArray) {
 
