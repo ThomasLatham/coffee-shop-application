@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderManagementComponent } from './components/order-management/order-management.component';
+import { DatePipePipe } from './pipes/date-pipe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MenuComponent,
-    OrderManagementComponent
+    OrderManagementComponent,
+    DatePipePipe
   ],
   imports: [
     BrowserModule,
