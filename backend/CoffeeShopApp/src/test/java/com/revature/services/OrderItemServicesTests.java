@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
@@ -61,22 +62,22 @@ public class OrderItemServicesTests {
     @MockBean
     UserRoleRepo urr;
 
+    Byte[] temp = new Byte [255];
+    UserRole ur1 = new UserRole(1,"customer");
+    User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
+    UserAddress ua1 = new UserAddress(1,2125,"street","city",u1);
+    Picture p1 = new Picture(1,"shop",temp);
+    Shop s1 = new Shop(1, "shop", p1);
+    ItemCategory ic1 = new ItemCategory(1,"food");
+    MenuItem mi1 = new MenuItem(1,"a",5,10,ic1,p1);
+    DailySpecial ds1 = new DailySpecial(1,s1,1,mi1);
+    Ingredient i1 = new Ingredient(1, "Ingredient", 2.50);
+    OrderStatus os1 = new OrderStatus(1,"Ready");
+    PaymentType pt1 = new PaymentType(1, "cash");
+    Order o1 = new Order(1,11232455,os1,u1,pt1,true);
+
     @Test
     void addOrderItem() {
-        Byte[] temp = new Byte [255];
-        UserRole ur1 = new UserRole(1,"customer");
-        User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
-        UserAddress ua1 = new UserAddress(1,2125,"street","city",u1);
-        Picture p1 = new Picture(1,"shop",temp);
-        Shop s1 = new Shop(1, "shop", p1);
-        ItemCategory ic1 = new ItemCategory(1,"food");
-        MenuItem mi1 = new MenuItem(1,"a",5,10,ic1,p1);
-        DailySpecial ds1 = new DailySpecial(1,s1,1,mi1);
-        Ingredient i1 = new Ingredient(1, "Ingredient", 2.50);
-        OrderStatus os1 = new OrderStatus(1,"Ready");
-        PaymentType pt1 = new PaymentType(1, "cash");
-        Order o1 = new Order(1,11232455,os1,u1,pt1,true);
-
 
         OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 
@@ -97,21 +98,6 @@ public class OrderItemServicesTests {
     @Test
     void getOrderItem() {
 
-    Byte[] temp = new Byte [255];
-    UserRole ur1 = new UserRole(1,"customer");
-    User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
-    UserAddress ua1 = new UserAddress(1,2125,"street","city",u1);
-    Picture p1 = new Picture(1,"shop",temp);
-    Shop s1 = new Shop(1, "shop", p1);
-    ItemCategory ic1 = new ItemCategory(1,"food");
-    MenuItem mi1 = new MenuItem(1,"a",5,10,ic1,p1);
-    DailySpecial ds1 = new DailySpecial(1,s1,1,mi1);
-    Ingredient i1 = new Ingredient(1, "Ingredient", 2.50);
-    OrderStatus os1 = new OrderStatus(1,"Ready");
-    PaymentType pt1 = new PaymentType(1, "cash");
-    Order o1 = new Order(1,11232455,os1,u1,pt1,true);
-
-
     OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 
     Optional<OrderItem> orderItemOptional = Optional.of(oi1);
@@ -122,30 +108,17 @@ public class OrderItemServicesTests {
 
     }
 
-// references is needed
-//    @Test
-//    void getOrderItem(id) {
-//
-//
-//    }
-////
-//
+
+      @Test
+      void getAllOrderItems() {
+      List<OrderItem> orderItemsList = (List<OrderItem>) oir.findAll();
+      Assertions.assertTrue(orderItemsList.isEmpty());
+      }
+
+
 //
     @Test
     void updateOrderItem() {
-    Byte[] temp = new Byte [255];
-    UserRole ur1 = new UserRole(1,"customer");
-    User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
-    UserAddress ua1 = new UserAddress(1,2125,"street","city",u1);
-    Picture p1 = new Picture(1,"shop",temp);
-    Shop s1 = new Shop(1, "shop", p1);
-    ItemCategory ic1 = new ItemCategory(1,"food");
-    MenuItem mi1 = new MenuItem(1,"a",5,10,ic1,p1);
-    DailySpecial ds1 = new DailySpecial(1,s1,1,mi1);
-    Ingredient i1 = new Ingredient(1, "Ingredient", 2.50);
-    OrderStatus os1 = new OrderStatus(1,"Ready");
-    PaymentType pt1 = new PaymentType(1, "cash");
-    Order o1 = new Order(1,11232455,os1,u1,pt1,true);
 
     OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
     OrderItem oi2 = new OrderItem(0,o1, mi1, 3);
@@ -162,20 +135,6 @@ public class OrderItemServicesTests {
 //
     @Test
     void deleteOrderItem() {
-         Byte[] temp = new Byte [255];
-    UserRole ur1 = new UserRole(1,"customer");
-    User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
-    UserAddress ua1 = new UserAddress(1,2125,"street","city",u1);
-    Picture p1 = new Picture(1,"shop",temp);
-    Shop s1 = new Shop(1, "shop", p1);
-    ItemCategory ic1 = new ItemCategory(1,"food");
-    MenuItem mi1 = new MenuItem(1,"a",5,10,ic1,p1);
-    DailySpecial ds1 = new DailySpecial(1,s1,1,mi1);
-    Ingredient i1 = new Ingredient(1, "Ingredient", 2.50);
-    OrderStatus os1 = new OrderStatus(1,"Ready");
-    PaymentType pt1 = new PaymentType(1, "cash");
-    Order o1 = new Order(1,11232455,os1,u1,pt1,true);
-
 
     OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 

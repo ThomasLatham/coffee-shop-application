@@ -26,6 +26,12 @@ public class OrderItem {
     public OrderItem() {
     }
 
+    public OrderItem(Order orderID, MenuItem itemID, int itemCount) {
+        this.orderID = orderID;
+        this.itemID = itemID;
+        this.itemCount = itemCount;
+    }
+
     public OrderItem(int id, Order orderID, MenuItem itemID, int itemCount) {
         this.id = id;
         this.orderID = orderID;

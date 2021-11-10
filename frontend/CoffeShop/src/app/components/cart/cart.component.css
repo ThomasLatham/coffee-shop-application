@@ -1,18 +1,27 @@
-tr{
-  color:aquamarine;
+body{
+  background-color:lightskyblue;
 }
 
-td{
-  color:aquamarine;
+h2{
+  color: salmon;
 }
+
 
 #addQuantity{
-  color:aquamarine;
+  background-color: seagreen;
 }
-  
+
 #removeQuantity{
-  color:aquamarine;
+  background-color: red;
 }
+
+
+
+td{
+  color:maroon;
+}
+
+
 
 #removeItem{
   color:aquamarine;
