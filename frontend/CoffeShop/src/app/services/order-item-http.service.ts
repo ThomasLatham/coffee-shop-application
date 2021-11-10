@@ -9,7 +9,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class OrderItemHttpService {
 
-  baseurl = 'http://localhost:4200/orderItem/';
+  baseurl = 'http://localhost:8080/orderItem/';
 
   constructor(private http: HttpClient) { }
 

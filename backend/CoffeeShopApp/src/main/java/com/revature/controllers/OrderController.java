@@ -39,7 +39,7 @@ public class OrderController {
             e.printStackTrace();
             return false;
         }
-        return os.deleteActor(deleteId);
+        return os.deleteOrder(deleteId);
     }
     @GetMapping("/orders/day/{day}")
     public List<Order> getOrdersByDay(@PathVariable String day){
@@ -56,6 +56,7 @@ public class OrderController {
     @PutMapping(value = "/orders/advance/{id}", consumes = {"application/json"}, produces = "application/json")
     public Order advanceOrder(@PathVariable("id") String id, @RequestBody Order change) {
         try{
+            System.out.println("jere");
             change.setorderID(Integer.parseInt(id));
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
