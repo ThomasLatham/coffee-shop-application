@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderManagementComponent } from './components/order-management/order-management.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MenuComponent,
-    OrderManagementComponent
+    OrderManagementComponent,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
