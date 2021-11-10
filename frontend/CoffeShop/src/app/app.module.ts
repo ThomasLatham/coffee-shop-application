@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderManagementComponent } from './components/order-management/order-management.component';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { DatePipePipe } from './pipes/date-pipe.pipe';
     LoginComponent,
     MenuComponent,
     OrderManagementComponent,
-    DatePipePipe
+    DatePipePipe,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
