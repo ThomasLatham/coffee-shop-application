@@ -12,5 +12,5 @@ public interface UserAddressService {
     public UserAddress updateUserAddress(UserAddress change);
     public Boolean deleteUserAddress(int id);
 
-    public UserAddress getUserAddressByUserID(User u);
+    public UserAddress getUserAddressByUser(User u);
 }

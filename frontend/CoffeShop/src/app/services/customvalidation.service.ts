@@ -7,6 +7,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class CustomvalidationService {
 
+  UsernameList: string[];
+
   passwordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
       if (!control.value) {
@@ -57,7 +59,7 @@ export class CustomvalidationService {
     *  Ideally it should be a service call to the server to search the value from a database.
     */
 
-    const UserList = ['ankit', 'admin', 'user', 'superuser'];
-    return (UserList.indexOf(userName) > -1);
+    // const UsernameList = ['ankit', 'admin', 'user', 'superuser'];
+    return (this.UsernameList.indexOf(userName) > -1);
   }
 }

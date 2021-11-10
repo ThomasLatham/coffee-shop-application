@@ -25,9 +25,9 @@ public class OrderItem {
 
     public OrderItem() {
     }
-
     public OrderItem(int orderItemID, Order orderID, MenuItem menuItem, int itemCount) {
         this.orderItemID = orderItemID;
+
         this.orderID = orderID;
         this.menuItem = menuItem;
         this.itemCount = itemCount;

@@ -15,8 +15,6 @@ drop table if exists daily_specials;
 
 drop table if exists user_addresses;
 	drop table if exists users;
-drop table if exists emails;
-drop table if exists email;
 		drop table if exists user_roles;
 
 --CREATORS--
@@ -131,6 +129,7 @@ create table ingredient_order_items(
 	--REFERENCE TABLES--
 insert into order_statuses values 
 	(default, 'Order Received'),
+	(default, 'In Progress'),
 	(default, 'Ready'),
 	(default, 'Delivery in Progress'),
 	(default, 'Delivered'),
@@ -164,14 +163,14 @@ insert into pictures values
 	--MEAT TABLES--
 insert into menu_items values
 	(default, 'espresso', 2.50, 120000, 1, 1),
-	(default, 'americano', 2.75, 150000, 1, 2),
-	(default, 'machiatto', 3.00, 180000, 1, 3),
-	(default, 'cappuccino', 3.25, 120000, 1, 4),
-	(default, 'latte', 3.50, 150000, 1, 5),
-	(default, 'croissant', 3.00, 30000, 2, 6),
-	(default, 'breakfast sandwich', 5.00, 300000, 2, 7),
-	(default, 'cheese Danish', 3.00, 30000, 2, 8),
-	(default, 'sugar cookie', 2.50, 30000, 2, 9);
+	(default, 'americano', 2.75, 150000, 1, 1),
+	(default, 'machiatto', 3.00, 180000, 1, 1),
+	(default, 'cappuccino', 3.25, 120000, 1, 1),
+	(default, 'latte', 3.50, 150000, 1, 1),
+	(default, 'croissant', 3.00, 30000, 2, 1),
+	(default, 'breakfast sandwich', 5.00, 300000, 2, 1),
+	(default, 'cheese Danish', 3.00, 30000, 2, 1),
+	(default, 'sugar cookie', 2.50, 30000, 2, 1);
 
 insert into ingredients values 
 	(default, 'almond milk', 0.50),
@@ -200,6 +199,9 @@ insert into shops values
 insert into users values
 	(default, 'Alison', 'Saylor', '(555) 867-5309', 'alison@saylors.com', 'coffeequeen92', 'Password1', 2);
 
+insert into user_addresses values
+	(default, 1, '3621 Harley Brook Lane', 'Johnstown', 15901);
+
 insert into daily_specials values
 	(default, 1, 0, 1),
 	(default, 1, 1, 2),
@@ -208,4 +210,3 @@ insert into daily_specials values
 	(default, 1, 4, 5),
 	(default, 1, 5, 6),
 	(default, 1, 6, 7);
-	

@@ -1,10 +1,7 @@
 package com.revature.services;
 
-import com.revature.models.Order;
 import com.revature.models.OrderItem;
 import com.revature.repositories.OrderItemRepo;
-import com.revature.repositories.OrderRepo;
-import org.hibernate.criterion.AggregateProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
