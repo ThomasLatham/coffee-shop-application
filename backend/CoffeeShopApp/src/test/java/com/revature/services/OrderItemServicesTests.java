@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,11 +82,11 @@ public class OrderItemServicesTests {
 
         OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 
-        Mockito.when(oir.save(oi1)).thenReturn(new OrderItem(1, oi1.getOrderID(), oi1.getItemID(), oi1.getItemCount()));
+        Mockito.when(oir.save(oi1)).thenReturn(new OrderItem(1, oi1.getOrderID(), oi1.getMenuItem(), oi1.getItemCount()));
 
         oi1 = os.addOrderItem(oi1);
 
-        Assertions.assertEquals(1, oi1.getId());
+        Assertions.assertEquals(1, oi1.getOrderItemID());
         Assertions.assertEquals(oi1, oi1);
         Assertions.assertEquals(mi1, mi1);
         Assertions.assertEquals(2, oi1.getItemCount());
@@ -101,9 +102,9 @@ public class OrderItemServicesTests {
     OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 
     Optional<OrderItem> orderItemOptional = Optional.of(oi1);
-    Mockito.when(oir.findById(oi1.getId())).thenReturn(orderItemOptional);
-    OrderItem actual = os.getOrderItem(oi1.getId());
-    Assertions.assertEquals(actual.getId(), oi1.getId());
+    Mockito.when(oir.findById(oi1.getOrderItemID())).thenReturn(orderItemOptional);
+    OrderItem actual = os.getOrderItem(oi1.getOrderItemID());
+    Assertions.assertEquals(actual.getOrderItemID(), oi1.getOrderItemID());
 
 
     }
@@ -124,9 +125,9 @@ public class OrderItemServicesTests {
     OrderItem oi2 = new OrderItem(0,o1, mi1, 3);
 
     Optional<OrderItem> orderItemOptional = Optional.of(oi2);
-    Mockito.when(oir.findById(oi2.getId())).thenReturn(orderItemOptional);
-    OrderItem actual = os.getOrderItem(oi2.getId());
-    Assertions.assertEquals(actual.getId(), oi2.getId());
+    Mockito.when(oir.findById(oi2.getOrderItemID())).thenReturn(orderItemOptional);
+    OrderItem actual = os.getOrderItem(oi2.getOrderItemID());
+    Assertions.assertEquals(actual.getOrderItemID(), oi2.getOrderItemID());
 
     }
 //
@@ -139,9 +140,15 @@ public class OrderItemServicesTests {
     OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 
 
-        Mockito.doNothing().when(oir).deleteById(oi1.getId());
+        Mockito.doNothing().when(oir).deleteById(oi1.getOrderItemID());
 
-        boolean result = os.deleteOrderItem(oi1.getId());
+        boolean result = os.deleteOrderItem(oi1.getOrderItemID());
         Assertions.assertTrue(result);
+    }
+
+    @Test
+    void getOrderItemsForToday() throws ParseException {
+        List<OrderItem> orderItemsList = os.getOrderItemsForToday("2021-11-10");
+        Assertions.assertTrue(orderItemsList.isEmpty());
     }
 }

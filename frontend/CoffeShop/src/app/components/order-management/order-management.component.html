@@ -2,20 +2,37 @@
     <div style="margin-top: 10px;">
         <h1>Orders Today</h1>
         <div style="margin-top: 20px;">
-            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;" *ngFor = "let order of orderList">
                 <!-- if orders for today are not ready dispaly with button, if alrady done order then remove button and say order completed -->
-                <div class="card-header">Order time: </div>
+                <div class="card-header">Order time: <br> {{order.orderTime | datePipe}}  </div>
                 <div class="card-body">
-                  <h4 class="card-title">Username </h4>
-                  <p>Estimated ready time: </p>
-                  <h6 style="text-align: left;">Order Items:</h6>
-                  <p style="text-align: left;">
-                      item:
-                      <br>
-                      extra adjustments:
-                  </p>
+                  <h4 class="card-title">Username: {{order.orderedBy.username}} ({{order.orderedBy.firstName}})</h4>
+                  <!-- add 15 minutes for ready time -->
+                  <p>Estimated ready time: 15 min</p> 
+                  <p>Order status: {{order.orderStatus.status}}</p>
+                  <!-- get order items for a specific order -->
+                  <h6 style="text-align: center;">Order Items:</h6> 
+                  <div *ngFor = "let item of orderItemsList">
+                    <div style="text-align: left;">
+                        item: {{item.menuItem.itemName}}
+                        <br>
+                        quantity: {{item.itemCount}}
+                        <br>
+                        <div *ngFor = "let ingredient of ingredientForOrderItems">
+                            <div *ngIf="ingredient.orderItem.orderItemID==item.orderItemID">
+                                extra ingredients: {{ingredient.ingredient.ingredientName}} <br> amount: {{ingredient.ingredientCount}}
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                    </div>
+                  </div>
+                  
                   <!-- click when order is ready and change the status -->
-                  <button class="btn btn-success">Order is Ready</button>
+                  <button (click) = "advanceOrder(order)" *ngIf = "statusReceived(order)"class="btn btn-success">Order is ready</button>
+                  <button (click) = "advanceOrder(order)" *ngIf = "isDelivery(order)" class="btn btn-primary">Order is out for delivery</button>
+                  <button (click) = "advanceOrder(order)" *ngIf = "statusReady(order)"class="btn btn-primary">Order is complete</button>
                 </div>
             </div>
         </div>
@@ -23,9 +40,22 @@
     <div style="margin-top: 10px;">
         <h1>Past Orders</h1>
         <div style="margin-top: 20px;">
-            <input type="date" id="orderDate">
+            <input type="date" id="orderDate" [(ngModel)] = "day">
             <!-- click to get orders for a specific date -->
-            <button class="btn btn-success" style="margin-left: 15px;">Get orders</button>
+            <button (click)="getOrderDay()" class="btn btn-success" style="margin-left: 15px;">Get orders</button>
+        </div>
+        <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;" *ngFor = "let order of orderByDayList">
+            <div class="card-header">Order time: {{order.orderTime | datePipe}} </div>
+            <div class="card-body">
+              <h4 class="card-title">Username: {{order.orderedBy.username}}</h4>
+              <p>
+                  {{order.orderID}}
+                  <br>
+                  Order Status: {{order.orderStatus.status}}
+                  <br>
+                  Payment: {{order.orderPayment.paymentTypeName}}
+              </p>
+            </div>
         </div>
     </div>
 </div>

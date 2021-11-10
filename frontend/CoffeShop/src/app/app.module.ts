@@ -9,6 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderManagementComponent } from './components/order-management/order-management.component';
 import { CartComponent } from './components/cart/cart.component';
+import { DatePipePipe } from './pipes/date-pipe.pipe';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { CartComponent } from './components/cart/cart.component';
     LoginComponent,
     MenuComponent,
     OrderManagementComponent,
-    CartComponent
+    CartComponent,
+    DatePipePipe,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
