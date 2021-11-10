@@ -3,14 +3,14 @@ import { MenuItem } from "./menuItem";
 
 export class MenuItemIngredient {
     menuItemIngredientID: number;
-    item: MenuItem;
+    menuItem: MenuItem;
     ingredient: Ingredient;
 
 
 
   constructor(menuItemIngredientID: number, item: MenuItem, ingredient: Ingredient) {
     this.menuItemIngredientID = menuItemIngredientID;
-    this.item = item;
+    this.menuItem = item;
     this.ingredient = ingredient;
   }
   
