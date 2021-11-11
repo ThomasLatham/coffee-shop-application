@@ -4,7 +4,6 @@ import { OrderItem } from '../../models/OrderItem';
 import { OrderManagementHttpService } from '../../services/order-management-http.service';
 import { IngredientOrderItemHttpService } from '../../services/ingredient-order-item-http.service';
 import { IngredientOrderItem } from 'src/app/models/IngredientOrderItem';
-import { DatePipePipe } from 'src/app/pipes/date-pipe.pipe';
 
 @Component({
   selector: 'app-order-management',
@@ -52,7 +51,8 @@ export class OrderManagementComponent implements OnInit {
         }
         console.log(response);
         // maybe find the orer in the list then update the item in the list, or store user in app.ceomponent
-        window.location.reload();
+        this.getOrderToday();
+        // window.location.reload();
       }
     );
   }
@@ -108,5 +108,7 @@ export class OrderManagementComponent implements OnInit {
       }
     )
   }
-
+  orderOptionFormat(order: Order): boolean{
+    return order.delivery;
+  }
 }
