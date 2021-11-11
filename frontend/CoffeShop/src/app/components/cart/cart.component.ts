@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../../models/User';
 import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
@@ -6,8 +7,6 @@ import { PaymentType } from 'src/app/models/PaymentType';
 
 import { CartService } from 'src/app/services/cart.service';
 import { IngredientOrderItemHttpService } from 'src/app/services/ingredient-order-item-http.service';
-import { OrderItemHttpService } from 'src/app/services/order-item-http.service';
-import { OrderManagementHttpService } from 'src/app/services/order-management-http.service';
 import { LoginService } from 'src/app/services/login.service';
 
 
@@ -18,7 +17,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private ls: LoginService, private cs: CartService, private ioiHttp: IngredientOrderItemHttpService, oiHttp: OrderItemHttpService, omHttp: OrderManagementHttpService) { }
+  constructor(private router: Router,private ls: LoginService, private cs: CartService, private ioiHttp: IngredientOrderItemHttpService) { }
 
 
   
@@ -139,6 +138,13 @@ export class CartComponent implements OnInit {
       }
     }
     this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
+
+    for (let cartItem of this.cart) {
+      this.cart.pop();
+    }
+
+    //this.router.navigate['/']
+
   }
 
 }
