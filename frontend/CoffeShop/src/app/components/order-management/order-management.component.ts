@@ -4,6 +4,7 @@ import { OrderItem } from '../../models/OrderItem';
 import { OrderManagementHttpService } from '../../services/order-management-http.service';
 import { IngredientOrderItemHttpService } from '../../services/ingredient-order-item-http.service';
 import { IngredientOrderItem } from 'src/app/models/IngredientOrderItem';
+import { DatePipePipe } from 'src/app/pipes/date-pipe.pipe';
 
 @Component({
   selector: 'app-order-management',
@@ -101,6 +102,7 @@ export class OrderManagementComponent implements OnInit {
   getOrderItems(): void{
     this.orderHttp.getOrderItems().subscribe(
       (response) => {
+        console.log(response);
         this.orderItemsList = response;
       }
     )
