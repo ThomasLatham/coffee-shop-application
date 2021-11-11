@@ -2,7 +2,7 @@
     <div style="margin-top: 10px;">
         <h1>Orders Today</h1>
         <div style="margin-top: 20px;">
-            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;" *ngFor = "let order of orderList">
+            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;display: inline-block; margin: 3%; align-items: flex-start; align-content: flex-start;" *ngFor = "let order of orderList" >
                 <!-- if orders for today are not ready dispaly with button, if alrady done order then remove button and say order completed -->
                 <div class="card-header">Order time: <br> {{order.orderTime | datePipe}}  </div>
                 <div class="card-body">
@@ -13,7 +13,7 @@
                   <!-- get order items for a specific order -->
                   <h6 style="text-align: center;">Order Items:</h6> 
                   <div *ngFor = "let item of orderItemsList">
-                    <div style="text-align: left;">
+                    <div style="text-align: left;" *ngIf = "order.orderID==item.orderID.orderID">
                         item: {{item.menuItem.itemName}}
                         <br>
                         quantity: {{item.itemCount}}
@@ -27,9 +27,6 @@
                                 </p>
                             </div>
                         </div>
-
-                        <br>
-                        <br>
                     </div>
                   </div>
                   
@@ -48,7 +45,7 @@
             <!-- click to get orders for a specific date -->
             <button (click)="getOrderDay()" class="btn btn-success" style="margin-left: 15px;">Get orders</button>
         </div>
-        <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;" *ngFor = "let order of orderByDayList">
+        <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;display: inline-block; margin: 3%;" *ngFor = "let order of orderByDayList">
             <div class="card-header">Order time: {{order.orderTime | datePipe}} </div>
             <div class="card-body">
               <h4 class="card-title">Username: {{order.orderedBy.username}}</h4>
