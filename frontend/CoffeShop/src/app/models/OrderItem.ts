@@ -5,7 +5,7 @@ import {MenuItem} from "./MenuItem"
 export class OrderItem {
 
     orderItemID: number;
-    order: Order;
+    orderID: Order;
     menuItem: MenuItem;
     itemCount: number;
 
@@ -17,7 +17,7 @@ export class OrderItem {
     itemCount: number
 ) {
     this.orderItemID = orderItemID
-    this.order = order
+    this.orderID = order
     this.menuItem = menuItem
     this.itemCount = itemCount
   }

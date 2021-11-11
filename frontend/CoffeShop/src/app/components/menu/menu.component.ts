@@ -200,7 +200,14 @@ export class MenuComponent implements OnInit {
           ingredientOrderItemID: null,
           orderItem: {
             orderItemID: null,
-            order: null,
+            orderID: {
+              orderID: null,
+              orderTime: null,
+              orderStatus: null,
+              orderedBy: null,
+              orderPayment: null,
+              delivery: null
+            },
             menuItem: item, //needs a value
             itemCount: 1 //needs a value
           },
@@ -220,7 +227,14 @@ export class MenuComponent implements OnInit {
         ingredientOrderItemID: null,
         orderItem: {
           orderItemID: null,
-          order: null,
+          orderID: {
+            orderID: null,
+            orderTime: null,
+            orderStatus: null,
+            orderedBy: null,
+            orderPayment: null,
+            delivery: null
+          },
           menuItem: item, //needs a value
           itemCount: 1 //needs a value
         },

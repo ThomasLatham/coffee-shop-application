@@ -58,7 +58,7 @@ export class CartService {
     const index = this.cart.indexOf(ioiArray);
     if (index > -1) {
       this.cart.splice(index, 1);
-}
+    }
 
   }
 

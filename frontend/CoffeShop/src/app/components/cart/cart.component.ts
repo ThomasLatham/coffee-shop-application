@@ -35,9 +35,8 @@ export class CartComponent implements OnInit {
   subtotals: Array<number> = [];
   total: number = 0;
 
-  paymentType: number = 0;
+  paymentType: number = 1;
   delivery: boolean = false;
-  date: Date = new Date();
 
 
 
@@ -132,13 +131,13 @@ export class CartComponent implements OnInit {
 
       for (let ingredientPack of cartItem) {
 
-        ingredientPack.orderItem.order.delivery = this.delivery;
-        ingredientPack.orderItem.order.orderPayment = new PaymentType(this.paymentType, null);
-        ingredientPack.orderItem.order.orderTime = this.date.getMilliseconds();
-        ingredientPack.orderItem.order.orderedBy = this.user;
+        ingredientPack.orderItem.orderID.delivery = this.delivery;
+        ingredientPack.orderItem.orderID.orderPayment = new PaymentType(this.paymentType, "cash");
+        ingredientPack.orderItem.orderID.orderTime = Date.now();
+        ingredientPack.orderItem.orderID.orderedBy = this.user;
       }
     }
-    this.ioiHttp.submitOrder(this.cart);
+    this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
   }
 
   

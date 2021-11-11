@@ -75,7 +75,7 @@
         <td>
           <label for="payments"></label>
           <select name="payments" id="payments" [(ngModel)]="paymentType">
-            <option [ngValue]=0>Cash</option>
+            <option [ngValue]="1">Cash</option>
           </select>
         </td>
         <td>{{total | currency: 'USD'}}</td>

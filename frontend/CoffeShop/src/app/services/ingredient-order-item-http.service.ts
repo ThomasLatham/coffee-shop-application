@@ -20,7 +20,8 @@ export class IngredientOrderItemHttpService {
 
   // Super post
   submitOrder(data): Observable<Array<Array<IngredientOrderItem>>> {
-    return this.http.post<Array<Array<IngredientOrderItem>>>(this.baseurl + "/submitOrder", JSON.stringify(data), this.httpOptions)
+    console.log("hi");
+    return this.http.post<Array<Array<IngredientOrderItem>>>("http://localhost:8080/ingredientOrderItems/submitOrder/", JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
