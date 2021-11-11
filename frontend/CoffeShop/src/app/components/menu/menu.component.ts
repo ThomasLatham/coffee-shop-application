@@ -8,6 +8,8 @@ import { MenuItemIngredientHttpService } from 'src/app/services/menu-item-ingred
 import { CartService } from 'src/app/services/cart.service'
 import { IngredientOrderItem } from 'src/app/models/IngredientOrderItem';
 import { Ingredient } from 'src/app/models/Ingredient';
+import { DailySpecial } from 'src/app/models/DailySpecial'
+import { DailySpecialHttpService } from 'src/app/services/daily-special-http.service'
 
 
 
@@ -18,7 +20,7 @@ import { Ingredient } from 'src/app/models/Ingredient';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService, private cs: CartService) { }
+  constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService, private dsHttp: DailySpecialHttpService, private cs: CartService) { }
 
   ngOnInit(): void {
 
@@ -32,9 +34,14 @@ export class MenuComponent implements OnInit {
 
   menuItemIngredients: Array<MenuItemIngredient> = [];
 
+  dailySpecials: Array<DailySpecial> = [];
+
+
   ingredients: Array<Ingredient> = [];
 
   selectedIngredients: Array<any> = [];
+
+  today: number = 0;
 
 
   //user clicks addToCart ->
@@ -75,6 +82,20 @@ export class MenuComponent implements OnInit {
 
                 this.generateEmptySelectedIngredients();
                 //console.log(this.selectedIngredients);
+
+                this.dsHttp.GetAllDailySpecials().subscribe(
+
+                  (dsResponse) => {
+                    this.dailySpecials = dsResponse;
+                    console.log(this.dailySpecials);
+
+                    let d = new Date();
+                    this.today = d.getDay();
+                    console.log(this.today);
+
+                    this.dailySpecialize();
+                  }
+                );
               }
             );
 
@@ -126,6 +147,17 @@ export class MenuComponent implements OnInit {
         outerElement.ingredients.push(innerElement);
     }
       this.selectedIngredients.push(outerElement);
+    }
+  }
+
+  dailySpecialize() {
+
+    for (let thing of this.menuItems) {
+    
+      if (this.dailySpecials[this.today].menuItem.itemID == thing.itemID) {
+
+        thing.itemPrice *= 0.8;
+      }
     }
   }
 
