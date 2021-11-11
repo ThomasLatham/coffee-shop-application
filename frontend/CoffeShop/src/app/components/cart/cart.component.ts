@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemCategory } from 'src/app/models/ItemCategory';
+import { ItemCategoryHttpService } from 'src/app/services/item-category-http.service'
 import { MenuItem } from "src/app/models/MenuItem";
+import { MenuItemHttpService } from 'src/app/services/menu-item-http.service'
+import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
+import { MenuItemIngredientHttpService } from 'src/app/services/menu-item-ingredient-http.service'
+import { LoginService } from '../../services/login.service';
+import { loginHttpService } from '../../services/login-http.service';
+import { User } from '../../models/User';
+
 import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
 import { OrderItem } from 'src/app/models/OrderItem';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderStatus } from 'src/app/models/OrderStatus';
+
 
 @Component({
   selector: 'app-cart',
@@ -13,117 +21,72 @@ import { OrderStatus } from 'src/app/models/OrderStatus';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private itemService : CartService) { }
-
-  cart : CartService;
-  item: Object;
-  items: Object;
-  id: number;
-  ngOnInit(){
-    this.cart.GetItem(this.id)
-    .subscribe(data =>{
-        this.item = data;
-    }
-);
+  constructor(private ciHttp: ItemCategoryHttpService, private ioiHttp: MenuItemHttpService,private miiHttp: MenuItemIngredientHttpService) { }
 
 
-    this.cart.GetIngredient(this.id)
-         .subscribe(data =>{
-               this.items = data;
-} 
-);
-
-
-    this.cart.Getorder(this.id)
-        .subscribe(data =>{
-            this.items = data;
-} 
-);
-
-this.cart.Getuser(this.id)
-.subscribe(data =>{
-    this.items = data;
-} 
-);
-
-this.cart.Getstatus(this.id)
-.subscribe(data =>{
-    this.items = data;
-} 
-);
   
-this.cart.GetItems()
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
-this.cart.GetIngredients()
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
-
-this.cart.DeleteItem(this.id)
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
-
-this.cart.DeleteIngedient(this.id)
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
-
-this.cart.DeleteOrder(this.id)
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
-
-
-
-this.cart.AddQuantity(this.id)
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
-
-this.cart.RemoveQuantity(this.id)
-.subscribe(data =>{
-      this.items = data;
-} 
-);
-
+  ngOnInit(){
+    this.addCartItem(); 
+    this.removeIoi();  
+    this.getTotal();
   }
 
-  ItemList: Array<any> = [
-    
-  ]
+  
+  
+  orderItem: OrderItem;
+  Total: number;
+  User: User;
+  itemCategories: Array<ItemCategory> = [];
+  menuItems: Array<MenuItem> = [];
+  menuItemIngredients: Array<MenuItemIngredient> = [];
+  newIoiArray: Array<IngredientOrderItem>
+  ioiArray: Array<IngredientOrderItem>
+  cart: Array<Array<IngredientOrderItem>> = [];
 
+
+
+  addCartItem() {
+
+    this.ciHttp.GetAllItemCategories()
+    .subscribe(data =>{
+        this.newIoiArray;
+        this.cart;
+        this.menuItemIngredients;
+        this.ioiArray;
+
+    }
+);
+  }
+
+
+  removeIoi() {
+    this.ioiHttp.GetAllMenuItems()
+         .subscribe(data =>{
+          this.newIoiArray;
+          this.cart;
+          this.menuItemIngredients;
+          this.ioiArray;
+} 
+);
+  }
 
   
 
-  cartItem: MenuItem[] = [];
-  orderItem: OrderItem;
-  totalamount: number;
-
-
-  get Total(){
+ 
+  getTotal(){
     let total = 0;
-    for (var i = 0; i < this.cartItem.length; i++) {
-        if (this.cartItem[i].itemPrice) {
-          total += this.cartItem[i].itemPrice * this.orderItem.itemCount;
-            this.totalamount = total;
+    for (var i = 0; i < this.menuItems.length; i++) {
+        if (this.menuItems[i].itemPrice) {
+          total += this.menuItems[i].itemPrice * this.orderItem.itemCount;
+            this.Total = total;
+            
         }
     }
     return total;
 }
+
+// checkLogin(){
+//   return this.loginServ.currentUser;
+// }
 
 }
