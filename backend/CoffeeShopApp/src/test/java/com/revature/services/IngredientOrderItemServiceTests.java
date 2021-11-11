@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
-
+@SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
 public class IngredientOrderItemServiceTests {
     @Autowired
     IngredientOrderItemService iois;
@@ -39,7 +40,9 @@ public class IngredientOrderItemServiceTests {
 
     @Test
     void addIngredientOrderItem() {
+//        IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 1);
         System.out.println(ioi1);
+
         Mockito.when(ioir.save(ioi1)).thenReturn(new IngredientOrderItem(1, ioi1.getOrderItem(), ioi1.getIngredient(), ioi1.getIngredientCount()));
 
         ioi1 = iois.addIngredientOrderItem(ioi1);
