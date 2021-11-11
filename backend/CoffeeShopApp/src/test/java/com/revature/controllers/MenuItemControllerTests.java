@@ -3,8 +3,7 @@ package com.revature.controllers;
 import com.google.gson.Gson;
 import com.revature.models.*;
 import com.revature.services.DailySpecialService;
-import com.revature.services.ItemCategoryService;
-import com.revature.services.OrderService;
+import com.revature.services.MenuItemService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,18 +14,17 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 @AutoConfigureMockMvc
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
-public class ItemCategoryControllerTest {
+public class MenuItemControllerTests {
     @MockBean
-    ItemCategoryService os;
+    MenuItemService os;
     @Autowired
     MockMvc mvc;
 
     @Test
-    void getAllItemCategories() throws Exception {
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/itemCategories"));
+    void getAllMenuItems() throws Exception {
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/menuItems"));
         ra.andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

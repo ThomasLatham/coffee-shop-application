@@ -134,6 +134,7 @@ export class CartComponent implements OnInit {
         ingredientPack.orderItem.orderID.delivery = this.delivery;
         ingredientPack.orderItem.orderID.orderPayment = new PaymentType(this.paymentType, "cash");
         ingredientPack.orderItem.orderID.orderTime = Date.now();
+        ingredientPack.orderItem.orderID.orderStatus.statusID = 1;
         ingredientPack.orderItem.orderID.orderedBy = this.user;
       }
     }

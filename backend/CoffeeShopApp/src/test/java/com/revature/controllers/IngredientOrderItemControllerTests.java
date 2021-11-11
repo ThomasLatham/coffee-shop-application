@@ -1,9 +1,8 @@
 package com.revature.controllers;
 
-
 import com.google.gson.Gson;
 import com.revature.models.*;
-import com.revature.repositories.*;
+import com.revature.services.IngredientOrderItemService;
 import com.revature.services.OrderItemService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -16,16 +15,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
-public class OrderItemControllerTests {
+public class IngredientOrderItemControllerTests {
 
 
     @MockBean
-    OrderItemService as;
+    IngredientOrderItemService iois;
 
     @Autowired
     MockMvc mvc;
@@ -48,20 +46,20 @@ public class OrderItemControllerTests {
     OrderStatus os1 = new OrderStatus(1,"Ready");
     PaymentType pt1 = new PaymentType(1, "cash");
     Order o1 = new Order(1,11232455,os1,u1,pt1,true);
+    OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
 
 
 
+    @Test
+    void addIngredientOrderItem() throws Exception {
 
-        @Test
-    void addOrderItem() throws Exception {
+        IngredientOrderItem ioi1 = new IngredientOrderItem(0, oi1, i1, 2);
 
-        OrderItem oi1 = new OrderItem(0, o1, mi1, 2);
+        Mockito.when(iois.addIngredientOrderItem(ioi1)).thenReturn(ioi1);
 
-        Mockito.when(as.addOrderItem(oi1)).thenReturn(oi1);
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.post("/ingredientOrderItems")
 
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.post("/orderItems")
-
-                        .content(gson.toJson(oi1))
+                .content(gson.toJson(oi1))
                 .contentType(MediaType.APPLICATION_JSON));
 
         ra.andExpect(status().is(200));
@@ -73,73 +71,55 @@ public class OrderItemControllerTests {
 
 
     @Test
-    void getOrderItem() throws Exception {
+    void getIngredientOrderItem() throws Exception {
 
-        OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
-
-
-        Mockito.when(as.getOrderItem(1)).thenReturn(oi1);
-
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orderItems/1"));
-
-        ra.andExpect(status().isOk());
+        IngredientOrderItem ioi1 = new IngredientOrderItem(0,oi1, i1, 2);
 
 
-    }
+        Mockito.when(iois.getIngredientOrderItem(1)).thenReturn(ioi1);
 
-
-
-
-
-
-
-        @Test
-    void getAllOrderItems() throws Exception {
-
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orderItems"));
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/ingredientOrderItems/1"));
 
         ra.andExpect(status().isOk());
 
-    }
-
-
-
-
-        @Test
-    void updateOrderItem() throws Exception {
-
-       OrderItem oi1 = new OrderItem(1,o1, mi1, 2);
-       OrderItem oi2 = new OrderItem(1,o1, mi1, 3);
-
-       Mockito.when(as.updateOrderItem(oi1)).thenReturn(oi2);
-
-       ResultActions ra = mvc.perform(MockMvcRequestBuilders.put("/orderItems/{id}",1)
-               .content(gson.toJson(oi2))
-               .contentType(MediaType.APPLICATION_JSON));
-
-       ra.andExpect(status().isOk());
-
 
     }
 
 
 
-        @Test
-    void deleteOrderItem() throws Exception {
-
-           mvc.perform( MockMvcRequestBuilders.delete("/orderItems/{id}", 1) )
-        .andExpect(status().isOk());
 
 
-    }
+
+
     @Test
-    void getOrderItemsByDay() throws Exception {
+    void getAllIngredientOrderItems() throws Exception {
 
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orderItems/today/2021-11-09"));
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/ingredientOrderItems"));
 
         ra.andExpect(status().isOk());
 
     }
+
+
+
+
+    @Test
+    void updateIngredientOrderItem() throws Exception {
+
+        IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 2);
+        IngredientOrderItem ioi2 = new IngredientOrderItem(1,oi1, i1, 3);
+
+        Mockito.when(iois.updateIngredientOrderItem(ioi1)).thenReturn(ioi2);
+
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.put("/ingredientOrderItems/1")
+                .content(gson.toJson(ioi2))
+                .contentType(MediaType.APPLICATION_JSON));
+
+        ra.andExpect(status().isOk());
+
+
+    }
+
 
 
 
