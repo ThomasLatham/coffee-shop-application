@@ -79,13 +79,19 @@
           </select>
         </td>
         <td>{{total | currency: 'USD'}}</td>
-        <td *ngIf="user; else elseBlock">
+        <td *ngIf="user && cart.length; else userBlock">
           <button (click)="submitOrder()">submit order</button>
         </td>
-        <ng-template #elseBlock>
-          <td>
+        <ng-template #userBlock>
+          <td *ngIf="!user; else cartBlock">
             Please sign in to place order.
           </td>
+          <ng-template #cartBlock>
+            <td>
+              Cannot submit empty order.
+            </td>
+
+          </ng-template>
         </ng-template>
         
       </tr>

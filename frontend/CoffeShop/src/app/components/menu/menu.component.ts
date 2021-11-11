@@ -203,7 +203,10 @@ export class MenuComponent implements OnInit {
             orderID: {
               orderID: null,
               orderTime: null,
-              orderStatus: null,
+              orderStatus:{
+                statusID: null,
+                status: null
+              },
               orderedBy: null,
               orderPayment: null,
               delivery: null
@@ -230,7 +233,10 @@ export class MenuComponent implements OnInit {
           orderID: {
             orderID: null,
             orderTime: null,
-            orderStatus: null,
+            orderStatus:{
+              statusID: null,
+              status: null
+            },
             orderedBy: null,
             orderPayment: null,
             delivery: null
