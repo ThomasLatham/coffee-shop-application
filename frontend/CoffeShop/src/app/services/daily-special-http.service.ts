@@ -22,7 +22,7 @@ export class DailySpecialHttpService {
   }
   
   // GET
-  GetAllDailySpecials(): Observable<Array<DailySpecial>> {
+  getAllDailySpecials(): Observable<Array<DailySpecial>> {
     return this.http.get<Array<DailySpecial>>(this.baseURL)
     .pipe(
       retry(1),

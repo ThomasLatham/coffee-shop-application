@@ -17,9 +17,20 @@ export class IngredientOrderItemHttpService {
       'Content-Type': 'application/json'
     })
   }
+
+  // Super post
+  submitOrder(data): Observable<Array<Array<IngredientOrderItem>>> {
+    console.log("hi");
+    return this.http.post<Array<Array<IngredientOrderItem>>>("http://localhost:8080/ingredientOrderItems/submitOrder/", JSON.stringify(data), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    )
+  }  
+
   
   // POST
-  CreateIngredientOrderItem(data): Observable<IngredientOrderItem> {
+  createIngredientOrderItem(data): Observable<IngredientOrderItem> {
     return this.http.post<IngredientOrderItem>(this.baseurl , JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
@@ -28,7 +39,7 @@ export class IngredientOrderItemHttpService {
   }  
   
   // GET
-  GetIngredientOrderItem(id): Observable<IngredientOrderItem> {
+  getIngredientOrderItem(id): Observable<IngredientOrderItem> {
     return this.http.get<IngredientOrderItem>(this.baseurl + id)
     .pipe(
       retry(1),
@@ -37,7 +48,7 @@ export class IngredientOrderItemHttpService {
   }
   
   // GET
-  GetAllIngredientOrderItems(): Observable<Array<IngredientOrderItem>> {
+  getAllIngredientOrderItems(): Observable<Array<IngredientOrderItem>> {
     return this.http.get<Array<IngredientOrderItem>>(this.baseurl)
     .pipe(
       retry(1),
@@ -46,7 +57,7 @@ export class IngredientOrderItemHttpService {
   }
   
   // PUT
-  UpdateIngredientOrderItem(id, data): Observable<IngredientOrderItem> {
+  updateIngredientOrderItem(id, data): Observable<IngredientOrderItem> {
     return this.http.put<IngredientOrderItem>(this.baseurl + id, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),

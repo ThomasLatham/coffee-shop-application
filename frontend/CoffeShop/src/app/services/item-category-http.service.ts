@@ -22,7 +22,7 @@ export class ItemCategoryHttpService {
   }
   
   // GET
-  GetAllItemCategories(): Observable<Array<ItemCategory>> {
+  getAllItemCategories(): Observable<Array<ItemCategory>> {
     return this.http.get<Array<ItemCategory>>(this.baseURL)
     .pipe(
       retry(1),

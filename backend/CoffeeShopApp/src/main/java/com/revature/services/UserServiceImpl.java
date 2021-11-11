@@ -1,9 +1,7 @@
 package com.revature.services;
 
 import com.revature.models.User;
-import com.revature.repositories.UserAddressRepo;
 import com.revature.repositories.UserRepo;
-import com.revature.repositories.UserRoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

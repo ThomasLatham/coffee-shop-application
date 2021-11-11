@@ -22,6 +22,14 @@ public class IngredientOrderItemController {
     public IngredientOrderItem getIngredientOrderItem(@PathVariable("id") int id){
         return iois.getIngredientOrderItem(id);
     }
+
+    @PostMapping(value = "/ingredientOrderItems/submitOrder", consumes = {"application/json"}, produces = "application/json")
+    public List<List<IngredientOrderItem>> submitOrder(@RequestBody List<List<IngredientOrderItem>> o){
+
+        System.out.println("hi");
+        return iois.submitOrder(o);
+    }
+
     @PostMapping(value = "/ingredientOrderItems", consumes = {"application/json"}, produces = "application/json")
     public IngredientOrderItem addIngredientOrderItem(@RequestBody IngredientOrderItem o){
         return iois.addIngredientOrderItem(o);

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.revature.controllers;
 
 import com.google.gson.Gson;
@@ -15,17 +16,17 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
-@AutoConfigureMockMvc
-@SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
-public class ItemCategoryControllerTest {
-    @MockBean
-    ItemCategoryService os;
-    @Autowired
-    MockMvc mvc;
+=======
+package com.revature.controllers;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ItemCategoryControllerTest {
 
     @Test
-    void getAllItemCategories() throws Exception {
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/itemCategories"));
-        ra.andExpect(MockMvcResultMatchers.status().isOk());
+    void getAllItemCategories() {
     }
 }
+>>>>>>> 5c320b91a042f0351642c1fa1fe3f6ecff9cef64
