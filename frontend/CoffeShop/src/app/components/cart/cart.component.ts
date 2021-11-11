@@ -126,24 +126,30 @@ export class CartComponent implements OnInit {
 
   submitOrder() {
 
-    for (let cartItem of this.cart) {
+    this.getUser();
 
-      for (let ingredientPack of cartItem) {
+    if (this.user) {
 
-        ingredientPack.orderItem.orderID.delivery = this.delivery;
-        ingredientPack.orderItem.orderID.orderPayment = new PaymentType(this.paymentType, "cash");
-        ingredientPack.orderItem.orderID.orderTime = Date.now();
-        ingredientPack.orderItem.orderID.orderStatus.statusID = 1;
-        ingredientPack.orderItem.orderID.orderedBy = this.user;
+      for (let cartItem of this.cart) {
+
+        for (let ingredientPack of cartItem) {
+
+          ingredientPack.orderItem.orderID.delivery = this.delivery;
+          ingredientPack.orderItem.orderID.orderPayment = new PaymentType(this.paymentType, "cash");
+          ingredientPack.orderItem.orderID.orderTime = Date.now();
+          ingredientPack.orderItem.orderID.orderStatus.statusID = 1;
+          ingredientPack.orderItem.orderID.orderedBy = this.user;
+        }
       }
-    }
-    this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
+      this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
 
-    for (let cartItem of this.cart) {
-      this.cart.pop();
-    }
+      for (let cartItem of this.cart) {
 
-    //this.router.navigate['/']
+        this.cart.pop();
+      }
+      this.router.navigate['/landingpage']
+
+    }
 
   }
 
