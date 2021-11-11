@@ -140,10 +140,4 @@ export class CartComponent implements OnInit {
     this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
   }
 
-  
-
-
-
-
-
 }
