@@ -31,7 +31,7 @@ export class OrderManagementComponent implements OnInit {
   // get all orders then for each order, getOrderItems
 
   getIngredients(): void{
-    this.ingredientOrderItemHttp.GetAllIngredientOrderItems().subscribe(
+    this.ingredientOrderItemHttp.getAllIngredientOrderItems().subscribe(
       (response)=> {
         this.ingredientForOrderItems=response;
         console.log(this.ingredientForOrderItems);

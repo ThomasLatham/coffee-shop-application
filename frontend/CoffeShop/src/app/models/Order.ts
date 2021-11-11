@@ -4,13 +4,13 @@ import { User } from "./User";
 
 export class Order {
     orderID: number;
-    orderTime: bigint;
+    orderTime: number;
     orderStatus: OrderStatus;
     orderedBy: User;
     orderPayment: PaymentType;
     delivery: boolean;
 
-    constructor(orderID: number, orderTime: bigint, orderStatus: OrderStatus, orderedBy: User, orderPayment: PaymentType, delivery: boolean){
+    constructor(orderID: number, orderTime: number, orderStatus: OrderStatus, orderedBy: User, orderPayment: PaymentType, delivery: boolean){
 
         this.orderID = orderID;
         this.orderTime = orderTime;

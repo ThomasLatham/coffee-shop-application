@@ -59,39 +59,39 @@ export class MenuComponent implements OnInit {
 
   getAllData() {
     
-    this.miHttp.GetAllMenuItems().subscribe(
+    this.miHttp.getAllMenuItems().subscribe(
 
       (miResponse) => {
         this.menuItems = miResponse;
-        //console.log(this.menuItems);
+        //(this.menuItems);
 
-        this.miiHttp.GetAllMenuItemIngredients().subscribe(
+        this.miiHttp.getAllMenuItemIngredients().subscribe(
 
           (miiResponse) => {
             this.menuItemIngredients = miiResponse;
-            //console.log(this.menuItemIngredients);
+            //(this.menuItemIngredients);
 
-            this.icHttp.GetAllItemCategories().subscribe(
+            this.icHttp.getAllItemCategories().subscribe(
 
               (icResponse) => {
                 this.itemCategories = icResponse;
-                //console.log(this.itemCategories);
+                //(this.itemCategories);
 
                 this.getAllIngredients();
-                //console.log(this.ingredients);
+                //(this.ingredients);
 
                 this.generateEmptySelectedIngredients();
-                //console.log(this.selectedIngredients);
+                //(this.selectedIngredients);
 
-                this.dsHttp.GetAllDailySpecials().subscribe(
+                this.dsHttp.getAllDailySpecials().subscribe(
 
                   (dsResponse) => {
                     this.dailySpecials = dsResponse;
-                    console.log(this.dailySpecials);
+                    //(this.dailySpecials);
 
                     let d = new Date();
                     this.today = d.getDay();
-                    console.log(this.today);
+                    //(this.today);
 
                     this.dailySpecialize();
                   }
@@ -184,7 +184,7 @@ export class MenuComponent implements OnInit {
         }
       }
     }
-    //console.log(this.selectedIngredients);
+    //(this.selectedIngredients);
   }
 
   addToCart(item: MenuItem) {

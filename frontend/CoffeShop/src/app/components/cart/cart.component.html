@@ -1,50 +1,97 @@
-  <h1>Cart List of Items</h1>
+  <br>
+  <h1 style="text-align: center;">Your Cart</h1>
 
-    <h1>1. Item Description</h1>
+  <div>
 
-        <tr *ngFor="let item of menuItems;">
-            <td>{{item.id}}</td>
-            <td>{{item.itemName}}</td> 
-            <td>{{itemIngredient.ingredient.ingredientName}}</td>
-            <td>Estimated Time: {{item.prep_time}} minutes</td>
-            <td>{{item.itemPrice | currency: 'USD'}}</td>
-            <td>{{item.itemCategory.category}}</td>
-            <td> <img [src]="item.itemPic.picName" [alt]="item.itemPic.picType" width="100" height="100"> </td>
-        </tr>
-        <h2>Number of Items: {{orderItem.itemCount}}</h2>
-  
+    <br>
+    <h4>Cart Items</h4>
+    <table>
 
-   
-    <h2>2. Total Cost</h2>
+      <tr>
+        <th></th>
+        <th >Items</th>
+        <th>Price/Item</th>
+        <th>Count</th>
+        <th>Subtotal</th>
+        <th>Remove Item</th>
+      </tr>
 
-       <button (click)="getTotal()" id="submit">Total Price</button>
+      <tr *ngFor="let cartItem of cart; let i = index">
 
-       <h1>Your Total Amount is : {{ Total }}</h1> 
+        <td> <img [src]="cartItem[0].orderItem.menuItem.itemPic.picName" [alt]="cartItem[0].orderItem.menuItem.itemPic.picType" width="100" height="100"> </td>
 
-    <h2>3. Delivery Method</h2>
+        <td style="text-align: left;"> 
+          <table style="border: white;">
+            <tr>
+              <td style="border-bottom: white;">{{cartItem[0].orderItem.menuItem.itemName}}: </td>
+              <td style="border-bottom: white;">{{cartItem[0].orderItem.menuItem.itemPrice | currency:'USD' }}</td>
+            </tr>
+            <tr *ngFor="let ingredientPack of cartItem">
+              <ng-container *ngIf="ingredientPack.ingredient">
+                <td style="border-bottom: white;">{{ingredientPack.ingredient.ingredientName}} x {{ingredientPack.ingredientCount}} = </td>
+                <td style="border-bottom: white;">{{ (ingredientPack.ingredient.cost * ingredientPack.ingredientCount) | currency:'USD' }}</td>
+            </ng-container>
+            </tr>
+          </table>
+        </td>
 
-      <label for="deliveries">Choose a Deliver Type:</label>
-      <select name="deliveries" id="deliveries">
-         <option value="pickup">Pick Up</option>
-         <option value="deliver">Deliver</option>
-      </select>
+        <span></span>
 
+        <td style="vertical-align: middle;">
+          <span style="font-size: 24pt; vertical-align: middle;">x {{cartItem[0].orderItem.itemCount}} </span>
+          <span style="vertical-align: middle;">
+              <tr><button (click)="increaseCount(cartItem)">increase</button></tr>
+              <tr *ngIf="cartItem[0].orderItem.itemCount > 1" ><button (click)="decreaseCount(cartItem)">decrease</button></tr> 
+          </span>
+        </td>
 
-    <h2>4. Payment Method</h2>
+        <td>{{subtotals[i] | currency: 'USD'}}</td>
 
-      <label for="payments">Choose a payment:</label>
-      <select name="payments" id="payments">
-         <option value="cash">Cash</option>
-         <option value="creditcard">Credit Card</option>
-      </select>
+        <td><button (click)="removeFromCart(cartItem)">remove from cart</button></td>
 
+      </tr>
+    </table>
 
-      
+    <br>
+    <br>
 
-      <div *ngIf="User.username != null; else elseBlock">  
-        <button>Confirm Order</button>
-        </div>  
-        <ng-template #elseBlock>  
-          Please Signin to Place Your Order
-        </ng-template>  
+    <h4>Checkout</h4>
+    <table>
+      <tr>
+        <th>Delivery/Pickup</th>
+        <th>Payment Method</th>
+        <th>Order Total</th>
+        <th>Submit Order</th>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="deliveries"></label>
+          <select name="deliveries" id="deliveries" [(ngModel)]="delivery">
+            <option [ngValue]="false">Pickup</option>
+            <option [ngValue]="true">Delivery</option>
+          </select>
+        </td>
+        <td>
+          <label for="payments"></label>
+          <select name="payments" id="payments" [(ngModel)]="paymentType">
+            <option [ngValue]=0>Cash</option>
+          </select>
+        </td>
+        <td>{{total | currency: 'USD'}}</td>
+        <td *ngIf="user; else elseBlock">
+          <button (click)="submitOrder()">submit order</button>
+        </td>
+        <ng-template #elseBlock>
+          <td>
+            Please sign in to place order.
+          </td>
+        </ng-template>
         
+      </tr>
+    </table>
+</div>
+
+
+    
+       

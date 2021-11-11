@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemCategory } from 'src/app/models/ItemCategory';
-import { ItemCategoryHttpService } from 'src/app/services/item-category-http.service'
-import { MenuItem } from "src/app/models/MenuItem";
-import { MenuItemHttpService } from 'src/app/services/menu-item-http.service'
-import { MenuItemIngredient } from "src/app/models/MenuItemIngredient";
-import { MenuItemIngredientHttpService } from 'src/app/services/menu-item-ingredient-http.service'
-import { LoginService } from '../../services/login.service';
-import { loginHttpService } from '../../services/login-http.service';
-import { User } from '../../models/User';
 
+import { User } from '../../models/User';
 import { IngredientOrderItem } from "src/app/models/IngredientOrderItem";
-import { OrderItem } from 'src/app/models/OrderItem';
+import { PaymentType } from 'src/app/models/PaymentType';
+
 import { CartService } from 'src/app/services/cart.service';
+import { IngredientOrderItemHttpService } from 'src/app/services/ingredient-order-item-http.service';
+import { OrderItemHttpService } from 'src/app/services/order-item-http.service';
+import { OrderManagementHttpService } from 'src/app/services/order-management-http.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -21,72 +18,133 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private ciHttp: ItemCategoryHttpService, private ioiHttp: MenuItemHttpService,private miiHttp: MenuItemIngredientHttpService) { }
+  constructor(private ls: LoginService, private cs: CartService, private ioiHttp: IngredientOrderItemHttpService, oiHttp: OrderItemHttpService, omHttp: OrderManagementHttpService) { }
 
 
   
   ngOnInit(){
-    this.addCartItem(); 
-    this.removeIoi();  
+
+    this.getCartItems();
+    this.getUser();
+    this.calculateTotals();
+    
+  }
+
+  cart: Array<Array<IngredientOrderItem>> = [];
+  user: User;
+  subtotals: Array<number> = [];
+  total: number = 0;
+
+  paymentType: number = 0;
+  delivery: boolean = false;
+  date: Date = new Date();
+
+
+
+  
+
+  //init/update functions
+  getCartItems() {
+
+    this.cart = this.cs.cart;
+  }
+
+  getUser() {
+    this.user = this.ls.currentUser;
+  }
+
+  generateSubtotals() {
+
+    for (let cartItem of this.cart) {
+
+      let subtotal = 0;
+
+      subtotal += cartItem[0].orderItem.menuItem.itemPrice;
+
+      for (let ingredientPack of cartItem) {
+        if (ingredientPack.ingredient) {
+          subtotal += (ingredientPack.ingredient.cost * ingredientPack.ingredientCount);
+        } 
+      }
+      subtotal *= cartItem[0].orderItem.itemCount;
+
+      if (this.subtotals[this.cart.indexOf(cartItem)]) {
+
+        this.subtotals[this.cart.indexOf(cartItem)] = subtotal;
+
+      } else {
+
+        this.subtotals.push(subtotal);
+      }
+    }
+  }
+
+  getTotal(){
+    this.total = 0;
+    for (let subtotal of this.subtotals) {
+      this.total += subtotal;
+    }
+  }
+
+  calculateTotals() {
+    this.generateSubtotals();
     this.getTotal();
   }
 
   
-  
-  orderItem: OrderItem;
-  Total: number;
-  User: User;
-  itemCategories: Array<ItemCategory> = [];
-  menuItems: Array<MenuItem> = [];
-  menuItemIngredients: Array<MenuItemIngredient> = [];
-  newIoiArray: Array<IngredientOrderItem>
-  ioiArray: Array<IngredientOrderItem>
-  cart: Array<Array<IngredientOrderItem>> = [];
 
+  //button functions
 
+  increaseCount(cartItem: Array<IngredientOrderItem>) {
 
-  addCartItem() {
+    for (let ingredientPack of cartItem) {
 
-    this.ciHttp.GetAllItemCategories()
-    .subscribe(data =>{
-        this.newIoiArray;
-        this.cart;
-        this.menuItemIngredients;
-        this.ioiArray;
-
+      ingredientPack.orderItem.itemCount ++;
     }
-);
+    this.calculateTotals();
   }
 
+  decreaseCount(cartItem: Array<IngredientOrderItem>) {
 
-  removeIoi() {
-    this.ioiHttp.GetAllMenuItems()
-         .subscribe(data =>{
-          this.newIoiArray;
-          this.cart;
-          this.menuItemIngredients;
-          this.ioiArray;
-} 
-);
+    for (let ingredientPack of cartItem) {
+
+      ingredientPack.orderItem.itemCount --;
+    }
+    this.calculateTotals();
+  }
+
+  removeFromCart(cartItem: Array<IngredientOrderItem>) {
+
+    const index = this.cart.indexOf(cartItem);
+
+    if (index > -1) {
+
+      this.subtotals.splice(index, 1);
+    }
+    this.cs.removeCartItem(cartItem);
+
+    this.calculateTotals();
+  }
+
+  submitOrder() {
+
+    for (let cartItem of this.cart) {
+
+      for (let ingredientPack of cartItem) {
+
+        ingredientPack.orderItem.order.delivery = this.delivery;
+        ingredientPack.orderItem.order.orderPayment = new PaymentType(this.paymentType, null);
+        ingredientPack.orderItem.order.orderTime = this.date.getMilliseconds();
+        ingredientPack.orderItem.order.orderedBy = this.user;
+      }
+    }
+    this.ioiHttp.submitOrder(this.cart);
   }
 
   
 
- 
-  getTotal(){
-    let total = 0;
-    for (var i = 0; i < this.menuItems.length; i++) {
-        if (this.menuItems[i].itemPrice) {
-          total += this.menuItems[i].itemPrice * this.orderItem.itemCount;
-            this.Total = total;
-            
-        }
-    }
-    return total;
-}
 
-// checkLogin(){
-//   return this.loginServ.currentUser;
-// }
+
+
 
 }

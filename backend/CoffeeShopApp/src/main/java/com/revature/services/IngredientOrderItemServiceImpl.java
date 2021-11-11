@@ -2,6 +2,8 @@ package com.revature.services;
 
 import com.revature.models.IngredientOrderItem;
 import com.revature.repositories.IngredientOrderItemRepo;
+import com.revature.repositories.OrderItemRepo;
+import com.revature.repositories.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,12 @@ public class IngredientOrderItemServiceImpl implements IngredientOrderItemServic
 
     @Autowired
     IngredientOrderItemRepo ioir;
+
+    @Autowired
+    OrderItemRepo oir;
+
+    @Autowired
+    OrderRepo or;
 
     @Override
     public IngredientOrderItem addIngredientOrderItem(IngredientOrderItem actor) {
@@ -31,6 +39,15 @@ public class IngredientOrderItemServiceImpl implements IngredientOrderItemServic
     @Override
     public IngredientOrderItem updateIngredientOrderItem(IngredientOrderItem newData) {
         return ioir.save(newData);
+    }
+
+    @Override
+    public List<List<IngredientOrderItem>> submitOrder(List<List<IngredientOrderItem>> cart) {
+
+        //put the order in the DB
+        //put the orderItems in the DB
+        //put the ingredientOrderItems in the DB
+        return cart;
     }
 
 }

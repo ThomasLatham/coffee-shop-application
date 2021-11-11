@@ -28,7 +28,7 @@ export class AppComponent {
 
   isManager(): boolean{
     let user = this.getUser();
-    console.log(user);
+    //console.log(user);
     if(this.getUser() && user.userRole.roleName == "manager"){
       return true;
     }

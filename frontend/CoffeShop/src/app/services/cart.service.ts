@@ -19,20 +19,32 @@ export class CartService {
     for (let existingIoiArray of this.cart) {
 
       if (newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID 
-        && !existingIoiArray[0].ingredient && !newIoiArray[0].ingredient  //if the new cart item and old cart item both don't have extra ingredients and have the same menu item
-        ||
-        newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID
-        && existingIoiArray[0].ingredient && newIoiArray[0].ingredient
-        && newIoiArray[0].ingredient.ingredientID == existingIoiArray[0].ingredient.ingredientID
-        && newIoiArray[0].ingredientCount == existingIoiArray[0].ingredientCount) { //if the new cart item and old cart item both have extra ingredients and have the same menu item and the same number and type of ingredients
+        && !newIoiArray[0].ingredient && !existingIoiArray[0].ingredient) { //if the new cart item and old cart item both don't have extra ingredients and have the same menu item
 
-        for (let ioi of existingIoiArray) {
+          for (let ioi of existingIoiArray) {
 
-          ioi.orderItem.itemCount ++;
-          alreadyInCart = true;
+            ioi.orderItem.itemCount ++;
+            alreadyInCart = true;
+          }
+
+        } else if (newIoiArray[0].orderItem.menuItem.itemID == existingIoiArray[0].orderItem.menuItem.itemID
+        && newIoiArray.length == existingIoiArray.length
+        && newIoiArray[0].ingredient && existingIoiArray[0].ingredient) { //both have ingredients and are the same length and have same menuItem
+
+          for (let i = 0; i < newIoiArray.length; i++) {
+
+            if (newIoiArray[i].ingredient.ingredientID == existingIoiArray[i].ingredient.ingredientID
+              && newIoiArray[i].ingredientCount == existingIoiArray[i].ingredientCount) { //and all the ingredients are equal in type and quantity
+
+              for (let ioi of existingIoiArray) {
+
+                ioi.orderItem.itemCount ++;
+                alreadyInCart = true;
+              }
+            }
+          }
         }
       }
-    }
     if (!alreadyInCart) {
 
       this.cart.push(newIoiArray);
@@ -41,7 +53,7 @@ export class CartService {
     console.log(this.cart);
   }
 
-  removeIoi(ioiArray: Array<IngredientOrderItem>) {
+  removeCartItem(ioiArray: Array<IngredientOrderItem>) {
 
     const index = this.cart.indexOf(ioiArray);
     if (index > -1) {
