@@ -10,6 +10,7 @@ import { IngredientOrderItemHttpService } from 'src/app/services/ingredient-orde
 import { LoginService } from 'src/app/services/login.service';
 
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -143,14 +144,10 @@ export class CartComponent implements OnInit {
       }
       this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
 
-      for (let cartItem of this.cart) {
+      this.cart = [];
 
-        this.cart.pop();
-      }
-      this.router.navigate['/landingpage']
+      this.router.navigate(['/landingpage']);
 
     }
-
   }
-
 }
