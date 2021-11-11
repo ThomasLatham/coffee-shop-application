@@ -176,6 +176,14 @@ public class OrderItemControllerTests {
 
 
     }
+    @Test
+    void getOrderItemsByDay() throws Exception {
+
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orderItems/today/2021-11-09"));
+
+        ra.andExpect(status().isOk());
+
+    }
 
 
 

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderManagementComponent } from './components/order-management/order-management.component';
+import { DatePipePipe } from './pipes/date-pipe.pipe';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 
@@ -17,6 +18,7 @@ import { AboutComponent } from './components/about/about.component';
     LoginComponent,
     MenuComponent,
     OrderManagementComponent,
+    DatePipePipe,
     ContactComponent,
     AboutComponent
   ],

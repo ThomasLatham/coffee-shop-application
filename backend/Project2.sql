@@ -129,7 +129,6 @@ create table ingredient_order_items(
 	--REFERENCE TABLES--
 insert into order_statuses values 
 	(default, 'Order Received'),
-	(default, 'In Progress'),
 	(default, 'Ready'),
 	(default, 'Delivery in Progress'),
 	(default, 'Delivered'),
