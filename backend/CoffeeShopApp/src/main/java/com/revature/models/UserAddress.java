@@ -24,6 +24,13 @@ public class UserAddress {
     public UserAddress() {
     }
 
+    public UserAddress(int zipCode, String street, String city, User user) {
+        this.zipCode = zipCode;
+        this.street = street;
+        this.city = city;
+        this.user = user;
+    }
+
     public UserAddress(int addressID, int zipCode, String street, String city, User user) {
         this.addressID = addressID;
         this.zipCode = zipCode;

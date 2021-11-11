@@ -3,6 +3,7 @@ package com.revature.services;
 import com.revature.models.User;
 import com.revature.models.UserAddress;
 import com.revature.repositories.UserAddressRepo;
+import com.revature.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class UserAddressServiceImpl implements UserAddressService{
     @Autowired
     UserAddressRepo uar;
+    @Autowired
+    UserRepo ur;
 
     @Override
     public UserAddress addUserAddress(UserAddress ua) {
@@ -48,8 +51,11 @@ public class UserAddressServiceImpl implements UserAddressService{
 
     @Override
     public UserAddress getUserAddressByUser(User u) {
-        return uar.findByUser(u);
+        User user = ur.findByUsernameAndPassword(u.getUsername(),u.getPassword());
+        if(user != null){
+            return uar.findByUser(user);
+        }else {
+            return null;
+        }
     }
-
-
 }
