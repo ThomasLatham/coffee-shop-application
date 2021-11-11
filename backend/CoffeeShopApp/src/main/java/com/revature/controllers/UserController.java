@@ -37,9 +37,8 @@ public class UserController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        user = us.getUserByLogin(user);
-        if(user != null){
-            UserAddress userAddress = uas.getUserAddressByUser(user);
+        UserAddress userAddress = uas.getUserAddressByUser(user);
+        if(userAddress != null){
             return new ResponseEntity<>(userAddress, HttpStatus.OK);
         }else {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
