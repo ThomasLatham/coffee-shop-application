@@ -11,4 +11,5 @@ public interface IngredientOrderItemService {
     public List<IngredientOrderItem> getAllIngredientOrderItems();
     public IngredientOrderItem updateIngredientOrderItem(IngredientOrderItem newData);
 
+    List<List<IngredientOrderItem>> submitOrder(List<List<IngredientOrderItem>> o);
 }

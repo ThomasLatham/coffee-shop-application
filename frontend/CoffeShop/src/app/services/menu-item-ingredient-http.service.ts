@@ -22,7 +22,7 @@ export class MenuItemIngredientHttpService {
   }
   
   // GET
-  GetAllMenuItemIngredients(): Observable<Array<MenuItemIngredient>> {
+  getAllMenuItemIngredients(): Observable<Array<MenuItemIngredient>> {
     return this.http.get<Array<MenuItemIngredient>>(this.baseURL)
     .pipe(
       retry(1),

@@ -1,4 +1,4 @@
-<h3>Menu</h3>
+<h3 style="text-align: center;">Menu</h3>
 
 <br>
 
@@ -24,7 +24,24 @@
 
           <td>{{item.itemName}}</td>
 
-          <td>{{item.itemPrice | currency: 'USD'}}</td>
+          <td>
+            <ng-container *ngIf="dailySpecials[today]?.menuItem.itemID == item.itemID">
+
+              {{item.itemPrice | currency: 'USD'}}
+              <p style="color: red;">Daily special!</p>
+
+            </ng-container>
+
+
+            <ng-container *ngIf="dailySpecials[today]?.menuItem.itemID != item.itemID">
+
+              {{item.itemPrice | currency: 'USD'}}
+
+            </ng-container>
+            
+            
+          
+          </td>
 
           <td>
               <button class="btn btn-primary" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + 'IngredientList' + item.itemID">

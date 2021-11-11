@@ -8,6 +8,8 @@ import { MenuItemIngredientHttpService } from 'src/app/services/menu-item-ingred
 import { CartService } from 'src/app/services/cart.service'
 import { IngredientOrderItem } from 'src/app/models/IngredientOrderItem';
 import { Ingredient } from 'src/app/models/Ingredient';
+import { DailySpecial } from 'src/app/models/DailySpecial'
+import { DailySpecialHttpService } from 'src/app/services/daily-special-http.service'
 
 
 
@@ -18,7 +20,7 @@ import { Ingredient } from 'src/app/models/Ingredient';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService, private cs: CartService) { }
+  constructor(private icHttp: ItemCategoryHttpService, private miHttp: MenuItemHttpService, private miiHttp: MenuItemIngredientHttpService, private dsHttp: DailySpecialHttpService, private cs: CartService) { }
 
   ngOnInit(): void {
 
@@ -32,9 +34,14 @@ export class MenuComponent implements OnInit {
 
   menuItemIngredients: Array<MenuItemIngredient> = [];
 
+  dailySpecials: Array<DailySpecial> = [];
+
+
   ingredients: Array<Ingredient> = [];
 
   selectedIngredients: Array<any> = [];
+
+  today: number = 0;
 
 
   //user clicks addToCart ->
@@ -52,29 +59,43 @@ export class MenuComponent implements OnInit {
 
   getAllData() {
     
-    this.miHttp.GetAllMenuItems().subscribe(
+    this.miHttp.getAllMenuItems().subscribe(
 
       (miResponse) => {
         this.menuItems = miResponse;
-        //console.log(this.menuItems);
+        //(this.menuItems);
 
-        this.miiHttp.GetAllMenuItemIngredients().subscribe(
+        this.miiHttp.getAllMenuItemIngredients().subscribe(
 
           (miiResponse) => {
             this.menuItemIngredients = miiResponse;
-            //console.log(this.menuItemIngredients);
+            //(this.menuItemIngredients);
 
-            this.icHttp.GetAllItemCategories().subscribe(
+            this.icHttp.getAllItemCategories().subscribe(
 
               (icResponse) => {
                 this.itemCategories = icResponse;
-                //console.log(this.itemCategories);
+                //(this.itemCategories);
 
                 this.getAllIngredients();
-                //console.log(this.ingredients);
+                //(this.ingredients);
 
                 this.generateEmptySelectedIngredients();
-                //console.log(this.selectedIngredients);
+                //(this.selectedIngredients);
+
+                this.dsHttp.getAllDailySpecials().subscribe(
+
+                  (dsResponse) => {
+                    this.dailySpecials = dsResponse;
+                    //(this.dailySpecials);
+
+                    let d = new Date();
+                    this.today = d.getDay();
+                    //(this.today);
+
+                    this.dailySpecialize();
+                  }
+                );
               }
             );
 
@@ -129,6 +150,17 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  dailySpecialize() {
+
+    for (let thing of this.menuItems) {
+    
+      if (this.dailySpecials[this.today].menuItem.itemID == thing.itemID) {
+
+        thing.itemPrice *= 0.8;
+      }
+    }
+  }
+
 
 
   updateSelectedIngredients(count: number, item: MenuItem, ingredient: Ingredient) {
@@ -152,7 +184,7 @@ export class MenuComponent implements OnInit {
         }
       }
     }
-    //console.log(this.selectedIngredients);
+    //(this.selectedIngredients);
   }
 
   addToCart(item: MenuItem) {
@@ -168,7 +200,14 @@ export class MenuComponent implements OnInit {
           ingredientOrderItemID: null,
           orderItem: {
             orderItemID: null,
-            order: null,
+            orderID: {
+              orderID: null,
+              orderTime: null,
+              orderStatus: null,
+              orderedBy: null,
+              orderPayment: null,
+              delivery: null
+            },
             menuItem: item, //needs a value
             itemCount: 1 //needs a value
           },
@@ -188,7 +227,14 @@ export class MenuComponent implements OnInit {
         ingredientOrderItemID: null,
         orderItem: {
           orderItemID: null,
-          order: null,
+          orderID: {
+            orderID: null,
+            orderTime: null,
+            orderStatus: null,
+            orderedBy: null,
+            orderPayment: null,
+            delivery: null
+          },
           menuItem: item, //needs a value
           itemCount: 1 //needs a value
         },
