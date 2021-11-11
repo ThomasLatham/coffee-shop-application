@@ -51,6 +51,7 @@ export class OrderManagementComponent implements OnInit {
           this.buttonDisplay = "Order is being Delivered";
         }
         console.log(response);
+        // maybe find the orer in the list then update the item in the list, or store user in app.ceomponent
         window.location.reload();
       }
     );
