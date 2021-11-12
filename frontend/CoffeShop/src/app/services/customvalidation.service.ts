@@ -53,6 +53,18 @@ export class CustomvalidationService {
     });
   }
 
+  userNameMatchValidator(userControl: AbstractControl) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (this.validateUserName(userControl.value)) {
+          resolve(null);
+        } else {
+          resolve({userNameNotFind: true});
+        }
+      }, 1000);
+    });
+  }
+
   validateUserName(userName: string) {
 
     /* A static array is used to validate the availability of user names.

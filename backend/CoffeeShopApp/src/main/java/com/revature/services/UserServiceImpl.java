@@ -32,7 +32,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User updateUser(User change) {
-        return ur.save(change);
+        User u = ur.findByFirstNameAndLastName(change.getFirstName(),change.getLastName());
+        if(u != null){
+            if((u.getUsername().equals(change.getUsername()))&&(u.getEmail().equals(change.getEmail()))&&(u.getPhoneNumber().equals(change.getPhoneNumber()))){
+                u.setPassword(change.getPassword());
+                return ur.save(u);
+            }
+        }
+        return null;
     }
 
     @Override

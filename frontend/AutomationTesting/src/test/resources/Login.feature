@@ -17,6 +17,17 @@ Feature: Login is responsive
     And clicks on the login button
     Then the error message shows up and the invalid Texts are removed
 
+  Scenario: the Forget your Password? works
+    Given the user is on the login page
+    When the user clicks on the Forget Your Password?
+    Then the update account window shows up, the submit button is disable
+
+  Scenario: the Forget your Password? works for valid inputs
+    Given the user is on the login page
+    When the user clicks on the Forget Your Password?
+    And the user enters an valid information
+    Then the submit button is enable
+
   Scenario: the logout button works
     Given the user is on the login page
     When the user enters a valid username and password
@@ -36,5 +47,5 @@ Feature: Login is responsive
 
   Scenario: the submit button works
     Given the user is on the register window
-    When the user clicks on the submit button with all valid inputs
+    When the user enters all valid inputs
     Then the Register button is enabled

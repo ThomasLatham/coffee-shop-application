@@ -21,6 +21,10 @@ export class CreateNewAccountService {
     return this.http.post('http://localhost:8080/users', account, { headers: this.postHeaders, observe: 'response'});
   }
 
+  updateUser(account: User): Observable<any> {
+    return this.http.put('http://localhost:8080/users', account, { headers: this.postHeaders, observe: 'response'});
+  }
+
   addUserAddress(address: UserAddress): Observable<any> {
     return this.http.post('http://localhost:8080/userAddresses', address, { headers: this.postHeaders, observe: 'response'});
   }

@@ -74,6 +74,38 @@ public class CoffeeShopMain {
     @FindBy(id = "inputConfirmPassword")
     public WebElement inputConfirmPassword;
 
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/div[2]/div/a")
+    public WebElement forgetPassword;
+
+    @FindBy(xpath = "/html/body/app-root/app-login/div[4]")
+    public WebElement updateAccountDiv;
+
+    @FindBy(xpath = "/html/body/app-root/app-login/div[4]/div/div/form/div[2]/button[2]")
+    public WebElement updateSubmitBtn;
+
+    @FindBy(xpath = "/html/body/app-root/app-login/div[4]/div/div/form/div[2]/button[1]")
+    public WebElement updateCloseBtn;
+
+    @FindBy(id = "inputFirstName2")
+    public WebElement inputFirstName2;
+
+    @FindBy(id = "inputLastName2")
+    public WebElement inputLastName2;
+
+    @FindBy(id = "inputPhoneNumber2")
+    public WebElement inputPhoneNumber2;
+
+    @FindBy(id = "inputEmail2")
+    public WebElement inputEmail2;
+
+    @FindBy(id = "inputUsername2")
+    public WebElement inputUsername2;
+
+    @FindBy(id = "inputPassword2")
+    public WebElement inputPassword2;
+
+    @FindBy(id = "inputConfirmPassword2")
+    public WebElement inputConfirmPassword2;
 
     public CoffeeShopMain(WebDriver driver){
         this.driver = driver;
