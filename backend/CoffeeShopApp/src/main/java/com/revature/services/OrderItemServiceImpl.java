@@ -54,7 +54,8 @@ public class OrderItemServiceImpl implements OrderItemService{
             System.out.println(todayDate);
             System.out.println(today);
             long todayTime = today.getTime();
-            List<OrderItem> orderItems = getAllOrderItems();
+            List<OrderItem> orderItems = (List<OrderItem>) oi.findAll();
+
             List<OrderItem> todayOrderItems = new ArrayList<>();
             for (OrderItem o : orderItems){
                 if (o.getOrderID().getOrderTime()>=todayTime && o.getOrderID().getOrderTime()<todayTime+86400000L){

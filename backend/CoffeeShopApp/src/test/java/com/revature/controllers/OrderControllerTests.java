@@ -35,10 +35,10 @@ public class OrderControllerTests {
     @Test
     void getOrderById() throws Exception {
         Mockito.when(os.getOrder(1)).thenReturn(new Order(1, 1636495200000L,os1,u1,pt1,true));
-
         ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orders/1"));
-
         ra.andExpect(MockMvcResultMatchers.status().isOk());
+        ra = mvc.perform(MockMvcRequestBuilders.get("/orders/fa"));
+        ra.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
     @Test
     void addOrder() throws Exception {
@@ -58,23 +58,31 @@ public class OrderControllerTests {
         o.getOrderStatus().setStatus("Ready");
         o.getOrderStatus().setstatusID(2);
         Mockito.when(os.updateOrder(o)).thenReturn(o);
-
         ResultActions ra = mvc.perform(MockMvcRequestBuilders
                 .put("/orders/1", 1)
                 .content(new ObjectMapper().writeValueAsString(o))
                 .contentType(MediaType.APPLICATION_JSON_VALUE));
-
         ra.andExpect(MockMvcResultMatchers.status().isOk());
+
+        ra = mvc.perform(MockMvcRequestBuilders
+                .put("/orders/fa", 1)
+                .content(new ObjectMapper().writeValueAsString(o))
+                .contentType(MediaType.APPLICATION_JSON_VALUE));
+        ra.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
     @Test
     void deleteOrder() throws Exception {
         ResultActions ra = mvc.perform(MockMvcRequestBuilders.delete("/orders/1",1));
         ra.andExpect(MockMvcResultMatchers.status().isOk());
+        ra = mvc.perform(MockMvcRequestBuilders.delete("/orders/fa",1));
+        ra.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
     @Test
     void getOrderByDay() throws Exception {
         ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/orders/day/{day}",1636444800));
         ra.andExpect(MockMvcResultMatchers.status().isOk());
+        ra = mvc.perform(MockMvcRequestBuilders.get("/orders/day/{day}","af"));
+        ra.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
     @Test
     void advanceOrder() throws Exception {
@@ -83,7 +91,11 @@ public class OrderControllerTests {
                 .put("/orders/advance/{id}", 1)
                 .content(new ObjectMapper().writeValueAsString(o))
                 .contentType(MediaType.APPLICATION_JSON_VALUE));
-
         ra.andExpect(MockMvcResultMatchers.status().isOk());
+        ra = mvc.perform(MockMvcRequestBuilders
+                .put("/orders/advance/{id}", "fa")
+                .content(new ObjectMapper().writeValueAsString(o))
+                .contentType(MediaType.APPLICATION_JSON_VALUE));
+        ra.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }
