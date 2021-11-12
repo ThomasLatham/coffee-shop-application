@@ -62,4 +62,8 @@ export class CartService {
 
   }
 
+  emptyCart() {
+    this.cart = [];
+  }
+
 }
