@@ -5,7 +5,11 @@ import com.revature.runners.CoffeeShopRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginStepImpl {
     public static CoffeeShopMain coffeeShop = CoffeeShopRunner.CoffeeShop;
@@ -13,142 +17,141 @@ public class LoginStepImpl {
 
     @Given("the user is on about us page")
     public void the_user_is_on_about_us_page() {
-        driver.get("http://");
+        driver.get("http://localhost:4200/about");
     }
     @When("the user clicks on the login button")
     public void the_user_clicks_on_the_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.login.click();
     }
     @Then("the user is on login page")
     public void the_user_is_on_login_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals("If you already have our account, please Login",coffeeShop.loginHeader.getText());
     }
 
 
-    io.cucumber.junit.UndefinedStepException: The step 'the user is on the login page' and 3 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.get("http://localhost:4200/login");
     }
+
+    //Valid
     @When("the user enters a valid username and password")
     public void the_user_enters_a_valid_username_and_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.userInput.sendKeys("coffeequeen92");
+        coffeeShop.passwordInput.sendKeys("Password1");
     }
-    @When("clicks on the sign in button")
-    public void clicks_on_the_sign_in_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("clicks on the login button")
+    public void clicks_on_the_login_button() {
+        coffeeShop.loginBtn.click();
     }
-    @Then("the user sign in, then logout button and username shows up, the register now button disappear")
-    public void the_user_sign_in_then_logout_button_and_username_shows_up_the_register_now_button_disappear() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("the user sign in, then logout button shows up")
+    public void the_user_sign_in_then_logout_button_shows_up() {
+        Assert.assertTrue(coffeeShop.loginDiv.findElement(By.xpath("/html/body/app-root/nav/div/div/div/button")).isEnabled());
     }
 
-
-    io.cucumber.junit.UndefinedStepException: The step 'the user is on the login page' and 2 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+    //inValid
     @When("the user enters an invalid username or password")
     public void the_user_enters_an_invalid_username_or_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.userInput.sendKeys("asdasesaease");
+        coffeeShop.passwordInput.sendKeys(" ");
     }
     @Then("the error message shows up and the invalid Texts are removed")
     public void the_error_message_shows_up_and_the_invalid_texts_are_removed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.alertIsPresent());
+            Assert.assertEquals("The username or password you entered does not match the records in our database. Please try again!",driver.switchTo().alert().getText());
+            Assert.assertEquals("",coffeeShop.userInput.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-
-    io.cucumber.junit.UndefinedStepException: The step 'the user is logged in' and 2 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("the user is logged in")
-    public void the_user_is_logged_in() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+    //LogOut
     @When("the user clicks on the logout button")
     public void the_user_clicks_on_the_logout_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.loginDiv.findElement(By.xpath("/html/body/app-root/nav/div/div/div/button")).click();
     }
-    @Then("the user logout, the login button shows up")
+    @Then("the user logout, the user is on landing page")
     public void the_user_logout_the_login_button_shows_up() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals("Welcome to our Coffee shop!",coffeeShop.landingPageHeader.getText());
     }
 
 
-    io.cucumber.junit.UndefinedStepException: The step 'the user is on the login page' and 2 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
 
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("the user clicks on the register now button")
     public void the_user_clicks_on_the_register_now_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.registerBtn.click();
     }
-    @Then("the create account window shows up")
+    @Then("the create account window shows up, the register button is disable")
     public void the_create_account_window_shows_up() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.attributeContains(coffeeShop.accountDiv,"class", "modal fade show"));
+            Assert.assertEquals("block",coffeeShop.accountDiv.getCssValue("display"));
+            Assert.assertFalse(coffeeShop.formSubmitBtn.isEnabled());
+            coffeeShop.formCloseBtn.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
-    io.cucumber.junit.UndefinedStepException: The step 'the user is on the register window' and 2 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
 
     @Given("the user is on the register window")
     public void the_user_is_on_the_register_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.registerBtn.click();
     }
     @When("the user clicks on the close button")
     public void the_user_clicks_on_the_close_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.elementToBeClickable(coffeeShop.formCloseBtn));
+            coffeeShop.formCloseBtn.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Then("the create account window disappear")
     public void the_create_account_window_disappear() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.attributeContains(coffeeShop.accountDiv,"style", "display: none"));
+            Assert.assertEquals("none",coffeeShop.accountDiv.getCssValue("display"));
+            wait.until(ExpectedConditions.elementToBeClickable(coffeeShop.formCloseBtn));
+            coffeeShop.formCloseBtn.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
-    io.cucumber.junit.UndefinedStepException: The step 'the user is on the register window' and 2 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("the user is on the register window")
-    public void the_user_is_on_the_register_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("the user clicks on the submit button with all valid inputs")
     public void the_user_clicks_on_the_submit_button_with_all_valid_inputs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        coffeeShop.inputFirstName.sendKeys("asfasf");
+        coffeeShop.inputLastName.sendKeys("asfasf");
+        coffeeShop.inputPhoneNumber.sendKeys("1234567890");
+        coffeeShop.inputEmail.sendKeys("asfa@gma.com");
+        coffeeShop.inputStreet.sendKeys("2223ese");
+        coffeeShop.inputCity.sendKeys("abc");
+        coffeeShop.inputZipCode.sendKeys("78758");
+        coffeeShop.inputUsername.sendKeys("dayday");
+        coffeeShop.inputPassword.sendKeys("Password1");
+        coffeeShop.inputConfirmPassword.sendKeys("Password1");
     }
-    @Then("the new account be created and the user sign in.")
+    @Then("the Register button is enabled")
     public void the_new_account_be_created_and_the_user_sign_in() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.elementToBeClickable(coffeeShop.formSubmitBtn));
+            Assert.assertTrue(coffeeShop.formSubmitBtn.isEnabled());
+            coffeeShop.formCloseBtn.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
