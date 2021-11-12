@@ -63,18 +63,18 @@ public class OrderServiceImpl implements OrderService{
             o.getOrderStatus().setStatus("Ready");
             o.getOrderStatus().setstatusID(2);
             return updatedOrder = or.save(o);
-        } else if (orderStatus.getStatus().equals("Ready")||orderStatus.getStatus().equals("Delivered")){
-            o.getOrderStatus().setStatus("Order Complete");
-            o.getOrderStatus().setstatusID(5);
-            System.out.println("in here" + o.getOrderStatus());
-            return updatedOrder = or.save(o);
         } else if (orderStatus.getStatus().equals("Ready")&&o.getDelivery()) {
             //if it is ready and is for delivery will change to delivery in progress when delivery man picks up
             o.getOrderStatus().setStatus("Delivery in Progress");
             o.getOrderStatus().setstatusID(3);
             return updatedOrder = or.save(o);
-        } else if (orderStatus.getStatus().equals("Delivery in Progress")) {
+        } else if (orderStatus.getStatus().equals("Ready")||orderStatus.getStatus().equals("Delivered")){
             o.getOrderStatus().setStatus("Order Complete");
+            o.getOrderStatus().setstatusID(5);
+            System.out.println("in here" + o.getOrderStatus());
+            return updatedOrder = or.save(o);
+        } else if (orderStatus.getStatus().equals("Delivery in Progress")) {
+            o.getOrderStatus().setStatus("Delivered");
             o.getOrderStatus().setstatusID(5);
             return updatedOrder = or.save(o);
         } else {
