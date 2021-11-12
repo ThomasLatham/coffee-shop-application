@@ -45,6 +45,15 @@ public class UserController {
         }
     }
 
+    @PutMapping(value = "/users")
+    public ResponseEntity<User> updateUser (@RequestBody User u) {
+        if(us.updateUser(u) != null){
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
+        }else {
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+    }
+
     @PostMapping(value = "/users")
     public ResponseEntity<User> addUser (@RequestBody User u) {
         return new ResponseEntity<>(us.addUser(u), HttpStatus.CREATED);

@@ -7,6 +7,7 @@ import com.revature.models.UserRole;
 import com.revature.services.UserAddressService;
 import com.revature.services.UserService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Answers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -75,4 +76,10 @@ public class UserControllerTests {
         ra.andExpect(status().isCreated());
     }
 
+    @Test
+    void updateUserFC() throws Exception {
+        Mockito.when(us.updateUser(u1)).thenReturn(null);
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.put("/users").content(gson.toJson(ua1)).contentType(MediaType.APPLICATION_JSON));
+        ra.andExpect(status().isNoContent());
+    }
 }
