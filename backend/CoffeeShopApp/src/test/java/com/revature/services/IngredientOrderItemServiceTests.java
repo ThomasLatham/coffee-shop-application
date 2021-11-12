@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
 public class IngredientOrderItemServiceTests {
+
     @Autowired
     IngredientOrderItemService iois;
 
@@ -38,6 +39,7 @@ public class IngredientOrderItemServiceTests {
     IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 1);
     IngredientOrderItem ioi2 = new IngredientOrderItem(1,oi1, i1, 3);
 
+
     @Test
     void addIngredientOrderItem() {
 //        IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 1);
@@ -53,10 +55,6 @@ public class IngredientOrderItemServiceTests {
         Assertions.assertEquals(1, ioi1.getIngredientCount());
     }
 
-
-
-
-
     @Test
     void getIngredientOrderItem() {
 
@@ -68,15 +66,12 @@ public class IngredientOrderItemServiceTests {
 
     }
 
-
     @Test
     void getAllIngredientOrderItems() {
         List<IngredientOrderItem> ingredientOrderItemsList = (List<IngredientOrderItem>) ioir.findAll();
         Assertions.assertTrue(ingredientOrderItemsList.isEmpty());
     }
 
-
-    //
     @Test
     void updateIngredientOrderItem() {
 
@@ -87,5 +82,9 @@ public class IngredientOrderItemServiceTests {
 
     }
 
+    @Test
+    void submitOrder() {
+
+    }
 
 }
