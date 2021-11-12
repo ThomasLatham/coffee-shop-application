@@ -1,9 +1,9 @@
-<h3 style="text-align: center;">Menu</h3>
+<h1 style="text-align: center; margin: 3%;">Menu</h1>
 
 <br>
 
 <div *ngFor="let category of itemCategories">
-  <h4>{{category.category}}</h4>
+  <h4 style="margin: 2%;font-style: italic;">{{category.category}}</h4>
 
   <br>
 
@@ -20,7 +20,7 @@
     <tr *ngFor="let item of menuItems; let i = index">
         <ng-container *ngIf="item.itemCategory.category == category.category" >
 
-          <td> <img [src]="item.itemPic.picName" [alt]="item.itemPic.picType" width="100" height="100"> </td>
+          <td> <img [src]="item.itemPic.picName" [alt]="item.itemPic.picType" width="100" height="100" style="border: solid black 2px;"> </td>
 
           <td>{{item.itemName}}</td>
 
@@ -28,7 +28,7 @@
             <ng-container *ngIf="dailySpecials[today]?.menuItem.itemID == item.itemID">
 
               {{item.itemPrice | currency: 'USD'}}
-              <p style="color: red;">Daily special!</p>
+              <p style="color: red;font-weight: bold;font-style: italic;">Daily special!</p>
 
             </ng-container>
 
@@ -44,12 +44,12 @@
           </td>
 
           <td>
-              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + 'IngredientList' + item.itemID">
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + 'IngredientList' + item.itemID">
                 Select Extra Items
               </button>
 
-              <div class="collapse" [id]="'IngredientList' + item.itemID">
-                <div class="card card-body">
+              <div class="collapse" [id]="'IngredientList' + item.itemID" >
+                <div class="card card-body" style="background-color: #A98163;">
                   <div *ngFor="let itemIngredient of menuItemIngredients" style="text-align: left;">
                     <ng-container *ngIf="item.itemID == itemIngredient.menuItem.itemID">
                       <input type="number" [id]="item.itemID + itemIngredient.ingredient.ingredientID + 'Count'" [(ngModel)]="selectedIngredients[i].ingredients[itemIngredient.ingredient.ingredientID - 1].ingredientCount" min=0 max=2 value=0 (ngModelChange)="updateSelectedIngredients($event, item, itemIngredient.ingredient)"> <!--mmm, that's a nice-a spaghetti!-->
@@ -60,7 +60,7 @@
               </div>
 
           </td>
-          <td><button [id]="item.itemName + 'AddButton'" (click)="addToCart(item)">Add to Cart</button></td>
+          <td><button type="button" class="btn btn-danger" [id]="item.itemName + 'AddButton'" (click)="addToCart(item)">Add to Cart</button></td>
 
         </ng-container>
     </tr>

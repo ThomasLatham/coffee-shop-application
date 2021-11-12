@@ -24,6 +24,7 @@ public class CoffeeShopRunner {
     @BeforeClass
     public static void setUp() {
         String path = System.getenv("DRIVER_PATH");
+        System.out.println(path);
         System.setProperty("webdriver.chrome.driver", path);
 
         driver = new ChromeDriver();

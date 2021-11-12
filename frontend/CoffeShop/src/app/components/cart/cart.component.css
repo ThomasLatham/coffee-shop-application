@@ -43,16 +43,18 @@ table {
 }
 
 th {
-  background-color: whitesmoke;
+  background-color: #A98163;
   padding: 5px;
   border-bottom: 2px solid black;
   white-space: nowrap;
+  color: white;
 }
 
 td {
   border-bottom: 1px solid black;
   padding: 5px;
   white-space: nowrap;
+  background-color: #ec9c54;
 }
 
 label {
