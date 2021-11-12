@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './models/User';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -9,8 +10,16 @@ import { LoginService } from './services/login.service';
 export class AppComponent {
   title = 'Coffee Shop App';
   coffeeShopName = 'Coffee Shop'
+  user: User;
   constructor(private loginServ: LoginService){
 
+  }
+
+  isLoggedin(){
+    if(this.user!=null){
+      return true;
+    }
+    return false;
   }
 
   getUser(){
@@ -24,6 +33,7 @@ export class AppComponent {
   logout() {
     this.loginServ.logout();
     console.log(this.loginServ.currentUser);
+    this.user = null;
   }
 
   isManager(): boolean{

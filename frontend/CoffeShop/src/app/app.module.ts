@@ -12,6 +12,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AboutComponent } from './components/about/about.component';
     CartComponent,
     DatePipePipe,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

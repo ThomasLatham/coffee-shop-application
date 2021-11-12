@@ -9,7 +9,7 @@
                   <h4 class="card-title">Username: {{order.orderedBy.username}} ({{order.orderedBy.firstName}})</h4>
                   <!-- add 15 minutes for ready time -->
                   <p>Estimated ready time: 15 min</p> 
-                  <p>Order status: {{order.orderStatus.status}}</p>
+                  <p style="font-weight: bold;">Order status: {{order.orderStatus.status}}</p>
                   <!-- get order items for a specific order -->
                   <h6 style="text-align: center;">Order Items:</h6> 
                   <div *ngFor = "let item of orderItemsList">
@@ -18,9 +18,13 @@
                         <br>
                         quantity: {{item.itemCount}}
                         <br>
-                        <div *ngFor = "let ingredient of ingredientForOrderItems">
+                        <div *ngFor = "let ingredient of ingredientForOrderItems" style="margin-left: 10%;">
                             <div *ngIf="ingredient.orderItem.orderItemID==item.orderItemID">
-                                extra ingredients: {{ingredient.ingredient.ingredientName}} <br> amount: {{ingredient.ingredientCount}}
+                                <p>
+                                    extra ingredients: {{ingredient.ingredient.ingredientName}} 
+                                    <br>
+                                    amount: {{ingredient.ingredientCount}}
+                                </p>
                             </div>
                         </div>
 
@@ -49,11 +53,13 @@
             <div class="card-body">
               <h4 class="card-title">Username: {{order.orderedBy.username}}</h4>
               <p>
-                  {{order.orderID}}
+                  Order ID: {{order.orderID}}
                   <br>
                   Order Status: {{order.orderStatus.status}}
                   <br>
                   Payment: {{order.orderPayment.paymentTypeName}}
+                  <br>
+                  Order type: <span *ngIf="orderOptionFormat(order)">Pick Up</span> <span *ngIf="!orderOptionFormat(order)">Delivery</span>
               </p>
             </div>
         </div>
