@@ -145,6 +145,7 @@ export class CartComponent implements OnInit {
       this.ioiHttp.submitOrder(this.cart).subscribe( returnValue => console.log(returnValue));
 
       this.cart = [];
+      this.cs.emptyCart();
 
       this.router.navigate(['/landingpage']);
 

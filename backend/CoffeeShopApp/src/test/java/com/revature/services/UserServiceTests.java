@@ -53,11 +53,12 @@ public class UserServiceTests {
     }
 
     @Test
-    void updateUser(){
-        User newUser = new User("first","last","123456789","email","user","password",ur1);
-        Mockito.when(ur.save(newUser)).thenReturn(u1);
-        newUser = us.addUser(newUser);
-        Assertions.assertEquals(u1,newUser);
+    void updateUserFC(){
+        User newUser = u1;
+        newUser.setPassword("Password12345");
+        Mockito.when(ur.findByFirstNameAndLastName(newUser.getFirstName(),newUser.getFirstName())).thenReturn(u1);
+        newUser = us.updateUser(newUser);
+        Assertions.assertNull(newUser);
     }
 
     @Test

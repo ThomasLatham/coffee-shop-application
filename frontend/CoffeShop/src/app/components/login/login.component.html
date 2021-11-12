@@ -21,6 +21,7 @@
         <button type="button" class="btn btn-primary" (click)="login()" *ngIf="!checkLogin()">Login</button>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#accountDiv" *ngIf="!checkLogin()">Register Now!</button>
+        <a class="nav-link active" data-bs-toggle="modal" data-bs-target="#updateAccountDiv">Forget Your Password?</a>
       </div>
     </div>
   </div>
@@ -64,10 +65,6 @@
                 Enter a valid PhoneNumber
             </span>
           </div>
-          <!-- <div class="mb-3">
-            <label for="inputPhoneNumber" class="col-form-label">Phone Number:</label>
-            <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="phoneNumber" pattern="(\d{3})[-]?(\d{3})[-]?(\d{4})" title="Please enter your 10 digits phone number, separated by - or none." required>
-          </div> -->
           <div class="form-group">
             <label class="form-label" for="inputEmail">Email</label>
             <input type="text" class="form-control" id="inputEmail" formControlName="email" required>
@@ -88,10 +85,6 @@
                 Street is required
             </span>
           </div>
-          <!-- <div class="mb-3">
-            <label for="inputStreet" class="col-form-label">Street:</label>
-            <input type="text" class="form-control" id="inputStreet" [(ngModel)]="newAddress.street" title="Please fill out this field." required>
-          </div> -->
           <div class="form-group">
             <label class="form-label" for="inputCity">City:</label>
             <input type="text" class="form-control" id="inputCity" formControlName="city" required>
@@ -100,10 +93,6 @@
                 City is required
             </span>
           </div>
-          <!-- <div class="mb-3">
-            <label for="inputCity" class="col-form-label">City:</label>
-            <input type="text" class="form-control" id="inputCity" [(ngModel)]="newAddress.city" title="Please fill out this field." required>
-          </div> -->
           <div class="form-group">
             <label class="form-label" for="inputZipCode">Zip Code:</label>
             <input type="text" class="form-control" id="inputZipCode" formControlName="zipCode" required>
@@ -116,10 +105,6 @@
                 Enter a valid Zip Code
             </span>
           </div>
-          <!-- <div class="mb-3">
-            <label for="inputZipCode" class="col-form-label"></label>
-            <input type="text" class="form-control" id="inputZipCode" [(ngModel)]="newAddress.zipCode" pattern="(\d{5})" title="Please fill out this field." required>
-          </div> -->
           <div class="form-group">
             <label class="form-label" for="inputUsername">User Name:</label>
             <input type="text" class="form-control" id="inputUsername" formControlName="username"required>
@@ -167,3 +152,98 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="updateAccountDiv" aria-labelledby="accountUpdateLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="accountUpdateLabel">Please provide your valid information and a <b style="color: red;">New Password</b> that you want to change!.</h5>
+      </div>
+      <form class="form" [formGroup]="updateForm" (ngSubmit)="onUpdateSubmit()">
+      <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="inputFirstName2">First Name</label>
+            <input type="text" class="form-control" id="inputFirstName2" formControlName="firstName2" required>
+            <span class="text-danger"
+                *ngIf="(updateFormControl.firstName2.touched || updateSubmitted) && updateFormControl.firstName2.errors?.required">
+                FirstName is required
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputLastName2">Last Name</label>
+            <input type="text" class="form-control" id="inputLastName2" formControlName="lastName2" required>
+            <span class="text-danger"
+                *ngIf="(updateFormControl.lastName2.touched || updateSubmitted) && updateFormControl.lastName2.errors?.required">
+                LastName is required
+            </span>
+          </div> 
+          <div class="form-group">
+            <label class="form-label" for="inputPhoneNumber2">Phone Number</label>
+            <input type="text" class="form-control" id="inputPhoneNumber2" formControlName="phoneNumber2" required>
+            <span class="text-danger"
+                *ngIf="(updateFormControl.phoneNumber2.touched || updateSubmitted) && updateFormControl.phoneNumber2.errors?.required">
+                PhoneNumber is required
+            </span>
+            <span class="text-danger"
+                *ngIf="updateFormControl.phoneNumber2.touched && updateFormControl.phoneNumber2.errors?.pattern">
+                Enter a valid PhoneNumber
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputEmail2">Email</label>
+            <input type="text" class="form-control" id="inputEmail2" formControlName="email2" required>
+            <span class="text-danger"
+                *ngIf="(updateFormControl.email2.touched || updateSubmitted) && updateFormControl.email2.errors?.required">
+                Email is required
+            </span>
+            <span class="text-danger"
+                *ngIf="updateFormControl.email2.touched && updateFormControl.email2.errors?.email">
+                Enter a valid email address
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputUsername2">User Name:</label>
+            <input type="text" class="form-control" id="inputUsername2" formControlName="username2"required>
+            <span class="text-danger"
+                *ngIf="(updateFormControl.username2.touched || updateSubmitted) && updateFormControl.username2.errors?.required">
+                Username is required
+            </span>
+            <span class="text-danger"
+                *ngIf="updateFormControl.username2.touched && updateFormControl.username2.errors?.userNameNotFind">
+                The Username you entered does not match any record in our database. Please try another one.
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputPassword2">Password</label>
+            <input type="password" class="form-control" id="inputPassword2" formControlName="password2" required>
+            <span class="text-danger"
+                *ngIf="(updateFormControl.password2.touched || updateSubmitted) && updateFormControl.password2.errors?.required">
+                Password is required
+            </span>
+            <span class="text-danger"
+                *ngIf="updateFormControl.password2.touched && updateFormControl.password2.errors?.invalidPassword">
+                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                letter and 1 number
+            </span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputConfirmPassword2">Confirm Password</label>
+          <input type="password" class="form-control" id="inputConfirmPassword2" formControlName="confirmPassword2" required>
+          <span class="text-danger"
+              *ngIf="(updateFormControl.confirmPassword2.touched || updateSubmitted)&& updateFormControl.confirmPassword2.errors?.required">
+              Confirm Password is required
+          </span>
+          <span class="text-danger"
+              *ngIf="updateFormControl.confirmPassword2.touched && updateFormControl.confirmPassword2.errors?.passwordMismatch">
+              Passwords doesnot match
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" [disabled]="!this.updateForm.valid">Submits</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>

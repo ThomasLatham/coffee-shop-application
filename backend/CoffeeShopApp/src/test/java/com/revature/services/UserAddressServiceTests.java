@@ -61,7 +61,7 @@ public class UserAddressServiceTests {
     void updateUserAddress(){
         UserAddress newUserAddress = new UserAddress(2125,"street","city",u1);
         Mockito.when(uar.save(newUserAddress)).thenReturn(ua1);
-        newUserAddress = uas.addUserAddress(newUserAddress);
+        newUserAddress = uas.updateUserAddress(newUserAddress);
         Assertions.assertEquals(ua1,newUserAddress);
     }
 
