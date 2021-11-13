@@ -8,32 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 public class CartPage {
     public WebDriver driver;
 
-    @FindBy(linkText = "Menu")
-    public WebElement menuButton;
+    @FindBy(xpath = "/html/body/app-root/app-cart/div/table[1]/tr[2]/td[2]/span")
+    public WebElement cartItem1Text;
 
-    @FindBy(id = "menuHead")
-    public WebElement menuHead;
-
-    @FindBy(linkText = "About Us")
-    public WebElement aboutUs;
-
-    @FindBy(id = "aboutUsHead")
-    public WebElement aboutUsHead;
-
-    @FindBy(linkText = "Contact Us")
-    public WebElement contactUs;
-
-    @FindBy(id = "contactUsHead")
-    public WebElement contactUsHead;
-
-    @FindBy(id = "navLogin")
-    public WebElement navLogin;
-
-    @FindBy(id = "navCart")
-    public WebElement navCart;
-
-    @FindBy(id = "cartHead")
-    public WebElement cartHead;
+    @FindBy(xpath = "/html/body/app-root/app-cart/div/table[1]/tr[2]/td[2]/p/span[1]")
+    public WebElement extraItem1Text;
 
     public CartPage (WebDriver driver){
 

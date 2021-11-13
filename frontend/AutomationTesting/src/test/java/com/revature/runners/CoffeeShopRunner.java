@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", glue = {"com.revature.steps"})
+@CucumberOptions(features = "src/test/resources/CartPage.feature", glue = {"com.revature.steps"})
 public class CoffeeShopRunner {
 
     public static WebDriver driver;

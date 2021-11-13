@@ -2,7 +2,8 @@ Feature: The cart page functions as intended
 
   Scenario: The User tries to submit order without logging in
     Given The User is not logged in
-    And The User is not logged in
+    And The User's cart is empty
+    And The User is on the Cart Page
     Then The Submit Order button will be replaced by a message prompting the User to sign in
 
   Scenario: The User tries to submit order without adding any items to their cart

@@ -9,32 +9,16 @@ public class MenuPage {
 
     public WebDriver driver;
 
-    @FindBy(linkText = "Menu")
-    public WebElement menuButton;
 
-    @FindBy(id = "menuHead")
-    public WebElement menuHead;
+    @FindBy(xpath = "/html/body/app-root/app-menu/div[1]/table/tr[2]/td[4]/button")
+    public WebElement selectExtraItems;
 
-    @FindBy(linkText = "About Us")
-    public WebElement aboutUs;
+    @FindBy(xpath = "/html/body/app-root/app-menu/div[1]/table/tr[2]/td[4]/div/div/div[1]/input")
+    public WebElement quantityExtraItem1;
 
-    @FindBy(id = "aboutUsHead")
-    public WebElement aboutUsHead;
+    @FindBy(xpath = "/html/body/app-root/app-menu/div[1]/table/tr[2]/td[5]/button")
+    public WebElement addItemButton1;
 
-    @FindBy(linkText = "Contact Us")
-    public WebElement contactUs;
-
-    @FindBy(id = "contactUsHead")
-    public WebElement contactUsHead;
-
-    @FindBy(id = "navLogin")
-    public WebElement navLogin;
-
-    @FindBy(id = "navCart")
-    public WebElement navCart;
-
-    @FindBy(id = "cartHead")
-    public WebElement cartHead;
 
     public MenuPage (WebDriver driver){
 
