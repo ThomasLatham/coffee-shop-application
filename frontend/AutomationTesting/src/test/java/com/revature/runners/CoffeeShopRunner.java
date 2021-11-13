@@ -1,6 +1,6 @@
 package com.revature.runners;
 
-import com.revature.pages.CoffeeShopMain;
+import com.revature.pages.LoginPage;
 
 import com.revature.pages.NavbarPage;
 import com.revature.pages.OrderManagementPage;
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class CoffeeShopRunner {
 
     public static WebDriver driver;
-    public static  CoffeeShopMain CoffeeShop;
+    public static LoginPage CoffeeShop;
     public static OrderManagementPage orderManagementPage;
     public static NavbarPage navbarPage;
 
@@ -33,7 +33,7 @@ public class CoffeeShopRunner {
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        CoffeeShop = new CoffeeShopMain(driver);
+        CoffeeShop = new LoginPage(driver);
         orderManagementPage = new OrderManagementPage(driver);
         navbarPage = new NavbarPage(driver);
 
