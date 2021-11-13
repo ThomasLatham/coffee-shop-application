@@ -1,8 +1,6 @@
 package com.revature.runners;
 
 import com.revature.pages.*;
-import com.revature.pages.LoginPage;
-
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
