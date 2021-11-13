@@ -19,7 +19,7 @@
       <tr *ngFor="let cartItem of cart; let i = index">
         <td> <img [src]="cartItem[0].orderItem.menuItem.itemPic.picName" [alt]="cartItem[0].orderItem.menuItem.itemPic.picType" width="100" height="100"> </td>
         <td style="text-align: left;"> 
-            <span style="border-bottom: white;">{{cartItem[0].orderItem.menuItem.itemName}}: </span>
+            <span style="border-bottom: white;">{{cartItem[0].orderItem.menuItem.itemName}}: {{cartItem[0].orderItem.menuItem.itemPrice | currency: 'USD' }}</span>
           <p *ngFor="let ingredientPack of cartItem">
             <ng-container *ngIf="ingredientPack.ingredient">
               <span style="border-bottom: white;">{{ingredientPack.ingredient.ingredientName}} x {{ingredientPack.ingredientCount}} = </span>
@@ -28,7 +28,7 @@
           </p>
         </td>
         <td>
-          <span style="border-bottom: white;">{{cartItem[0].orderItem.menuItem.itemPrice | currency:'USD' }}</span>
+          <span style="border-bottom: white;">{{ (subtotals[i] / cartItem[0].orderItem.itemCount) | currency: 'USD' }}</span>
         </td>
         <td style="vertical-align: middle;">
           <span style="font-size: 24pt; vertical-align: middle;">x {{cartItem[0].orderItem.itemCount}} </span>
