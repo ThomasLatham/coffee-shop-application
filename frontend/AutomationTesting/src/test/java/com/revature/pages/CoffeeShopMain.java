@@ -107,6 +107,7 @@ public class CoffeeShopMain {
     @FindBy(id = "inputConfirmPassword2")
     public WebElement inputConfirmPassword2;
 
+
     public CoffeeShopMain(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
