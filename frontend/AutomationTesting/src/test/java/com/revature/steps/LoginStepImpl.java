@@ -8,8 +8,11 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.swing.*;
 
 public class LoginStepImpl {
     public static CoffeeShopMain coffeeShop = CoffeeShopRunner.CoffeeShop;
@@ -63,6 +66,46 @@ public class LoginStepImpl {
             wait.until(ExpectedConditions.alertIsPresent());
             Assert.assertEquals("The username or password you entered does not match the records in our database. Please try again!",driver.switchTo().alert().getText());
             Assert.assertEquals("",coffeeShop.userInput.getText());
+            driver.switchTo().alert().accept();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @When("the user clicks on the Forget Your Password?")
+    public void the_user_clicks_on_the_forget_your_password() {
+        coffeeShop.forgetPassword.click();
+    }
+    @Then("the update account window shows up, the submit button is disable")
+    public void the_update_account_window_shows_up_the_submit_button_is_disable() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.attributeContains(coffeeShop.updateAccountDiv,"class", "modal fade show"));
+            Assert.assertEquals("block",coffeeShop.updateAccountDiv.getCssValue("display"));
+            Assert.assertFalse(coffeeShop.updateSubmitBtn.isEnabled());
+            coffeeShop.updateCloseBtn.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @When("the user enters an valid information")
+    public void the_user_enters_an_valid_information() {
+        coffeeShop.inputFirstName2.sendKeys("asfasf");
+        coffeeShop.inputLastName2.sendKeys("asfasf");
+        coffeeShop.inputPhoneNumber2.sendKeys("1234567890");
+        coffeeShop.inputEmail2.sendKeys("asfa@gma.com");
+        coffeeShop.inputUsername2.sendKeys("coffeequeen92");
+        coffeeShop.inputPassword2.sendKeys("Password1");
+        coffeeShop.inputConfirmPassword2.sendKeys("Password1");
+    }
+    @Then("the submit button is enable")
+    public void the_submit_button_is_enable() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 1);
+            wait.until(ExpectedConditions.elementToBeClickable(coffeeShop.updateSubmitBtn));
+            Assert.assertTrue(coffeeShop.updateSubmitBtn.isEnabled());
+            coffeeShop.updateCloseBtn.click();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,16 +163,14 @@ public class LoginStepImpl {
             WebDriverWait wait = new WebDriverWait(driver, 1);
             wait.until(ExpectedConditions.attributeContains(coffeeShop.accountDiv,"style", "display: none"));
             Assert.assertEquals("none",coffeeShop.accountDiv.getCssValue("display"));
-            wait.until(ExpectedConditions.elementToBeClickable(coffeeShop.formCloseBtn));
-            coffeeShop.formCloseBtn.click();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    @When("the user clicks on the submit button with all valid inputs")
-    public void the_user_clicks_on_the_submit_button_with_all_valid_inputs() {
+    @When("the user enters all valid inputs")
+    public void the_user_enters_all_valid_inputs() {
         coffeeShop.inputFirstName.sendKeys("asfasf");
         coffeeShop.inputLastName.sendKeys("asfasf");
         coffeeShop.inputPhoneNumber.sendKeys("1234567890");
@@ -151,8 +192,5 @@ public class LoginStepImpl {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

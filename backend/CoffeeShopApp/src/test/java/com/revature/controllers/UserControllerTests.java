@@ -7,12 +7,14 @@ import com.revature.models.UserRole;
 import com.revature.services.UserAddressService;
 import com.revature.services.UserService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Answers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class UserControllerTests {
     @MockBean
     UserService us;
@@ -75,4 +78,10 @@ public class UserControllerTests {
         ra.andExpect(status().isCreated());
     }
 
+    @Test
+    void updateUserFC() throws Exception {
+        Mockito.when(us.updateUser(u1)).thenReturn(null);
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.put("/users").content(gson.toJson(ua1)).contentType(MediaType.APPLICATION_JSON));
+        ra.andExpect(status().isNoContent());
+    }
 }

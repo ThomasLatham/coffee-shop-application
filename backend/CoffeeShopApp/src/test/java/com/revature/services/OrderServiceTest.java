@@ -10,12 +10,14 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 
-import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class OrderServiceTest {
     Byte[] temp = new Byte [255];
     UserRole ur1 = new UserRole(1,"customer");
@@ -46,11 +48,20 @@ public class OrderServiceTest {
     }
 
     @Test
+    void getAllOrders(){
+        List<Order> orders = new ArrayList<Order>();
+        orders.add(o1);
+        Mockito.when(or.findAll()).thenReturn(orders);
+        List<Order> result = os.getAllOrders();
+        Assertions.assertFalse(result.isEmpty());
+    }
+    @Test
     void deleteOrder() {
         Order o = o1;
         Mockito.doNothing().when(or).deleteById(o.getorderID());
         boolean result = os.deleteOrder(o.getorderID());
         Assertions.assertTrue(result);
+
     }
     @Test
     void getOrder() {
@@ -81,5 +92,16 @@ public class OrderServiceTest {
         Mockito.when(or.save(o)).thenReturn(new Order(1,o.getOrderTime(),o.getOrderStatus(),o.getOrderedBy(),o.getOrderPayment(),o.getDelivery()));
         o = os.advanceOrder(o);
         Assertions.assertEquals("Ready", o.getOrderStatus().getStatus());
+        o = os.advanceOrder(o);
+        Assertions.assertEquals("Delivery in Progress", o.getOrderStatus().getStatus());
+        o = os.advanceOrder(o);
+        Assertions.assertEquals("Delivered", o.getOrderStatus().getStatus());
+        Order o2 = new Order(1,1636495200,new OrderStatus(2,"Ready"),u1,pt1,false);
+        Mockito.when(or.save(o2)).thenReturn(o2);
+        o2 = os.advanceOrder(o2);
+        Assertions.assertEquals("Order Complete", o2.getOrderStatus().getStatus());
+
+
+
     }
 }

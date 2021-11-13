@@ -10,12 +10,14 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class UserServiceTests {
     @Autowired
     UserService us;
@@ -53,11 +55,12 @@ public class UserServiceTests {
     }
 
     @Test
-    void updateUser(){
-        User newUser = new User("first","last","123456789","email","user","password",ur1);
-        Mockito.when(ur.save(newUser)).thenReturn(u1);
-        newUser = us.addUser(newUser);
-        Assertions.assertEquals(u1,newUser);
+    void updateUserFC(){
+        User newUser = u1;
+        newUser.setPassword("Password12345");
+        Mockito.when(ur.findByFirstNameAndLastName(newUser.getFirstName(),newUser.getFirstName())).thenReturn(u1);
+        newUser = us.updateUser(newUser);
+        Assertions.assertNull(newUser);
     }
 
     @Test
