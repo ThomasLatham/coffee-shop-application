@@ -1,9 +1,7 @@
 package com.revature.runners;
 
-import com.revature.pages.CoffeeShopMain;
+import com.revature.pages.*;
 
-import com.revature.pages.NavbarPage;
-import com.revature.pages.OrderManagementPage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
@@ -24,6 +22,8 @@ public class CoffeeShopRunner {
     public static  CoffeeShopMain CoffeeShop;
     public static OrderManagementPage orderManagementPage;
     public static NavbarPage navbarPage;
+    public static MenuPage menuPage;
+    public static CartPage cartPage;
 
     @BeforeClass
     public static void setUp() {
@@ -36,6 +36,8 @@ public class CoffeeShopRunner {
         CoffeeShop = new CoffeeShopMain(driver);
         orderManagementPage = new OrderManagementPage(driver);
         navbarPage = new NavbarPage(driver);
+        menuPage = new MenuPage(driver);
+        cartPage = new CartPage(driver);
 
     }
 
