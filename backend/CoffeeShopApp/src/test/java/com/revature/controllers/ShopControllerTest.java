@@ -29,7 +29,8 @@ public class ShopControllerTest {
 
     @Test
     void getShopById() throws Exception {
-        Mockito.when(ss.getShop(1)).thenReturn(new Shop(1,s.getShopLocation(),s.getShopPic()));
+        Mockito.when(ss.getShop(1)).thenReturn(new Shop(1,"shop",p));
+        //Mockito.when(os.getOrder(1)).thenReturn(new Order(1, 1636495200000L,os1,u1,pt1,true));
 
         ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/shop/1"));
 
