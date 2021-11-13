@@ -10,12 +10,14 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class UserServiceTests {
     @Autowired
     UserService us;

@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class OrderItemServicesTests {
     @Autowired
     OrderItemService os;
@@ -155,7 +157,5 @@ public class OrderItemServicesTests {
         Mockito.when(oir.findAll()).thenReturn(orderItemsList);
         orderItemsList = os.getOrderItemsForToday("2021-11-12");
         Assertions.assertTrue(orderItemsList.isEmpty());
-        orderItemsList = os.getOrderItemsForToday("fa");
-        Assertions.assertNull(orderItemsList);
     }
 }
