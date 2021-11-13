@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
-
 public class ShopServiceTest {
 
     Byte[] temp = new Byte [255];
@@ -41,6 +42,19 @@ public class ShopServiceTest {
         boolean result = ss.deleteShop(s.getShopID());
         Assertions.assertTrue(result);
     }
+
+    @Test
+    void deleteShopIllegalArgument() {
+
+        Shop s = s1;
+
+        Mockito.doThrow(IllegalArgumentException.class).when(sr).deleteById(s1.getShopID());
+
+        boolean result = ss.deleteShop(s.getShopID());
+
+        Assertions.assertFalse(result);
+    }
+
     @Test
     void getShop() {
         Shop s = s1;
@@ -49,6 +63,22 @@ public class ShopServiceTest {
         Shop result = ss.getShop(s.getShopID());
         Assertions.assertEquals(result.getShopID(), s.getShopID());
     }
+
+    @Test
+    void getAllShops() {
+
+        List<Shop> shops = new ArrayList<>();
+        shops.add(s1);
+
+        Mockito.when(sr.findAll()).thenReturn(shops);
+
+        List<Shop> actual = ss.getAllShops();
+
+        List<Shop> expected = shops;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
     @Test
     void updateShop(){
         Shop s = new Shop(1,"Arizona",p1);

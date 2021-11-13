@@ -69,13 +69,11 @@ public class IngredientOrderItemServiceImpl implements IngredientOrderItemServic
                 if (ingredientPack.getIngredient() != null) {
 
                     //if the ioi actually has ingredients, put it in DB
-                    ioir.save(ingredientPack);
+                    //setting ID so that the service test works
+                    ingredientPack.setIngredientOrderItemId(ioir.save(ingredientPack).getIngredientOrderItemId());
                 }
             }
-
         }
-        //put the orderItems in the DB
-        //put the ingredientOrderItems in the DB
         return cart;
     }
 

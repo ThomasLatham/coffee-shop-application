@@ -14,7 +14,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -57,18 +62,11 @@ public class IngredientOrderItemControllerTests {
 
         Mockito.when(iois.addIngredientOrderItem(ioi1)).thenReturn(ioi1);
 
-        ResultActions ra = mvc.perform(MockMvcRequestBuilders.post("/ingredientOrderItems")
-
+        mvc.perform(MockMvcRequestBuilders.post("/ingredientOrderItems")
                 .content(gson.toJson(oi1))
-                .contentType(MediaType.APPLICATION_JSON));
-
-        ra.andExpect(status().is(200));
-
-
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(200));
     }
-
-
-
 
     @Test
     void getIngredientOrderItem() throws Exception {
@@ -85,12 +83,6 @@ public class IngredientOrderItemControllerTests {
 
     }
 
-
-
-
-
-
-
     @Test
     void getAllIngredientOrderItems() throws Exception {
 
@@ -99,9 +91,6 @@ public class IngredientOrderItemControllerTests {
         ra.andExpect(status().isOk());
 
     }
-
-
-
 
     @Test
     void updateIngredientOrderItem() throws Exception {
@@ -118,6 +107,39 @@ public class IngredientOrderItemControllerTests {
         ra.andExpect(status().isOk());
 
 
+    }
+
+    @Test
+    void submitOrder() throws Exception {
+
+        IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 1);
+        IngredientOrderItem ioi2 = new IngredientOrderItem(2 ,oi1, i1, 2);
+
+        List<IngredientOrderItem> expectedCartItem = new ArrayList<>();
+        expectedCartItem.add(ioi1);
+        expectedCartItem.add(ioi2);
+
+        List<List<IngredientOrderItem>> expectedCart = new ArrayList<>();
+        expectedCart.add(expectedCartItem);
+
+        Order o1NoID = new Order(0, 11232455, os1, u1, pt1, true);
+        OrderItem oi1NoOrder = new OrderItem(0, o1NoID, mi1, 2);
+        IngredientOrderItem ioi1NoOrder = new IngredientOrderItem(0, oi1NoOrder, i1, 1);
+        IngredientOrderItem ioi2NoOrder = new IngredientOrderItem(0, oi1NoOrder, i1, 2);
+
+        List<IngredientOrderItem> cartItemBeforeSubmit = new ArrayList<>();
+        cartItemBeforeSubmit.add(ioi1NoOrder);
+        cartItemBeforeSubmit.add(ioi2NoOrder);
+
+        List<List<IngredientOrderItem>> cartBeforeOrder = new ArrayList<>();
+        cartBeforeOrder.add(cartItemBeforeSubmit);
+
+        Mockito.when(iois.submitOrder(cartBeforeOrder)).thenReturn(expectedCart);
+
+        mvc.perform(MockMvcRequestBuilders.post("/ingredientOrderItems/submitOrder")
+                .content(gson.toJson(expectedCart))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
 

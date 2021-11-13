@@ -2,16 +2,22 @@ package com.revature.services;
 
 import com.revature.models.*;
 import com.revature.repositories.*;
+import cucumber.api.java.ca.I;
+import org.aspectj.weaver.ast.Or;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
 public class IngredientOrderItemServiceTests {
 
@@ -21,69 +27,119 @@ public class IngredientOrderItemServiceTests {
     @MockBean
     IngredientOrderItemRepo ioir;
 
+    @MockBean
+    OrderItemRepo oir;
 
-    Byte[] temp = null;
+    @MockBean
+    OrderRepo or;
+
+
+
+
+
     UserRole ur1 = new UserRole(1,"customer");
     User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
-    UserAddress ua1 = new UserAddress(1,2125,"street","city",u1);
-    Picture p1 = new Picture(1,"shop",temp);
-    Shop s1 = new Shop(1, "shop", p1);
-    ItemCategory ic1 = new ItemCategory(1,"food");
-    MenuItem mi1 = new MenuItem(1,"a",5,10,ic1,p1);
-    DailySpecial ds1 = new DailySpecial(1,s1,1,mi1);
-    Ingredient i1 = new Ingredient(1, "Ingredient", 2.50);
-    OrderStatus os1 = new OrderStatus(1,"Ready");
+    Picture p1 = new Picture(1,"dummyImageLink",null);
+    ItemCategory ic1 = new ItemCategory(2,"Food");
+    MenuItem mi1 = new MenuItem(1,"espresso",2.50,10,ic1,p1);
+    Ingredient i1 = new Ingredient(1, "almond milk", 0.50);
+    OrderStatus os1 = new OrderStatus(1,"Order Received");
     PaymentType pt1 = new PaymentType(1, "cash");
+
     Order o1 = new Order(1,11232455,os1,u1,pt1,true);
-    OrderItem oi1 = new OrderItem(0,o1, mi1, 2);
+    Order o1NoID = new Order(0, 11232455, os1, u1, pt1, true);
+
+    OrderItem oi1 = new OrderItem(1,o1, mi1, 2);
+    OrderItem oi1NoID = new OrderItem(0, o1, mi1, 2);
+    OrderItem oi1NoOrder = new OrderItem(0, o1NoID, mi1, 2);
+
     IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 1);
-    IngredientOrderItem ioi2 = new IngredientOrderItem(1,oi1, i1, 3);
+    IngredientOrderItem ioi1NoID = new IngredientOrderItem(0, oi1, i1, 1);
+    IngredientOrderItem ioi1NoOrder = new IngredientOrderItem(0, oi1NoOrder, i1, 1);
+
+    IngredientOrderItem ioi2 = new IngredientOrderItem(2 ,oi1, i1, 2);
+    IngredientOrderItem ioi2NoID = new IngredientOrderItem(0, oi1, i1, 2);
+    IngredientOrderItem ioi2NoOrder = new IngredientOrderItem(0, oi1NoOrder, i1, 2);
+
+    IngredientOrderItem ioiUpdate = new IngredientOrderItem(1, oi1, i1, 2);
 
 
     @Test
     void addIngredientOrderItem() {
-//        IngredientOrderItem ioi1 = new IngredientOrderItem(1,oi1, i1, 1);
-        System.out.println(ioi1);
 
-        Mockito.when(ioir.save(ioi1)).thenReturn(new IngredientOrderItem(1, ioi1.getOrderItem(), ioi1.getIngredient(), ioi1.getIngredientCount()));
+        Mockito.when(ioir.save(ioi1NoID)).thenReturn(ioi1);
 
-        ioi1 = iois.addIngredientOrderItem(ioi1);
+        IngredientOrderItem actual = iois.addIngredientOrderItem(ioi1NoID);
 
-        Assertions.assertEquals(1, ioi1.getIngredientOrderItemId());
-        Assertions.assertEquals(oi1, ioi1.getOrderItem());
-        Assertions.assertEquals(i1, ioi1.getIngredient());
-        Assertions.assertEquals(1, ioi1.getIngredientCount());
+        IngredientOrderItem expected = ioi1;
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void getIngredientOrderItem() {
 
         Optional<IngredientOrderItem> ingredientOrderItemOptional = Optional.of(ioi1);
+
         Mockito.when(ioir.findById(ioi1.getIngredientOrderItemId())).thenReturn(ingredientOrderItemOptional);
+
         IngredientOrderItem actual = iois.getIngredientOrderItem(ioi1.getIngredientOrderItemId());
+
         Assertions.assertEquals(actual.getIngredientOrderItemId(), ioi1.getIngredientOrderItemId());
-
-
     }
 
     @Test
     void getAllIngredientOrderItems() {
-        List<IngredientOrderItem> ingredientOrderItemsList = (List<IngredientOrderItem>) ioir.findAll();
-        Assertions.assertTrue(ingredientOrderItemsList.isEmpty());
+
+        List<IngredientOrderItem> expected = new ArrayList<>();
+
+        expected.add(ioi1);
+        expected.add(ioi2);
+
+        Mockito.when(ioir.findAll()).thenReturn(expected);
+
+        List<IngredientOrderItem> actual = iois.getAllIngredientOrderItems();
+
+        Assertions.assertEquals(actual, expected);
     }
 
     @Test
     void updateIngredientOrderItem() {
 
-        Optional<IngredientOrderItem> ingredientOrderItemOptional = Optional.of(ioi2);
-        Mockito.when(ioir.findById(ioi2.getIngredientOrderItemId())).thenReturn(ingredientOrderItemOptional);
-        IngredientOrderItem actual = iois.getIngredientOrderItem(ioi2.getIngredientOrderItemId());
-        Assertions.assertEquals(actual.getIngredientOrderItemId(), ioi2.getIngredientOrderItemId());
+        Mockito.when(ioir.save(ioiUpdate)).thenReturn(ioiUpdate);
 
+        IngredientOrderItem actual = iois.updateIngredientOrderItem(ioiUpdate);
+
+        IngredientOrderItem expected = ioiUpdate;
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void submitOrder() {
+
+        List<IngredientOrderItem> expectedCartItem = new ArrayList<>();
+        expectedCartItem.add(ioi1);
+        expectedCartItem.add(ioi2);
+
+        List<List<IngredientOrderItem>> expectedCart = new ArrayList<>();
+        expectedCart.add(expectedCartItem);
+
+        Mockito.when(ioir.save(ioi1NoID)).thenReturn(ioi1);
+        Mockito.when(ioir.save(ioi2NoID)).thenReturn(ioi2);
+        Mockito.when(oir.save(oi1NoID)).thenReturn(oi1);
+        Mockito.when(or.save(o1NoID)).thenReturn(o1);
+
+        List<IngredientOrderItem> cartItemBeforeSubmit = new ArrayList<>();
+        cartItemBeforeSubmit.add(ioi1NoOrder);
+        cartItemBeforeSubmit.add(ioi2NoOrder);
+
+        List<List<IngredientOrderItem>> cartBeforeSubmit = new ArrayList<>();
+        cartBeforeSubmit.add(cartItemBeforeSubmit);
+
+        List<List<IngredientOrderItem>> actualCart = iois.submitOrder(cartBeforeSubmit);
+
+        Assertions.assertEquals(expectedCart, actualCart);
 
     }
 
