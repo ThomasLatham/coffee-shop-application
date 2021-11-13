@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class IngredientOrderItemServiceTests {
 
     @Autowired
@@ -32,10 +34,6 @@ public class IngredientOrderItemServiceTests {
 
     @MockBean
     OrderRepo or;
-
-
-
-
 
     UserRole ur1 = new UserRole(1,"customer");
     User u1 = new User(1,"first","last","123456789","email","user","password",ur1);
@@ -140,7 +138,6 @@ public class IngredientOrderItemServiceTests {
         List<List<IngredientOrderItem>> actualCart = iois.submitOrder(cartBeforeSubmit);
 
         Assertions.assertEquals(expectedCart, actualCart);
-
     }
 
 }

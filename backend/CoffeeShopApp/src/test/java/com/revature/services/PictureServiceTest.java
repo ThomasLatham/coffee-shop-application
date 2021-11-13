@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,10 @@ import java.util.Optional;
 
 
 @SpringBootTest(classes = com.revature.app.CoffeeShopAppApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class PictureServiceTest {
 
-    Byte[] temp = new Byte [255];
-    Picture p1 = new Picture(1,"shop",temp);
-    Shop s1 = new Shop(1, "shop", p1);
+    Picture p1 = new Picture(1, "shop", null);
 
     @Autowired
     PictureService ps;
@@ -83,7 +83,7 @@ public class PictureServiceTest {
     }
     @Test
     void updatePicture(){
-        Picture p = new Picture(1,"Arizona",temp);
+        Picture p = new Picture(1,"Arizona",null);
         Mockito.when(pr.save(p)).thenReturn(new Picture(1, p.getPicName(), p.getPicType()));
         p = ps.updatePicture(p);
         Assertions.assertEquals(p.getPicID(),1);
