@@ -21,7 +21,7 @@
         <button id="loginpageLoginButton" type="button" class="btn btn-primary" (click)="login()" *ngIf="!checkLogin()">Login</button>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#accountDiv" *ngIf="!checkLogin()">Register Now!</button>
-        <a class="nav-link active" data-bs-toggle="modal" data-bs-target="#updateAccountDiv">Forget Your Password?</a>
+        <a class="nav-link active" style="margin-left: 35%; margin-right: 35%; width: 30%;" data-bs-toggle="modal" data-bs-target="#updateAccountDiv">Forget Your Password?</a>
       </div>
     </div>
   </div>
@@ -240,8 +240,8 @@
         </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" [disabled]="!this.updateForm.valid">Submits</button>
+          <button type="button" class="btn btn-secondary" id="updateCloseBtn" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" id="updateSubmitBtn" data-bs-dismiss="modal" [disabled]="!this.updateForm.valid">Submits</button>
         </div>
     </form>
     </div>
