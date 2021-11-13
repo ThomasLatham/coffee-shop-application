@@ -2,6 +2,7 @@ package com.revature.runners;
 
 import com.revature.pages.CoffeeShopMain;
 
+import com.revature.pages.OrderManagementPage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
@@ -20,6 +21,7 @@ public class CoffeeShopRunner {
 
     public static WebDriver driver;
     public static  CoffeeShopMain CoffeeShop;
+    public static OrderManagementPage orderManagementPage;
 
     @BeforeClass
     public static void setUp() {
@@ -30,6 +32,8 @@ public class CoffeeShopRunner {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         CoffeeShop = new CoffeeShopMain(driver);
+        orderManagementPage = new OrderManagementPage(driver);
+
     }
 
     @AfterClass
