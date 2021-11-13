@@ -1,6 +1,6 @@
 package com.revature.steps;
 
-import com.revature.pages.CoffeeShopMain;
+import com.revature.pages.LoginPage;
 import com.revature.runners.CoffeeShopRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,14 +8,11 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
-
 public class LoginStepImpl {
-    public static CoffeeShopMain coffeeShop = CoffeeShopRunner.CoffeeShop;
+    public static LoginPage coffeeShop = CoffeeShopRunner.CoffeeShop;
     public static WebDriver driver = CoffeeShopRunner.driver;
 
     @Given("the user is on about us page")
@@ -28,7 +25,7 @@ public class LoginStepImpl {
     }
     @Then("the user is on login page")
     public void the_user_is_on_login_page() {
-        Assert.assertEquals("If you already have our account, please Login",coffeeShop.loginHeader.getText());
+        Assert.assertEquals("Login",coffeeShop.loginHeader.getText());
     }
 
 
@@ -109,6 +106,7 @@ public class LoginStepImpl {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     //LogOut

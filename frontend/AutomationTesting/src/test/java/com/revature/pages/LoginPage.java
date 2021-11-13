@@ -5,16 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CoffeeShopMain {
+public class LoginPage {
     public WebDriver driver;
-
-    //Fields that represent Elements in the HTML
 
     //Login
     @FindBy(xpath = "/html/body/app-root/nav/div/div/div/button")
     public WebElement login;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/h3")
+    @FindBy(xpath = "/html/body/app-root/app-login/div[1]/h1")
     public WebElement loginHeader;
 
     @FindBy(id = "userInput")
@@ -23,13 +21,13 @@ public class CoffeeShopMain {
     @FindBy(id = "passwordInput")
     public WebElement passwordInput;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/div[2]/div/button[1]")
+    @FindBy(id = "loginpageLoginButton")
     public WebElement loginBtn;
 
     @FindBy(id = "loginDiv")
     public WebElement loginDiv;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/div[2]/div/button[2]")
+    @FindBy(xpath = "/html/body/app-root/app-login/div[1]/div[2]/div[2]/div/button[2]")
     public WebElement registerBtn;
 
     @FindBy(xpath = "/html/body/app-root/app-landing-page/div[1]/h1")
@@ -38,7 +36,7 @@ public class CoffeeShopMain {
     @FindBy(id = "accountDiv")
     public WebElement accountDiv;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[3]/div/div/form/div[2]/button[1]")
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/div/div/form/div[2]/button[1]")
     public WebElement formCloseBtn;
 
     @FindBy(xpath = "/html/body/app-root/app-login/div[3]/div/div/form/div[2]/button[2]")
@@ -74,16 +72,16 @@ public class CoffeeShopMain {
     @FindBy(id = "inputConfirmPassword")
     public WebElement inputConfirmPassword;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/div[2]/div/a")
+    @FindBy(xpath = "/html/body/app-root/app-login/div[1]/div[2]/div[2]/div/a")
     public WebElement forgetPassword;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[4]")
+    @FindBy(xpath = "/html/body/app-root/app-login/div[3]")
     public WebElement updateAccountDiv;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[4]/div/div/form/div[2]/button[2]")
+    @FindBy(id = "updateSubmitBtn")
     public WebElement updateSubmitBtn;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div[4]/div/div/form/div[2]/button[1]")
+    @FindBy(id = "updateCloseBtn")
     public WebElement updateCloseBtn;
 
     @FindBy(id = "inputFirstName2")
@@ -108,7 +106,7 @@ public class CoffeeShopMain {
     public WebElement inputConfirmPassword2;
 
 
-    public CoffeeShopMain(WebDriver driver){
+    public LoginPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
