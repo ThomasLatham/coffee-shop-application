@@ -67,7 +67,7 @@ public class OrderManagementStepImpl {
     }
     @When("the manager inputs the day to view orders from")
     public void the_manager_inputs_the_day_to_view_orders_from() {
-        orderManagementPage.dateInput.sendKeys("11-10-2021");
+        orderManagementPage.dateInput.sendKeys("11-12-2021");
 
     }
     @When("the manager clicks the button to see orders")
@@ -80,6 +80,7 @@ public class OrderManagementStepImpl {
     }
     @Then("the orders from that day should be displayed")
     public void the_orders_from_that_day_should_be_displayed() {
+
         orderManagementPage.orderDay.isDisplayed();
     }
 }

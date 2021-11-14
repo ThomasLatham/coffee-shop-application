@@ -1,9 +1,7 @@
 package com.revature.runners;
 
-import com.revature.pages.LoginPage;
+import com.revature.pages.*;
 
-import com.revature.pages.NavbarPage;
-import com.revature.pages.OrderManagementPage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
@@ -24,9 +22,12 @@ public class CoffeeShopRunner {
     public static LoginPage CoffeeShop;
     public static OrderManagementPage orderManagementPage;
     public static NavbarPage navbarPage;
+    public static MenuPage menuPage;
+    public static CartPage cartPage;
 
     @BeforeClass
     public static void setUp() {
+
         String path = System.getenv("DRIVER_PATH");
         System.out.println(path);
         System.setProperty("webdriver.chrome.driver", path);
@@ -36,11 +37,13 @@ public class CoffeeShopRunner {
         CoffeeShop = new LoginPage(driver);
         orderManagementPage = new OrderManagementPage(driver);
         navbarPage = new NavbarPage(driver);
-
+        menuPage = new MenuPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @AfterClass
     public static void tearDown() {
+
         driver.quit();
     }
 
