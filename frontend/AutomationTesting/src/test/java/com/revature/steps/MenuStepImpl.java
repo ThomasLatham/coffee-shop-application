@@ -52,7 +52,7 @@ public class MenuStepImpl {
     @Then("The selected menu item with the chosen extra items should be visible in the cart")
     public void the_selected_menu_item_with_the_chosen_extra_items_should_be_visible_in_the_cart() {
 
-        Assertions.assertEquals("espresso:", cartPage.cartItem1Text.getText());
+        Assertions.assertEquals("espresso: $2.50", cartPage.cartItem1Text.getText());
         Assertions.assertEquals("almond milk x 2 =", cartPage.extraItem1Text.getText());
     }
 

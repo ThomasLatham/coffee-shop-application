@@ -27,6 +27,7 @@ public class CoffeeShopRunner {
 
     @BeforeClass
     public static void setUp() {
+
         String path = System.getenv("DRIVER_PATH");
         System.out.println(path);
         System.setProperty("webdriver.chrome.driver", path);
@@ -38,11 +39,11 @@ public class CoffeeShopRunner {
         navbarPage = new NavbarPage(driver);
         menuPage = new MenuPage(driver);
         cartPage = new CartPage(driver);
-
     }
 
     @AfterClass
     public static void tearDown() {
+
         driver.quit();
     }
 

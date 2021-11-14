@@ -19,6 +19,9 @@ public class MenuPage {
     @FindBy(xpath = "/html/body/app-root/app-menu/div[1]/table/tr[2]/td[5]/button")
     public WebElement addItemButton1;
 
+    @FindBy(xpath = "/html/body/app-root/app-menu/div[2]/table/tr[7]/td[5]/button")
+    public WebElement addItemButton6;
+
 
     public MenuPage (WebDriver driver){
 
