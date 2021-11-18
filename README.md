@@ -33,6 +33,30 @@ To-Do list:
 * Third-Party delivery system.
 * Images hosting on a Simple Storage Service.
 
+## Roles/Responsiblities:
+* Thomas Latham
+ * Group Leader
+ * Created backend and frontend for the Menu Feature
+ * Performed full API, JUnit, and Cucumber testing through assigned Feature
+ * Collaborated with Tutan on the Cart Feature
+ * Established Git workflow for group version control for code
+* Michael Than
+ * Created backend and frontend for the Order Management Feature
+ * Performed full API, JUnit, and Cucumber testing through assigned Feature
+ * Created and tested functional navbar 
+ * Created a landing page with functional carousel
+* Chris Wang
+ * Created backend and frontend for the login and create account Features
+ * Performed full API, JUnit, and Cucumber testing through assigned Feature
+ * Created forgot password feature; an implemented stretch goal
+* Tutan Abegaz
+ * Created backend and frontend for the cart feature
+ * Performed full API, Junit, and Cucumber testing through assigned Feature
+* Shamim Rahman
+ * Created backend and frontend for the about us and contact us Features
+ * Performed full API, Junit, and Cucumber testing through assigned Feature
+
+
 ## Getting Started
 Clone this Repository to your local computer
 
