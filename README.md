@@ -1,4 +1,4 @@
-- - - - # Project Two - Coffee Shop Application
+# Project Two - Coffee Shop Application
 
 
 
@@ -10,11 +10,13 @@ Coffee shop is a full-stack web application that allows a customer to order the 
 
 - Frontend
   - HTML, CSS, TypeScript, Angular CLI
+
 - Frontend Test
   - Selenium, Cucumber
 
 - Backend
   - Java 8, Maven, Spring Boot, Spring Data JPA, Spring MVC, Node.js
+
 - Backend Test
   - Spring Test, JUnit, Mockito, Postman
 
