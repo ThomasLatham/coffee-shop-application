@@ -7,19 +7,19 @@
 Coffee shop is a full-stack web application that allows a customer to order the different items. Customer can login with their ID to process the order or new customer can create a new user ID. Customar can also see their previous order. Store manager can track the order and process the order status accordingly.
 
 ## Technologies Used:
-Frontend
-* HTML, CSS, TypeScript, Angular CLI <br />
-Frontend Test
-* Selenium, Cucumber
+* Frontend
+** HTML, CSS, TypeScript, Angular CLI
+* Frontend Test
+** Selenium, Cucumber
 
-Backend
-* Java 8, Maven, Spring boot, Spring Data API, Spring MVC, Node.js <br />
-Backend Test
-* Spring Test, JUnit, Mockito, Postman
+* Backend
+** Java 8, Maven, Spring boot, Spring Data API, Spring MVC, Node.js
+* Backend Test
+** Spring Test, JUnit, Mockito, Postman
 
-DataBase and Other Tools
-* PostgreSQL
-* IntelliJ, VSCode, DBeaver, GitLab, Trello
+* DataBase and Other Tools
+** PostgreSQL
+** IntelliJ, VSCode, DBeaver, GitLab, Trello
 
 ## Features:
 * Customer can login before the order. If custoemr forget the password, can create a new password using required information. New customer can create a new login ID.
