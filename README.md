@@ -13,7 +13,7 @@ Coffee shop is a full-stack web application that allows a customer to order the 
   * Selenium, Cucumber
 
 * Backend
-  * Java 8, Maven, Spring Boot, Spring Data API, Spring MVC, Node.js
+  * Java 8, Maven, Spring Boot, Spring Data JPA, Spring MVC, Node.js
 * Backend Test
   * Spring Test, JUnit, Mockito, Postman
 
