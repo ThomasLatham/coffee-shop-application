@@ -8,7 +8,7 @@ Coffee shop is a full-stack web application that allows a customer to order the 
 
 ## Technologies Used:
 * Frontend
-  *HTML, CSS, TypeScript, Angular CLI
+  * HTML, CSS, TypeScript, Angular CLI
 * Frontend Test
   * Selenium, Cucumber
 
