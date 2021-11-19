@@ -1,7 +1,5 @@
 # Project Two - Coffee Shop Application
 
-
-
 ## Project Description:
 
 Coffee shop is a full-stack web application that allows a customer to order the different items. Customer can login with their ID to process the order or new customer can create a new user ID. Customar can also see their previous order. Store manager can track the order and process the order status accordingly.
