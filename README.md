@@ -8,18 +8,18 @@ Coffee shop is a full-stack web application that allows a customer to order the 
 
 ## Technologies Used:
 * Frontend
-** HTML, CSS, TypeScript, Angular CLI
+  * HTML, CSS, TypeScript, Angular CLI
 * Frontend Test
-** Selenium, Cucumber
+  * Selenium, Cucumber
 
 * Backend
-** Java 8, Maven, Spring boot, Spring Data API, Spring MVC, Node.js
+  * Java 8, Maven, Spring boot, Spring Data API, Spring MVC, Node.js
 * Backend Test
-** Spring Test, JUnit, Mockito, Postman
+  * Spring Test, JUnit, Mockito, Postman
 
 * DataBase and Other Tools
-** PostgreSQL
-** IntelliJ, VSCode, DBeaver, GitLab, Trello
+  * PostgreSQL
+  * IntelliJ, VSCode, DBeaver, GitLab, Trello
 
 ## Features:
 * Customer can login before the order. If custoemr forget the password, can create a new password using required information. New customer can create a new login ID.
@@ -130,17 +130,7 @@ POST : `/users`
 * Request to create a new customer account<br />
 POST : `/userAddresses`
 * Request to create a new user address for an existing customer account<br />
-GET : `/supervisors/user_id`
-* Request the department header information for the current login account<br />
-GET : `/heads/department_id`
-* Request all events information for the current login account<br />
-GET : `/users/user_id/events`
-* Request to create a new event for the current login account<br />
-POST : `/users/user_id/events`
-* Request to update a event for the current login account<br />
-PUT : `/users/user_id/events/event_id`
-* Request to delete event for the current login account<br />
-DELETE : `/users/user_id/events/event_id`
+
 
 ## Contributors
 
