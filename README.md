@@ -2,32 +2,35 @@
 
 ## Project Description:
 
-Coffee shop is a full-stack web application that allows a customer to order the different items. Customer can login with their ID to process the order or new customer can create a new user ID. Customar can also see their previous order. Store manager can track the order and process the order status accordingly.
+Coffee Shop Application is a full-stack web application that allows customers to order various items one might find in (you guessed it) a coffee shop. Customers can create accounts and log in with their credentials to submit orders and view their order history. Store managers can track and update the status of orders as they are processed and fulfilled.
 
 ## Technologies Used:
 
 - Frontend
-  - HTML, CSS, TypeScript, Angular CLI
+  - HTML, CSS, TypeScript, Angular
 
-- Frontend Test
-  - Selenium, Cucumber
+- Frontend Testing
+  - Selenium with Java, Cucumber BDD
 
 - Backend
-  - Java 8, Maven, Spring Boot, Spring Data JPA, Spring MVC, Node.js
+  - Java 8, Maven, Spring Boot, Spring Data JPA, Spring MVC
 
-- Backend Test
+- Backend Testing
   - Spring Test, JUnit, Mockito, Postman
 
 - DataBase and Other Tools
   - PostgreSQL
-  - IntelliJ, VSCode, DBeaver, GitLab, Trello
+  - IntelliJ, VS Code, DBeaver, GitLab, Trello
 
 ## Features:
-* Customer can login before the order. If custoemr forget the password, can create a new password using required information. New customer can create a new login ID.
-* Customer can oreder different items, add the ingredients if needed and also modify the order. Manu has all items with daily special item. Customer can also see the order history.
-* Customer can see the cart with total price before they make the payment.
-* Store Manager will be able to see all oders status with the order time and can process the order status from preparaiton to ready state.
-* In the about page customer can learn about our coffee shop and contact page has different stores contact details.
+* Customers can create new accounts, log in and place orders. If a customer forgets his password, he can reset it.
+* Customers can order different items, add various ingredients and also modify orders during checkout. The menu has rotating daily-special items, based on the day of the week.
+* Customers can view their order histories.
+* Customers can review their cart and total payment due before submitting their orders.
+* Store Managers are able to view all orders (including status information) and progress orders
+from "being preparation" to "delivered," and every step in between.
+* Customers can learn about the coffee shop via the About page, and they can get in contact with
+the owners via the Contact Us page.
 
 To-Do list:
 * Add more payment options, such as credit card, paypal.
@@ -38,7 +41,7 @@ To-Do list:
 * Thomas Latham
   * Group Leader
   * Created backend and frontend for the Menu Feature
-  * Performed full API, JUnit, and Cucumber testing through assigned Feature
+  * Performed full API, JUnit and Cucumber testing through assigned Feature
   * Collaborated with Tutan on the Cart Feature
   * Established Git workflow for group version control for code
 * Michael Than
@@ -62,7 +65,7 @@ To-Do list:
 Clone this Repository to your local computer
 
 ```
-git clone https://github.com/HuangyingruiWang/Coffee-shop-Order-Management-System.git
+git clone https://gitlab.com/tlatham54/project-two.git
 
 ```
 
